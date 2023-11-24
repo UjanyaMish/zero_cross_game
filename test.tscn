@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3cacryewcb1f"]
+
+[ext_resource type="Texture2D" uid="uid://y6wa3cue0ww6" path="res://pictures/котяра.png" id="2_f3dr7"]
+[ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="2_ktopl"]
+[ext_resource type="Script" path="res://Button3.cs" id="3_mpkly"]
+[ext_resource type="Texture2D" uid="uid://dsswxcn3e5o1" path="res://pictures/за фоном.png" id="4_mntqg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ЗаФоном" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1044, 735)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_mntqg")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -164.0
+offset_right = 2355.0
+offset_bottom = 1668.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.328, 0.328)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_f3dr7")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -166.5
+offset_right = 176.0
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+text = "Zero_Cross_Game"
+label_settings = ExtResource("2_ktopl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "играть"
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "настройки"
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "выход"
+script = ExtResource("3_mpkly")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button3" to="CanvasLayer/VBoxContainer/Button3" method="_on_pressed"]
