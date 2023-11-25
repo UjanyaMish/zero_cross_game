@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl5r2ksujv0my"]
+
+[ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_5a7jo"]
+[ext_resource type="Texture2D" uid="uid://ccvju6w3e126l" path="res://pictures/котяра.png" id="2_lp1cp"]
+[ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="3_imfxx"]
+[ext_resource type="Script" path="res://Scripts/ButtonGame.cs" id="4_dq3c8"]
+[ext_resource type="Script" path="res://Scripts/ButtonSetting.cs" id="5_fnf3n"]
+[ext_resource type="Script" path="res://Scripts/ButtonEsc.cs" id="6_7ywhk"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ЗаФоном" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1044, 735)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_5a7jo")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -815.0
+offset_right = 2356.0
+offset_bottom = 1665.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.328, 0.328)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_lp1cp")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -166.5
+offset_right = 176.0
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+text = "Zero_Cross_Game"
+label_settings = ExtResource("3_imfxx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="ButtonGame" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "играть"
+script = ExtResource("4_dq3c8")
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonSetting" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "настройки"
+script = ExtResource("5_fnf3n")
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonEsc" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "выход"
+script = ExtResource("6_7ywhk")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="CanvasLayer/VBoxContainer/ButtonGame" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSetting" to="CanvasLayer/VBoxContainer/ButtonSetting" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonEsc" to="CanvasLayer/VBoxContainer/ButtonEsc" method="_on_pressed"]

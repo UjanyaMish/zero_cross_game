@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8u8mcgnba7ob"]
+
+[ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_eg4o7"]
+[ext_resource type="Texture2D" uid="uid://ccvju6w3e126l" path="res://pictures/котяра.png" id="2_0mdsc"]
+[ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="2_dq816"]
+[ext_resource type="Script" path="res://Scripts/ButtonSetMenu.cs" id="4_oguyt"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ЗаФономСМазней" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1754, 1240)
+texture = ExtResource("1_eg4o7")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1150.0
+offset_top = -814.0
+offset_right = 2358.0
+offset_bottom = 1666.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.328, 0.328)
+texture = ExtResource("2_0mdsc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -204.5
+offset_right = 213.5
+offset_bottom = 204.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Настройки"
+label_settings = ExtResource("2_dq816")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="ButtonSetMenu" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "на главное меню"
+script = ExtResource("4_oguyt")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSetMenu" to="CanvasLayer/VBoxContainer/ButtonSetMenu" method="_on_pressed"]

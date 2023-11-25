@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dck403y23ck6x"]
+
+[ext_resource type="Texture2D" uid="uid://bqabe7sat6yay" path="res://pictures/клетка поля.jpg" id="1_5654c"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("1_5654c")
