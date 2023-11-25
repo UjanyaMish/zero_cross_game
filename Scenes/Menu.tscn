@@ -94,6 +94,12 @@ layout_mode = 2
 text = "выход"
 script = ExtResource("6_7ywhk")
 
+[node name="settingsMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="CanvasLayer/VBoxContainer/ButtonGame" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSetting" to="CanvasLayer/VBoxContainer/ButtonSetting" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonEsc" to="CanvasLayer/VBoxContainer/ButtonEsc" method="_on_pressed"]

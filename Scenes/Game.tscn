@@ -30,4 +30,7 @@ grow_vertical = 0
 text = "на главное меню"
 script = ExtResource("3_sykc1")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]

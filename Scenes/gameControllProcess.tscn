@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://l1iu61kukkb3"]
+
+[ext_resource type="Script" path="res://Scripts/game_controll_process.cs" id="1_bhrly"]
+[ext_resource type="PackedScene" uid="uid://copkm0hr58nmd" path="res://UI/pauseMenu.tscn" id="2_5tc7y"]
+[ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="3_ldi0x"]
+
+[node name="GameControllProcess" type="Node"]
+process_mode = 3
+script = ExtResource("1_bhrly")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_5tc7y")]
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Game" parent="." instance=ExtResource("3_ldi0x")]
+process_mode = 1
+position = Vector2(2, 0)
