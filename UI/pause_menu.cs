@@ -2,13 +2,13 @@ using Godot;
 
 public partial class pause_menu : Control
 {
+    [Export]
     private game_controll_process gameControll;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         Hide();
-        gameControll = new();
         gameControll.toggleGamePaused += _onGameControlToggle_gamePaused;
 
     }
@@ -29,4 +29,17 @@ public partial class pause_menu : Control
             Hide();
         }
     }
+
+    private void _on_resume_button_pressed()
+    {
+        gameControll.GamePaused = false;
+    }
+
+    private void _on_returm_button_pressed()
+    {
+        gameControll.GamePaused = false;
+        GetTree().ChangeSceneToFile("res://Scenes/Menu.tscn");
+    }
+
+
 }

@@ -1,11 +1,13 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class game_controll_process : Node
 {
     [Signal]
     public delegate void toggleGamePausedEventHandler(bool isPaused);
 
+    [Export]
     public bool gamePaused = false;
 
     public bool GamePaused
