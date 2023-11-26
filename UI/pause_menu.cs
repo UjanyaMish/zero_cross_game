@@ -26,7 +26,10 @@ public partial class pause_menu : Control
         else
         {
             Hide();
-            gameControll.SettingCalled = !gameControll.SettingCalled;
+            if (gameControll.settingCalled)
+            {
+                gameControll.SettingCalled = false;
+            }
         }
     }
 
@@ -38,7 +41,7 @@ public partial class pause_menu : Control
     private void _on_returm_button_pressed()
     {
         gameControll.GamePaused = false;
-        GetTree().ChangeSceneToFile("res://Scenes/Menu.tscn");
+        gameControll.MenuScreenToggle = true;
     }
 
     private void _on_settings_button_pressed()

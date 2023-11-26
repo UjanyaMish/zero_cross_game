@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl5r2ksujv0my"]
+[gd_scene load_steps=5 format=3 uid="uid://78n2emb5xm1"]
 
 [ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_5a7jo"]
 [ext_resource type="Script" path="res://UI/Menu.cs" id="1_ugiq3"]
 [ext_resource type="Texture2D" uid="uid://ccvju6w3e126l" path="res://pictures/котяра.png" id="2_lp1cp"]
 [ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="3_imfxx"]
-[ext_resource type="Script" path="res://Scripts/ButtonGame.cs" id="4_dq3c8"]
-[ext_resource type="Script" path="res://Scripts/ButtonEsc.cs" id="6_7ywhk"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -73,7 +71,6 @@ layout_mode = 2
 [node name="ButtonGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "играть"
-script = ExtResource("4_dq3c8")
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -92,8 +89,7 @@ layout_mode = 2
 [node name="ButtonEsc" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "выход"
-script = ExtResource("6_7ywhk")
 
-[connection signal="pressed" from="VBoxContainer/ButtonGame" to="VBoxContainer/ButtonGame" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGame" to="." method="_on_button_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonSetting" to="." method="_on_button_setting_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonEsc" to="VBoxContainer/ButtonEsc" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonEsc" to="." method="_on_button_esc_pressed"]

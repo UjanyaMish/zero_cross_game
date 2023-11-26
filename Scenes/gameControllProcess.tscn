@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://copkm0hr58nmd" path="res://UI/pauseMenu.tscn" id="2_5tc7y"]
 [ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="3_ldi0x"]
 [ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/settings_menu.tscn" id="3_w5ife"]
-[ext_resource type="PackedScene" uid="uid://dl5r2ksujv0my" path="res://Scenes/Menu.tscn" id="5_go54d"]
+[ext_resource type="PackedScene" uid="uid://78n2emb5xm1" path="res://Scenes/Menu.tscn" id="5_go54d"]
 
 [node name="GameControllProcess" type="Node"]
 process_mode = 3

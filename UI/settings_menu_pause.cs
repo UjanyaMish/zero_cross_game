@@ -17,7 +17,7 @@ public partial class settings_menu_pause : Control
 
 	private void _on_back_button_pressed()
 	{
-		Hide();
+        settingCallGame.SettingCalled = false;
     }
 
     public void _on_settings_button_toggeled(bool isSettingCalled)

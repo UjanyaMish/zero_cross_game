@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://boeb56n7mlp21"]
+[gd_scene load_steps=3 format=3 uid="uid://boeb56n7mlp21"]
 
 [ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Field.cs" id="2_rygid"]
-[ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
 
 [node name="Game" type="Node2D"]
 
@@ -15,22 +14,5 @@ texture = ExtResource("1_cbhqs")
 position = Vector2(448, 196)
 script = ExtResource("2_rygid")
 
-[node name="ButtonGameMenu" type="Button" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 395.0
-offset_top = 572.0
-offset_right = 767.0
-offset_bottom = 619.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "на главное меню"
-script = ExtResource("3_sykc1")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-
-[connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
