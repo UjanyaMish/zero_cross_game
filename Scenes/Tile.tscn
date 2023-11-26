@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dck403y23ck6x"]
 
-[ext_resource type="Texture2D" uid="uid://bqabe7sat6yay" path="res://pictures/клетка поля.jpg" id="1_5654c"]
+[ext_resource type="Texture2D" uid="uid://be8nc8ci4ii8n" path="res://pictures/клетка поля.png" id="1_5654c"]
 
 [node name="Node2D" type="Node2D"]
 

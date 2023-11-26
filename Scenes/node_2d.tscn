@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dhhflb5mog8ml"]
 
-[ext_resource type="Texture2D" uid="uid://b01iv3ygp8vo7" path="res://pictures/за фоном с мазней.png" id="1_rukg8"]
+[ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_rukg8"]
 
 [node name="Node2D" type="Node2D"]
 

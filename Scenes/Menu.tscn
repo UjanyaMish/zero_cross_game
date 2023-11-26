@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl5r2ksujv0my"]
+[gd_scene load_steps=8 format=3 uid="uid://dl5r2ksujv0my"]
 
 [ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_5a7jo"]
 [ext_resource type="Texture2D" uid="uid://ccvju6w3e126l" path="res://pictures/котяра.png" id="2_lp1cp"]
 [ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="3_imfxx"]
 [ext_resource type="Script" path="res://Scripts/ButtonGame.cs" id="4_dq3c8"]
-[ext_resource type="Script" path="res://Scripts/ButtonSetting.cs" id="5_fnf3n"]
+[ext_resource type="Script" path="res://UI/settings_button.cs" id="5_l78b0"]
 [ext_resource type="Script" path="res://Scripts/ButtonEsc.cs" id="6_7ywhk"]
+[ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/settings_menu.tscn" id="7_jjg5u"]
 
 [node name="Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +84,7 @@ layout_mode = 2
 [node name="ButtonSetting" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "настройки"
-script = ExtResource("5_fnf3n")
+script = ExtResource("5_l78b0")
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -93,6 +95,9 @@ layout_mode = 2
 layout_mode = 2
 text = "выход"
 script = ExtResource("6_7ywhk")
+
+[node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("settingCallGame") instance=ExtResource("7_jjg5u")]
+settingCallGame = NodePath("../VBoxContainer/ButtonSetting")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="CanvasLayer/VBoxContainer/ButtonGame" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSetting" to="CanvasLayer/VBoxContainer/ButtonSetting" method="_on_pressed"]
