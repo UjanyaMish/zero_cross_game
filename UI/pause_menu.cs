@@ -2,10 +2,10 @@ using Godot;
 
 public partial class pause_menu : Control
 {
+    
     [Export]
     private game_controll_process gameControll;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         Hide();
@@ -13,7 +13,6 @@ public partial class pause_menu : Control
 
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
     }
@@ -41,5 +40,25 @@ public partial class pause_menu : Control
         GetTree().ChangeSceneToFile("res://Scenes/Menu.tscn");
     }
 
+    [Signal]
+    public delegate void SettingsScreenRequstedEventHandler(bool isSettingCalled);
 
+    public bool settingCalled = false;
+    public bool SettingCalled
+    {
+        get
+        {
+            return settingCalled;
+        }
+        set
+        {
+            settingCalled = value;
+            EmitSignal(SignalName.SettingsScreenRequsted, settingCalled);
+        }
+    }
+
+    private void _on_settings_button_pressed()
+    {
+        SettingCalled = !SettingCalled;
+    }
 }

@@ -59,4 +59,5 @@ theme = ExtResource("2_lh4yy")
 text = "RETURN TO MAIN"
 
 [connection signal="pressed" from="Panel/VBoxContainer/resumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/settingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/returmButton" to="." method="_on_returm_button_pressed"]
