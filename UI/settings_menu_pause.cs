@@ -3,7 +3,7 @@ using Godot;
 public partial class settings_menu_pause : Control
 {
     [Export]
-    private pause_menu settingCallGame;
+    private game_controll_process settingCallGame;
 
     public override void _Ready()
 	{

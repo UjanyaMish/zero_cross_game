@@ -28,4 +28,21 @@ public partial class game_controll_process : Node
             GamePaused = !GamePaused;
         }
     }
+
+    [Signal]
+    public delegate void SettingsScreenRequstedEventHandler(bool isSettingCalled);
+
+    public bool settingCalled = false;
+    public bool SettingCalled
+    {
+        get
+        {
+            return settingCalled;
+        }
+        set
+        {
+            settingCalled = value;
+            EmitSignal(SignalName.SettingsScreenRequsted, settingCalled);
+        }
+    }
 }

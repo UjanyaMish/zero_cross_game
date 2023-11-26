@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfeppygaege65"]
 
-[ext_resource type="Script" path="res://UI/settings_menu.cs" id="1_1adkb"]
 [ext_resource type="Theme" uid="uid://cihdl3ui258ax" path="res://UI/settings_teme.tres" id="1_8hfnd"]
+[ext_resource type="Script" path="res://UI/settings_menu_pause.cs" id="1_uvxa6"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1adkb")
+script = ExtResource("1_uvxa6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

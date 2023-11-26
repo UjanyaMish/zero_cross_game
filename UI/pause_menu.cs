@@ -26,7 +26,7 @@ public partial class pause_menu : Control
         else
         {
             Hide();
-            SettingCalled = !SettingCalled;
+            gameControll.SettingCalled = !gameControll.SettingCalled;
         }
     }
 
@@ -41,25 +41,8 @@ public partial class pause_menu : Control
         GetTree().ChangeSceneToFile("res://Scenes/Menu.tscn");
     }
 
-    [Signal]
-    public delegate void SettingsScreenRequstedEventHandler(bool isSettingCalled);
-
-    public bool settingCalled = false;
-    public bool SettingCalled
-    {
-        get
-        {
-            return settingCalled;
-        }
-        set
-        {
-            settingCalled = value;
-            EmitSignal(SignalName.SettingsScreenRequsted, settingCalled);
-        }
-    }
-
     private void _on_settings_button_pressed()
     {
-        SettingCalled = !SettingCalled;
+        gameControll.SettingCalled = !gameControll.SettingCalled;
     }
 }
