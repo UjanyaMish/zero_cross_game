@@ -26,6 +26,7 @@ public partial class pause_menu : Control
         else
         {
             Hide();
+            SettingCalled = !SettingCalled;
         }
     }
 
