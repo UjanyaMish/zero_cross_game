@@ -97,6 +97,7 @@ text = "выход"
 script = ExtResource("6_7ywhk")
 
 [node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("settingCallGame") instance=ExtResource("7_jjg5u")]
+visible = false
 settingCallGame = NodePath("../VBoxContainer/ButtonSetting")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="CanvasLayer/VBoxContainer/ButtonGame" method="_on_pressed"]

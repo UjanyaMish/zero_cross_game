@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dck403y23ck6x"]
 
-[ext_resource type="Texture2D" uid="uid://be8nc8ci4ii8n" path="res://pictures/клетка поля.png" id="1_5654c"]
+[ext_resource type="Texture2D" uid="uid://ctnrdl771vc5y" path="res://pictures/клетка поля6.png" id="1_0nj2s"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(32, 32)
-texture = ExtResource("1_5654c")
+position = Vector2(64, 48)
+texture = ExtResource("1_0nj2s")

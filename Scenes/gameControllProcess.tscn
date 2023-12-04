@@ -13,8 +13,6 @@ script = ExtResource("1_bhrly")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll") instance=ExtResource("2_5tc7y")]
-offset_left = 0.0
-offset_right = 0.0
 gameControll = NodePath("../..")
 
 [node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("settingCallGame") instance=ExtResource("3_w5ife")]

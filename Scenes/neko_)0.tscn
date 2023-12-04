@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvblr7t3l2io6"]
+
+[ext_resource type="Script" path="res://Scripts/neko2.cs" id="1_oibmm"]
+[ext_resource type="Texture2D" uid="uid://dnp8utweaxsbn" path="res://pictures/кот простой луккруг.png" id="1_tvmja"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kp3ks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tvmja")
+}],
+"loop": true,
+"name": &"ordinary cat",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
+size = Vector2(96, 96)
+
+[node name="Neko_)0" type="Area2D"]
+script = ExtResource("1_oibmm")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 48)
+sprite_frames = SubResource("SpriteFrames_kp3ks")
+animation = &"ordinary cat"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 48)
+shape = SubResource("RectangleShape2D_0owx8")

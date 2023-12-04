@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ojhb13o21xp6"]
+
+[ext_resource type="Script" path="res://Scripts/neko4.cs" id="1_arosb"]
+[ext_resource type="Texture2D" uid="uid://decklipsl2e2v" path="res://pictures/кот простой мечкруг.png" id="1_p8et6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ajkx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p8et6")
+}],
+"loop": true,
+"name": &"ordinary cat",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
+size = Vector2(96, 96)
+
+[node name="Neko_!0" type="Area2D"]
+script = ExtResource("1_arosb")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 48)
+sprite_frames = SubResource("SpriteFrames_8ajkx")
+animation = &"ordinary cat"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 48)
+shape = SubResource("RectangleShape2D_0owx8")
