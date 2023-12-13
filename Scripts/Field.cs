@@ -1,11 +1,10 @@
 using Godot;
 using System;
 
+public partial class Tile : Node2D { };
+
 public partial class Field : Node2D
 {
-	[Signal]
-	public delegate void IndexTileEventHandler(int i, int j);
-	 
 	PackedScene tile = ResourceLoader.Load<PackedScene>("res://Scenes/Tile.tscn");
 
 	public override void _Ready()
@@ -14,16 +13,25 @@ public partial class Field : Node2D
 		{
 			for (int j = 0; j < 4; j++)
 			{
-			Node2D t = (Node2D)tile.Instantiate();
-			t.Position = new Vector2(i * 128, j * 96);
-			AddChild(t);
+				Tile t = (Tile)tile.Instantiate();
+				t.Position = new Vector2(i * 128, j * 96);
+				t.x = i;
+				t.y = j;
+				AddChild(t);
 			}
 		}
-		Archer a = new Archer(0, 0, 0, this);
-	}
+		Archer a = new Archer(1, 0, 0, this);
+        Archer b = new Archer(1, 0, 1, this);
+    }
+
+	/*public void CreateCat(int team, int x, int y)
+	{
+		Archer nw = new(team, x, y, this);
+	}*/
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
 	}
 }

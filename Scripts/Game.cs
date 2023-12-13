@@ -3,9 +3,7 @@ using System;
 
 public class Neko
 {
-	[Export]
 	public int HP = 10;
-	
 	public int x = 0;
 	public int y = 0;
 	public int damage = 0;
@@ -38,7 +36,16 @@ public class Neko
 	{
 		
 	}
-	
+
+	public virtual void DamageReceived()
+	{ 
+
+	}
+
+    public virtual void Death()
+    {
+
+    }
 }
 
 public class Swordsman : Neko
