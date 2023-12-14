@@ -15,8 +15,8 @@ public partial class Field : Node2D
 			{
 				Tile t = (Tile)tile.Instantiate();
 				t.Position = new Vector2(i * 128, j * 96);
-				t.x = i;
-				t.y = j;
+				t.x = i + 1;
+				t.y = j + 1;
 				AddChild(t);
 			}
 		}
@@ -24,10 +24,10 @@ public partial class Field : Node2D
         Archer b = new Archer(1, 0, 1, this);
     }
 
-	/*public void CreateCat(int team, int x, int y)
+	public void CreateCat(int team, int x, int y)
 	{
 		Archer nw = new(team, x, y, this);
-	}*/
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
