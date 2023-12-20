@@ -39,14 +39,31 @@ public class Neko
 		place.AddChild(unit);
 	}
 
-	public virtual void DamageReceived()
-	{ 
+    ~Neko()
+    {
+        
+    }
 
+	public virtual void DamageReceived(int damage, Neko neko)
+	{ 
+        int team = neko.team;
+        neko.HP -= damage;
+        if (neko.HP <= 0)
+        {
+            Death(neko, team);
+        }
 	}
 
     public virtual void Death(Neko neko_killed, int team)
     {
-
+        if (team == 1)
+        {
+            listNeko_O.Remove(neko_killed);
+        }
+        if (team == 2)
+        {
+            listNeko_O.Remove(neko_killed);
+        }
     }
 }
 
@@ -59,7 +76,7 @@ public class Swordsman : Neko
     {
         int HP_enemy = 100;
         Neko neko_attack = null;
-        int team_enemy = 0;
+        int team_enemy;
         if (this.team == 1)
         {
             team_enemy = 2;
@@ -84,11 +101,7 @@ public class Swordsman : Neko
                 }
             }
         }
-        neko_attack.HP -= this.damage;
-        if (neko_attack.HP <= 0)
-        {
-            Death(neko_attack, team_enemy);
-        }
+        DamageReceived(this.damage, neko_attack);
     }
 }
 

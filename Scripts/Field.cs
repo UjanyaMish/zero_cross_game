@@ -13,11 +13,11 @@ public partial class Field : Node2D
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				Tile t = (Tile)tile.Instantiate();
-				t.Position = new Vector2(i * 128, j * 96);
-				t.x = i + 1;
-				t.y = j + 1;
-				AddChild(t);
+				Tile til = (Tile)tile.Instantiate();
+				til.Position = new Vector2(i * 128, j * 96);
+				til.x = i + 1;
+				til.y = j + 1;
+				AddChild(til);
 			}
 		}
 		Archer a = new Archer(1, 0, 0, this);
