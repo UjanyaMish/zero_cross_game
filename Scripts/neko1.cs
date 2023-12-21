@@ -34,8 +34,9 @@ public partial class neko1 : Area2D
 		{
 			if (dragging)
             {
+				//Tile something_tile = (Tile)something_field;
                 Tween tween = GetTree().CreateTween();
-                if (true)//(something_field.occupied == false)
+                if (true)//(something_tile.occupied == false)
 				{
                     dragging = false;
                     if (something_field is not null)
@@ -44,8 +45,8 @@ public partial class neko1 : Area2D
                     }
                     tween.TweenProperty(this, "position", anchor_field.Position +
                                         new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-					//((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
-					//something_field.occupied == true;
+                    //something_tile.occupied = true;
+                    //((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
                 }
 				else
 				{

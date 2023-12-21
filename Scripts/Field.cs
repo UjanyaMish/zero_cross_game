@@ -15,8 +15,9 @@ public partial class Field : Node2D
 			{
 				Tile til = (Tile)tile.Instantiate();
 				til.Position = new Vector2(i * 128, j * 96);
-				til.x = i + 1;
-				til.y = j + 1;
+				til.x = i;
+				til.y = j;
+				til.occupied = false;
 				AddChild(til);
 			}
 		}

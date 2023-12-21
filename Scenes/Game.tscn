@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://boeb56n7mlp21"]
+[gd_scene load_steps=6 format=3 uid="uid://boeb56n7mlp21"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
 [ext_resource type="Script" path="res://Scripts/Field.cs" id="2_rygid"]
 [ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
+[ext_resource type="Texture2D" uid="uid://dknmyg4au67hi" path="res://pictures/фон поля карт.png" id="5_lxt6a"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lh87t")
@@ -24,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 367.0
-offset_top = 577.0
-offset_right = 789.0
-offset_bottom = 623.0
+offset_left = 6.0
+offset_top = 9.0
+offset_right = 154.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "на главное меню"
@@ -36,5 +37,13 @@ script = ExtResource("3_sykc1")
 [node name="Field" type="Node2D" parent="."]
 position = Vector2(326, 142)
 script = ExtResource("2_rygid")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(234, 567)
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+offset_right = 709.0
+offset_bottom = 436.0
+texture = ExtResource("5_lxt6a")
 
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
