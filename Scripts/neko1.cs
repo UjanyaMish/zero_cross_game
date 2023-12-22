@@ -6,6 +6,7 @@ public partial class Field : Node2D { };
 
 public partial class neko1 : Area2D
 {
+	static bool mouse_free = true;
 	private bool dragging = false;
 	private bool dragable = false;
 
@@ -24,36 +25,41 @@ public partial class neko1 : Area2D
 				this.Position += now - offset;
 				offset = now;
 			}
-			else if (dragable)
+			else if (dragable && mouse_free)
 			{
+				mouse_free = false;
+				if (anchor_field is not null)
+				{
+					anchor_field.occupied = false;
+				}
 				dragging = true;
 				offset = GetGlobalMousePosition();
-            }
-        }
+			}
+		}
 		else
 		{
 			if (dragging)
-            {
-				//Tile something_tile = (Tile)something_field;
-                Tween tween = GetTree().CreateTween();
-                if (true)//(something_tile.occupied == false)
+			{
+				Tween tween = GetTree().CreateTween();
+				dragging = false;
+				mouse_free = true;
+				if (something_field is not null)
 				{
-                    dragging = false;
-                    if (something_field is not null)
-                    {
-                        anchor_field = (Tile)something_field.GetParent();
+					Tile something_tile = something_field.GetParent() as Tile;
+					if (something_tile.occupied)
+					{
+						;
+					}
+					else
+					{
+						anchor_field = something_tile;
                     }
-                    tween.TweenProperty(this, "position", anchor_field.Position +
-                                        new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-                    //something_tile.occupied = true;
-                    //((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
-                }
-				else
-				{
-                    tween.TweenProperty(this, "position", anchor_field.Position +
-                                        new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-                }
-            }
+				}
+				tween.TweenProperty(this, "position", anchor_field.Position +
+									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+                anchor_field.occupied = true;
+				//((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
+			}
 		}
     }
 	// Called when the node enters the scene tree for the first time.
