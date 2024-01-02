@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
-[ext_resource type="Script" path="res://Scripts/Field.cs" id="2_rygid"]
 [ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
+[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/field.tscn" id="4_o7hnr"]
 [ext_resource type="Texture2D" uid="uid://dknmyg4au67hi" path="res://pictures/фон поля карт.png" id="5_lxt6a"]
 [ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="6_irvke"]
 [ext_resource type="Script" path="res://Scripts/CardDeck.cs" id="6_lvb14"]
@@ -43,9 +43,8 @@ grow_vertical = 0
 text = "на главное меню"
 script = ExtResource("3_sykc1")
 
-[node name="Field" type="Node2D" parent="."]
-position = Vector2(326, 142)
-script = ExtResource("2_rygid")
+[node name="Field" parent="." instance=ExtResource("4_o7hnr")]
+position = Vector2(324, 113)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(233, 573)
