@@ -22,7 +22,8 @@ public partial class CardDeck : Node2D
             {
                 Tween tween = GetTree().CreateTween();
                 Neko newNeko = CreateCat(1, x, y);
-                tween.TweenProperty(newNeko.unit, "position", newNeko.unit.Position + new Vector2(272, 266), 0.2f).SetEase(Tween.EaseType.Out);
+                tween.TweenProperty(newNeko.unit, "position", newNeko.unit.Position +
+                    new Vector2(272, 266), 0.2f).SetEase(Tween.EaseType.Out);
                 lazy = false;
             }
         }

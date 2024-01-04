@@ -17,9 +17,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
 size = Vector2(96, 96)
 
-[node name="Neko_)0" type="Area2D"]
+[node name="Neko_)0" type="Area2D" groups=["dropable"]]
 script = ExtResource("1_oibmm")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 48)
@@ -29,3 +28,8 @@ animation = &"ordinary cat"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(48, 48)
 shape = SubResource("RectangleShape2D_0owx8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

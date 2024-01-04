@@ -40,7 +40,7 @@ public partial class neko1 : Area2D
 		{
 			if (dragging)
 			{
-				Tween tween = GetTree().CreateTween();
+				Tween tween = GetTree().CreateTween(); //годотовская переменная для анимации
 				dragging = false;
 				mouse_free = true;
 				if (something_field is not null)
@@ -48,7 +48,6 @@ public partial class neko1 : Area2D
 					Tile something_tile = something_field.GetParent() as Tile;
 					if (something_tile.occupied)
 					{
-						;
 					}
 					else
 					{
@@ -56,7 +55,7 @@ public partial class neko1 : Area2D
                     }
 				}
 				tween.TweenProperty(this, "position", anchor_field.Position +
-									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
                 anchor_field.occupied = true;
 				//((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
 			}
@@ -70,25 +69,25 @@ public partial class neko1 : Area2D
 
 	public void _on_mouse_entered()
 	{
-		dragable = true;
+		dragable = true; //когда мышь нажата и мы можем тащить
 	}
 
 	public void _on_mouse_exited()
 	{
-		dragable = false;
+		dragable = false; //мышь отпущена, не можем тащить
 	}
 
-	public void _on_body_entered(Node2D other)
+	public void _on_body_entered(Node2D other) //кот зашел в клетку
     {
-        if (other.IsInGroup("dropplace"))
+        if (other.IsInGroup("dropplace")) //проверка кота на группу
 		{
-			something_field = other;
+			something_field = other; //приравниваем ссылку на кота в клетку
 		}
 	}
 
-	public void _on_body_exited(Node2D other)
+	public void _on_body_exited(Node2D other) //кот вышел из клетки
 	{
-		if (other == something_field)
+		if (other == something_field) //если была связь с котом, стираем связь
 		{
 			something_field = null;
 		}

@@ -22,7 +22,9 @@ public partial class Field : Node2D
 			}
 		}
 		Archer a = new Archer(1, 0, 0, this);
-        Archer b = new Archer(1, 0, 1, this);
+        Archer b = new Archer(2, 2, 0, this);
+		Swordsman c = new Swordsman(2, 3, 2, this);
+        Swordsman d = new Swordsman(1, 2, 2, this);
     }
 
 	public void CreateCat(int team, int x, int y)
