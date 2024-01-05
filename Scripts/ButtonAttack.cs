@@ -15,7 +15,7 @@ public partial class ButtonAttack : Node
 
 	private void _on_pressed()
 	{
-		if (true) //здесь будет номер команды, которую выбрал игрок
+		if (true) //Р·РґРµСЃСЊ Р±СѓРґРµС‚ РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹, РєРѕС‚РѕСЂСѓСЋ РІС‹Р±СЂР°Р» РёРіСЂРѕРє
 		{
 			foreach (Neko neko in Neko.listNeko_O)
 			{

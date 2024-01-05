@@ -63,7 +63,7 @@ public class Neko
                     if (disX == 1 || disY == 1)
                     {
                         this.rank += 1;
-                        GD.Print("Ранг кота с координатами ", this.x, ",", this.y, "повышен:", this.rank);
+                        GD.Print("                         ", this.x, ",", this.y, "       :", this.rank);
                     }
                 }
             }
@@ -79,7 +79,7 @@ public class Neko
                     if (disX == 1 || disY == 1)
                     {
                         this.rank += 1;
-                        GD.Print("Ранг кота с координатами ", this.x, ",", this.y, "повышен:", this.rank);
+                        GD.Print("                         ", this.x, ",", this.y, "       :", this.rank);
                     }
                 }
             }
@@ -93,7 +93,7 @@ public class Neko
         if (neko.HP <= 0)
         {
             Death(neko, team);
-            GD.Print("Кот с координатами ", this.x, ",", this.y, "получил урон", damage);
+            GD.Print("                   ", this.x, ",", this.y, "            ", damage);
         }
     }
 
@@ -102,12 +102,12 @@ public class Neko
         if (team == 1)
         {
             listNeko_O.Remove(neko_killed);
-            GD.Print("Кот с координатами ", this.x, ",", this.y, "умер");
+            GD.Print("                   ", this.x, ",", this.y, "    ");
         }
         if (team == 2)
         {
             listNeko_O.Remove(neko_killed);
-            GD.Print("Кот с координатами ", this.x, ",", this.y, "умер");
+            GD.Print("                   ", this.x, ",", this.y, "    ");
         }
     }
 }

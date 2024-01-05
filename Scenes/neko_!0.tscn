@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ojhb13o21xp6"]
 
-[ext_resource type="Script" path="res://Scripts/neko4.cs" id="1_arosb"]
+[ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_36pra"]
 [ext_resource type="Texture2D" uid="uid://decklipsl2e2v" path="res://pictures/кот простой мечкруг.png" id="1_p8et6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ajkx"]
@@ -18,7 +18,7 @@ animations = [{
 size = Vector2(96, 96)
 
 [node name="Neko_!0" type="Area2D" groups=["dropable"]]
-script = ExtResource("1_arosb")
+script = ExtResource("1_36pra")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 48)
