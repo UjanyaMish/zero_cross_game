@@ -113,6 +113,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("6_irvke")
 
+[node name="Cards" type="Node" parent="."]
+
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
 [connection signal="mouse_entered" from="CardDeck" to="CardDeck" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CardDeck" to="CardDeck" method="_on_mouse_exited"]

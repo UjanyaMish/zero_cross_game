@@ -5,54 +5,53 @@ using System.Runtime.CompilerServices;
 
 public class Neko
 {
-	public int HP = 10;
-	public int x = 0;
-	public int y = 0;
-	public int damage = 0;
-	public int rank = 1;
-	public int priority = 0;
-	public int created = 0;
-	public int team;
+    public int HP = 10;
+    public int x = 0;
+    public int y = 0;
+    public int damage = 0;
+    public int rank = 1;
+    public int priority = 0;
+    public int created = 0;
+    public int team;
 
-	public Node2D unit;
+    public Node2D unit;
 
 
-	public static SortedSet<Neko> listNeko_O = new();
+    public static SortedSet<Neko> listNeko_O = new();
     public static SortedSet<Neko> listNeko_X = new();
     //static int CreatedAll = 0;
-
     static PackedScene[] sprites = 
-	new PackedScene[4]{ResourceLoader.Load<PackedScene>("res://Scenes/neko_!0.tscn"), 
-					   ResourceLoader.Load<PackedScene>("res://Scenes/neko_!x.tscn"), 
-					   ResourceLoader.Load<PackedScene>("res://Scenes/neko_)0.tscn"), 
-					   ResourceLoader.Load<PackedScene>("res://Scenes/neko_)x.tscn")};
-	
-	public Neko(int prior, int damag, int spritenum, int x, int y, Node2D place, int teamm)
-	{
-		this.team = teamm;
-		this.x = x;
-		this.y = y;
-		priority = prior;
-		damage = damag;
-		unit = (Node2D)sprites[spritenum].Instantiate();
-		unit.Position = new Vector2(x*128+16,y*96);
-		place.AddChild(unit);
-	}
+    new PackedScene[4]{ResourceLoader.Load<PackedScene>("res://Scenes/neko_!0.tscn"), 
+                       ResourceLoader.Load<PackedScene>("res://Scenes/neko_!x.tscn"), 
+                       ResourceLoader.Load<PackedScene>("res://Scenes/neko_)0.tscn"), 
+                       ResourceLoader.Load<PackedScene>("res://Scenes/neko_)x.tscn")};
+    
+    public Neko(int prior, int damag, int spritenum, int x, int y, Node2D place, int teamm)
+    {
+        this.team = teamm;
+        this.x = x;
+        this.y = y;
+        priority = prior;
+        damage = damag;
+        unit = (Node2D)sprites[spritenum].Instantiate();
+        unit.Position = new Vector2(x*128+16,y*96);
+        place.AddChild(unit);
+    }
 
     ~Neko()
     {
         
     }
 
-	public virtual void DamageReceived(int damage, Neko neko)
-	{ 
+    public virtual void DamageReceived(int damage, Neko neko)
+    { 
         int team = neko.team;
         neko.HP -= damage;
         if (neko.HP <= 0)
         {
             Death(neko, team);
         }
-	}
+    }
 
     public virtual void Death(Neko neko_killed, int team)
     {
@@ -69,9 +68,9 @@ public class Neko
 
 public class Swordsman : Neko
 {
-	public Swordsman(int team, int x, int y, Node2D t) : base(1, 2, team, x, y, t, team)
-	{
-	}
+    public Swordsman(int team, int x, int y, Node2D t) : base(1, 2, team, x, y, t, team)
+    {
+    }
     public virtual void Attack()
     {
         int HP_enemy = 100;
@@ -107,9 +106,9 @@ public class Swordsman : Neko
 
 public class Archer : Neko
 {
-	public Archer(int team, int x, int y, Node2D t) : base(2, 1, 2 + team, x, y, t, team)
-	{
-	}
+    public Archer(int team, int x, int y, Node2D t) : base(2, 1, 2 + team, x, y, t, team)
+    {
+    }
     public virtual void Attack()
     {
         int sum = 0;
@@ -163,5 +162,21 @@ public class Archer : Neko
 
 public partial class Game : Node2D
 {
-	
+    //Preloding cards and starting hand
+    PackedScene baseCard = ResourceLoader.Load<PackedScene>("res://Card/BaseCard.tscn");
+    CSharpScript PlayerHand = ResourceLoader.Load<CSharpScript>("res://Card/PlayerHand.cs");
+
+
+    //Creating a new card on left mouse click
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("leftclick"))
+        {
+            BaseCard newCard = (BaseCard)baseCard.Instantiate();
+            newCard.typeOfCat = "Swordsman";
+            newCard.Position = GetGlobalMousePosition();
+            Node cards = GetNode<Node>("Cards");
+            cards.AddChild(newCard);
+        }
+    }
 }
