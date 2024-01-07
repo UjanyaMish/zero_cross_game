@@ -162,21 +162,24 @@ public class Archer : Neko
 
 public partial class Game : Node2D
 {
-    //Preloding cards and starting hand
-    PackedScene baseCard = ResourceLoader.Load<PackedScene>("res://Card/BaseCard.tscn");
-    CSharpScript PlayerHand = ResourceLoader.Load<CSharpScript>("res://Card/PlayerHand.cs");
+    ////Preloding cards and starting hand
+    //PackedScene baseCard = ResourceLoader.Load<PackedScene>("res://Card/BaseCard.tscn");
+    //CSharpScript playerHand = ResourceLoader.Load<CSharpScript>("res://Card/PlayerHand.cs");
+    //Vector2 cardSize = new Vector2(125, 175);
+    //string unit = "Swordsman";
+    //int deckSize = playerHand.cardList.Length;
 
-
-    //Creating a new card on left mouse click
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("leftclick"))
-        {
-            BaseCard newCard = (BaseCard)baseCard.Instantiate();
-            newCard.typeOfCat = "Swordsman";
-            newCard.Position = GetGlobalMousePosition();
-            Node cards = GetNode<Node>("Cards");
-            cards.AddChild(newCard);
-        }
-    }
+    ////Creating a new card on left mouse click
+    //public override void _Input(InputEvent @event)
+    //{
+    //    if (@event.IsActionPressed("leftclick"))
+    //    {
+    //        BaseCard newCard = (BaseCard)baseCard.Instantiate();
+    //        newCard.typeOfCat = unit;
+    //        newCard.Position = GetGlobalMousePosition();
+    //        newCard.Scale = cardSize / newCard.Size;
+    //        Node cards = GetNode<Node>("Cards");
+    //        cards.AddChild(newCard);
+    //    }
+    //}
 }
