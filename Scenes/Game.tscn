@@ -44,10 +44,10 @@ text = "на главное меню"
 script = ExtResource("3_sykc1")
 
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
-position = Vector2(324, 113)
+position = Vector2(324, 133)
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(233, 573)
+position = Vector2(235, 537)
 
 [node name="TextureRect" type="TextureRect" parent="Node2D"]
 offset_right = 709.0
@@ -55,6 +55,7 @@ offset_bottom = 436.0
 texture = ExtResource("5_lxt6a")
 
 [node name="Area2D" type="Area2D" parent="Node2D"]
+position = Vector2(2, -5)
 
 [node name="EmptyPlace" type="CollisionShape2D" parent="Node2D/Area2D"]
 position = Vector2(82, 68)
@@ -82,7 +83,7 @@ position = Vector2(619, 68)
 shape = SubResource("RectangleShape2D_8yyjc")
 
 [node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(936, 56)
+position = Vector2(940, 109)
 
 [node name="TextureRect" type="TextureRect" parent="Node2D2"]
 offset_right = 709.0

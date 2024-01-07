@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PlayerHand
+public partial class PlayerHand : Node
 {
     string[] cardList = { "Swordsman", "Swordsman", "Archer", "Archer" };
 }
