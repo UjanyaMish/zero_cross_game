@@ -7,6 +7,7 @@ public partial class CardDeck : Node2D
     public int y = 0;
     private bool mouse_on_top = false;
     private bool lazy = true;
+    public int counter = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -22,7 +23,9 @@ public partial class CardDeck : Node2D
             {
                 Tween tween = GetTree().CreateTween();
                 Neko newNeko = CreateCat(1, x, y);
-                tween.TweenProperty(newNeko.unit, "position", newNeko.unit.Position + new Vector2(272, 266), 0.2f).SetEase(Tween.EaseType.Out);
+                tween.TweenProperty(newNeko.unit, "position", newNeko.unit.Position +
+                    new Vector2(200 + counter * 75, 200), 0.2f).SetEase(Tween.EaseType.Out);
+                counter++;
                 lazy = false;
             }
         }
