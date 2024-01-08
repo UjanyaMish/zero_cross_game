@@ -12,9 +12,10 @@ public partial class CardDeck : Node2D
     int deckSize = 0;
     public int x = 0;
     public int y = 0;
+    public int counter = 0;
+
     private bool mouse_on_top = false;
     private bool lazy = true;
-    public int counter = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

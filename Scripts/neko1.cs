@@ -10,7 +10,7 @@ public partial class neko1 : Area2D
 	private bool dragging = false;
 	private bool dragable = false;
 
-	Tween myAnimation;
+	Tween tween;
 
 	Node2D something_field;
 	Tile anchor_field;
@@ -27,7 +27,7 @@ public partial class neko1 : Area2D
 				this.Position += now - offset;
 				offset = now;
 			}
-			else if (dragable && mouse_free && (myAnimation is null || !myAnimation.IsRunning())) //Проверяем что кота можно тащить, мышь свободна и нет анимации на коте
+			else if (dragable && mouse_free && (tween is null || !tween.IsRunning())) //Проверяем что кота можно тащить, мышь свободна и нет анимации на коте
 			{
 				mouse_free = false;
 				if (anchor_field is not null)
@@ -58,16 +58,16 @@ public partial class neko1 : Area2D
 				Node2D prevParent = (Node2D)this.GetParent();
 				if (anchor_field is not null)
 				{
-					prevParent.RemoveChild(this);
-					anchor_field.GetParent().AddChild(this);
+					prevParent.RemoveChild(this); //удаление дочернего узла
+					anchor_field.GetParent().AddChild(this); //добавление дочернего узла
 					this.Position += prevParent.Position - ((Node2D)anchor_field.GetParent()).Position;
 				}
-                if (myAnimation is not null && myAnimation.IsRunning())
+                if (tween is not null && tween.IsRunning())
 				{
-					myAnimation.Stop();
+					tween.Stop();
 				}
-				myAnimation = GetTree().CreateTween();
-				myAnimation.TweenProperty(this, "position", anchor_field.Position +
+				tween = GetTree().CreateTween();
+				tween.TweenProperty(this, "position", anchor_field.Position +
 									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
 				//((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
