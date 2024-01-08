@@ -1,10 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcmu5r5vwesf3"]
+[gd_scene load_steps=6 format=3 uid="uid://dcmu5r5vwesf3"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_c5yxe"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="1_tlyvd"]
+[ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="2_skx3n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2rt5o"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_skx3n")
+}],
+"loop": true,
+"name": &"cat card",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_tlyvd")
@@ -17,9 +26,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
 size = Vector2(96, 96)
 
-[node name="Neko_)x" type="Area2D"]
+[node name="Neko_)x" type="Area2D" groups=["dropable"]]
 script = ExtResource("1_c5yxe")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 48)
@@ -28,4 +36,10 @@ animation = &"ordinary cat"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(48, 48)
+scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_0owx8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

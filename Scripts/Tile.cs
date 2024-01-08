@@ -1,9 +1,12 @@
 using Godot;
 using System;
 
-public partial class neko3 : Area2D
+public partial class Tile : Node2D
 {
-	
+	public int x;
+	public int y;
+	public bool occupied;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
