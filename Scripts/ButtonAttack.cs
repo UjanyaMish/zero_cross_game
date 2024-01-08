@@ -17,11 +17,16 @@ public partial class ButtonAttack : Node
 	{
 		if (true) //здесь будет номер команды, которую выбрал игрок
 		{
-			foreach (Neko neko in Neko.listNeko_O)
-			{
-				neko.ElevationOfRang();
-				neko.Attack();
-			}
-		}
+            foreach (Neko neko in Neko.listNeko_O)
+            {
+                neko.ElevationOfRang();
+                neko.Attack();
+            }
+            foreach (Neko neko in Neko.listNeko_X)
+            {
+                neko.ElevationOfRang();
+                neko.Attack();
+            }
+        }
 	}
 }

@@ -13,7 +13,7 @@ public partial class neko1 : Area2D
 	Tween tween;
 
 	Node2D something_field;
-	Tile anchor_field;
+	public Tile anchor_field;
 
 	private Vector2 offset;
 
@@ -53,8 +53,8 @@ public partial class neko1 : Area2D
 					else
 					{
 						anchor_field = something_tile;
-                    }
-                }
+					}
+				}
 				Node2D prevParent = (Node2D)this.GetParent();
 				if (anchor_field is not null)
 				{
@@ -62,7 +62,7 @@ public partial class neko1 : Area2D
 					anchor_field.GetParent().AddChild(this); //добавление дочернего узла
 					this.Position += prevParent.Position - ((Node2D)anchor_field.GetParent()).Position;
 				}
-                if (tween is not null && tween.IsRunning())
+				if (tween is not null && tween.IsRunning())
 				{
 					tween.Stop();
 				}
@@ -70,15 +70,14 @@ public partial class neko1 : Area2D
 				tween.TweenProperty(this, "position", anchor_field.Position +
 									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
-				//((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
 			}
 		}
     }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
-	}
+
+    }
 
 	public void _on_mouse_entered()
 	{

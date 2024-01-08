@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-public class Neko
+public class Neko : IComparable
 {
     public int HP = 10;
     public int x = 0;
@@ -19,6 +19,7 @@ public class Neko
 
     public static SortedSet<Neko> listNeko_O = new();
     public static SortedSet<Neko> listNeko_X = new();
+    public static SortedSet<Neko>[] teams = { listNeko_O, listNeko_X };
     //static int CreatedAll = 0;
 
     static PackedScene[] sprites =
@@ -37,6 +38,16 @@ public class Neko
         unit = (Node2D)sprites[spritenum].Instantiate();
         unit.Position = new Vector2(x * 128 + 16, y * 96);
         place.AddChild(unit);
+
+        switch (team)
+        {
+            case 0:
+                listNeko_O.Add(this);
+                break;
+            case 1:
+                listNeko_X.Add(this);
+                break;
+        }
     }
 
     ~Neko()
@@ -52,63 +63,43 @@ public class Neko
     public virtual void ElevationOfRang()
     {
         int tipe = this.priority;
-        if (this.team == 1)
+
+        foreach (Neko neko in teams[team])
         {
-            foreach (Neko neko in listNeko_O)
+            if (neko.priority == tipe)
             {
-                if (neko.priority == tipe)
+                int disX = Math.Abs(neko.x - this.x);
+                int disY = Math.Abs(neko.y - this.y);
+                if (disX == 1 || disY == 1)
                 {
-                    int disX = Math.Abs(neko.x - this.x);
-                    int disY = Math.Abs(neko.y - this.y);
-                    if (disX == 1 || disY == 1)
-                    {
-                        this.rank += 1;
-                        GD.Print("                         ", this.x, ",", this.y, "       :", this.rank);
-                    }
-                }
-            }
-        }
-        if (this.team == 2)
-        {
-            foreach (Neko neko in listNeko_X)
-            {
-                if (neko.priority == tipe)
-                {
-                    int disX = Math.Abs(neko.x - this.x);
-                    int disY = Math.Abs(neko.y - this.y);
-                    if (disX == 1 || disY == 1)
-                    {
-                        this.rank += 1;
-                        GD.Print("                         ", this.x, ",", this.y, "       :", this.rank);
-                    }
+                    this.rank += 1;
+                    GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
                 }
             }
         }
     }
 
-    public virtual void DamageReceived(int damage, Neko neko)
+    public virtual void DamageReceived(int damage)
     {
-        int team = neko.team;
-        neko.HP -= damage;
-        if (neko.HP <= 0)
+        HP -= damage;
+        GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
+        if (HP <= 0)
         {
-            Death(neko, team);
-            GD.Print("                   ", this.x, ",", this.y, "            ", damage);
+            Death();
         }
     }
 
-    public virtual void Death(Neko neko_killed, int team)
+    public virtual void Death()
     {
-        if (team == 1)
-        {
-            listNeko_O.Remove(neko_killed);
-            GD.Print("                   ", this.x, ",", this.y, "    ");
-        }
-        if (team == 2)
-        {
-            listNeko_O.Remove(neko_killed);
-            GD.Print("                   ", this.x, ",", this.y, "    ");
-        }
+        teams[team].Remove(this);
+        unit.QueueFree();
+        GD.Print("Neko from ", this.x, ", ", this.y, " death");
+    }
+
+    public int CompareTo(object obj)
+    {
+        if (obj is Neko neko) return priority.CompareTo(neko.priority);
+        else return 0;
     }
 }
 
@@ -121,39 +112,20 @@ public class Swordsman : Neko
     {
         int HP_enemy = 100;
         Neko neko_attack = null;
-        if (this.team == 1)
+        foreach (Neko neko_enemy in teams[(team+1)%2])
         {
-            foreach (Neko neko_enemy in listNeko_X)
+            int disX = Math.Abs(neko_enemy.x - this.x);
+            int disY = Math.Abs(neko_enemy.y - this.y);
+            if (disX == 1 || disY == 1)
             {
-                int disX = Math.Abs(neko_enemy.x - this.x);
-                int disY = Math.Abs(neko_enemy.y - this.y);
-                if (disX == 1 || disY == 1)
+                if (neko_enemy.HP < HP_enemy)
                 {
-                    if (neko_enemy.HP < HP_enemy)
-                    {
-                        HP_enemy = neko_enemy.HP;
-                        neko_attack = neko_enemy;
-                    }
+                    HP_enemy = neko_enemy.HP;
+                    neko_attack = neko_enemy;
                 }
             }
         }
-        else if (this.team == 2)
-        {
-            foreach (Neko neko_enemy in listNeko_O)
-            {
-                int disX = Math.Abs(neko_enemy.x - this.x);
-                int disY = Math.Abs(neko_enemy.y - this.y);
-                if (disX == 1 || disY == 1)
-                {
-                    if (neko_enemy.HP < HP_enemy)
-                    {
-                        HP_enemy = neko_enemy.HP;
-                        neko_attack = neko_enemy;
-                    }
-                }
-            }
-        }
-        DamageReceived(this.damage + this.rank, neko_attack);
+        if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank);
     }
 }
 
@@ -168,44 +140,21 @@ public class Archer : Neko
         int minsum = 100;
         int HP_enemy = 100;
         Neko neko_attack = null;
-        int team_enemy = 0;
-        if (this.team == 1)
+        foreach (Neko neko_enemy in teams[(team + 1) % 2])
         {
-            team_enemy = 2;
-            foreach (Neko neko_enemy in listNeko_X)
+            sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
+            if (neko_enemy.HP < HP_enemy)
             {
-                sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
-                if (neko_enemy.HP < HP_enemy)
-                {
-                    HP_enemy = neko_enemy.HP;
-                    neko_attack = neko_enemy;
-                }
-                else if (neko_enemy.HP == HP_enemy && sum < minsum)
-                {
-                    minsum = sum;
-                    neko_attack = neko_enemy;
-                }
+                HP_enemy = neko_enemy.HP;
+                neko_attack = neko_enemy;
+            }
+            else if (neko_enemy.HP == HP_enemy && sum < minsum)
+            {
+                minsum = sum;
+                neko_attack = neko_enemy;
             }
         }
-        else if (this.team == 2)
-        {
-            team_enemy = 1;
-            foreach (Neko neko_enemy in listNeko_O)
-            {
-                sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
-                if (neko_enemy.HP < HP_enemy)
-                {
-                    HP_enemy = neko_enemy.HP;
-                    neko_attack = neko_enemy;
-                }
-                else if (neko_enemy.HP == HP_enemy && sum < minsum)
-                {
-                    minsum = sum;
-                    neko_attack = neko_enemy;
-                }
-            }
-        }
-        DamageReceived(this.damage + this.rank, neko_attack);
+        if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank);
     }
 }
 

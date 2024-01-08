@@ -1,19 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://boeb56n7mlp21"]
+[gd_scene load_steps=12 format=3 uid="uid://boeb56n7mlp21"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
 [ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
 [ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/field.tscn" id="4_o7hnr"]
 [ext_resource type="Texture2D" uid="uid://dknmyg4au67hi" path="res://pictures/фон поля карт.png" id="5_lxt6a"]
+[ext_resource type="Script" path="res://Scripts/Tile.cs" id="6_5i3qt"]
 [ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="6_irvke"]
 [ext_resource type="Script" path="res://Scripts/CardDeck.cs" id="6_lvb14"]
-[ext_resource type="Script" path="res://Scripts/EmptyPlace.cs" id="6_nkaxj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yyjc"]
-size = Vector2(48, 83)
+[ext_resource type="Script" path="res://Scripts/ButtonAttack.cs" id="9_dniw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujkde"]
 size = Vector2(140, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yyjc"]
+size = Vector2(48, 83)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lh87t")
@@ -46,41 +47,13 @@ script = ExtResource("3_sykc1")
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
 position = Vector2(324, 133)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="PlayerCards" type="Node2D" parent="."]
 position = Vector2(235, 537)
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
+[node name="TextureRect" type="TextureRect" parent="PlayerCards"]
 offset_right = 709.0
 offset_bottom = 436.0
 texture = ExtResource("5_lxt6a")
-
-[node name="Area2D" type="Area2D" parent="Node2D"]
-position = Vector2(2, -5)
-
-[node name="EmptyPlace" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(82, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-script = ExtResource("6_nkaxj")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(302, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(188, 65)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(412, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(514, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(619, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2(940, 109)
@@ -116,6 +89,23 @@ texture = ExtResource("6_irvke")
 
 [node name="Cards" type="Node" parent="."]
 
+[node name="EmpPlace" type="StaticBody2D" parent="."]
+position = Vector2(237, 532)
+
+[node name="EmptyPlace" type="CollisionShape2D" parent="EmpPlace" groups=["dropplace"]]
+position = Vector2(25, 43)
+shape = SubResource("RectangleShape2D_8yyjc")
+script = ExtResource("6_5i3qt")
+
+[node name="ButtonAttack" type="Button" parent="."]
+offset_left = 1003.0
+offset_top = 576.0
+offset_right = 1116.0
+offset_bottom = 623.0
+text = "конец хода"
+script = ExtResource("9_dniw3")
+
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
 [connection signal="mouse_entered" from="CardDeck" to="CardDeck" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CardDeck" to="CardDeck" method="_on_mouse_exited"]
+[connection signal="pressed" from="ButtonAttack" to="ButtonAttack" method="_on_pressed"]
