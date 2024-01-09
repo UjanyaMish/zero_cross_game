@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/settings_menu.cs" id="1_1adkb"]
 [ext_resource type="Theme" uid="uid://cihdl3ui258ax" path="res://UI/settings_teme.tres" id="1_8hfnd"]
-[ext_resource type="Texture2D" uid="uid://cf0etv7nmstlx" path="res://pictures/фон настроек4.png" id="2_c75tp"]
+[ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_c75tp"]
 [ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="4_tiyje"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpvnx"]
@@ -103,16 +103,18 @@ layout_mode = 2
 text = "Volume Music"
 label_settings = ExtResource("4_tiyje")
 
-[node name="HSlider" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer3"]
+[node name="back_music" type="HSlider" parent="TextureRect/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
-value = 100.0
+min_value = -55.0
+max_value = 0.0
 
 [node name="BackButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_8hfnd")
 text = "Back"
 
+[connection signal="value_changed" from="TextureRect/VBoxContainer/HBoxContainer3/back_music" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
