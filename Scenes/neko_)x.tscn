@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcmu5r5vwesf3"]
+[gd_scene load_steps=8 format=3 uid="uid://dcmu5r5vwesf3"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_c5yxe"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="1_tlyvd"]
 [ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="2_skx3n"]
+[ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="4_k04t8"]
+[ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="5_jch7d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2rt5o"]
 animations = [{
@@ -38,6 +40,17 @@ animation = &"ordinary cat"
 position = Vector2(48, 48)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_0owx8")
+
+[node name="HP" type="TextureProgressBar" parent="."]
+offset_left = 15.0
+offset_right = 79.0
+offset_bottom = 6.0
+size_flags_horizontal = 4
+max_value = 10.0
+value = 10.0
+nine_patch_stretch = true
+texture_over = ExtResource("4_k04t8")
+texture_progress = ExtResource("5_jch7d")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

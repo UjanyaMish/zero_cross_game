@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-public class Neko : IComparable
+public partial class Neko : IComparable
 {
     public int HP = 10;
     public int x = 0;
@@ -15,6 +15,7 @@ public class Neko : IComparable
     public int team;
 
     public Node2D unit;
+    //public TextureProgressBar HP_bar = GetTree().GetNode<TextureProgressBar>("HP");
 
 
     public static SortedSet<Neko> listNeko_O = new();
@@ -82,6 +83,7 @@ public class Neko : IComparable
     public virtual void DamageReceived(int damage)
     {
         HP -= damage;
+        //HP_bar.Value = HP;
         GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
         if (HP <= 0)
         {
@@ -92,7 +94,7 @@ public class Neko : IComparable
     public virtual void Death()
     {
         teams[team].Remove(this);
-        unit.QueueFree();
+        unit.QueueFree(); //убираем спрайт
         GD.Print("Neko from ", this.x, ", ", this.y, " death");
     }
 

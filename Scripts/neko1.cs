@@ -3,6 +3,7 @@ using System;
 
 public partial class Tile : Node2D { };
 public partial class Field : Node2D { };
+public partial class Neko : IComparable { };
 
 public partial class neko1 : Area2D
 {
@@ -53,6 +54,8 @@ public partial class neko1 : Area2D
 					else
 					{
 						anchor_field = something_tile;
+						//this.x = anchor_field.x;
+						//this.y = anchor_field.y;
 					}
 				}
 				Node2D prevParent = (Node2D)this.GetParent();
