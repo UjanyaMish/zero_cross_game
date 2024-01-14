@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bga8hnfs7qpi0"]
+
+[ext_resource type="Texture2D" uid="uid://dolq6cd1wsk3o" path="res://pictures/когти1.png" id="1_8tfrw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spibp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8tfrw")
+}],
+"loop": true,
+"name": &"claws",
+"speed": 5.0
+}]
+
+[node name="ClawsAnimated" type="AnimatedSprite2D"]
+position = Vector2(34, 42)
+sprite_frames = SubResource("SpriteFrames_spibp")
+animation = &"claws"

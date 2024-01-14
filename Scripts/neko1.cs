@@ -16,7 +16,7 @@ public partial class neko1 : Area2D
 	Node2D something_field;
 	public Tile anchor_field;
 
-	private Vector2 offset;
+    private Vector2 offset;
 
     public override void _Process(double delta)
     {

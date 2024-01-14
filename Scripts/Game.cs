@@ -15,8 +15,7 @@ public partial class Neko : IComparable
     public int team;
 
     public Node2D unit;
-    //public TextureProgressBar HP_bar = GetTree().GetNode<TextureProgressBar>("HP");
-
+    public TextureProgressBar HP_bar;
 
     public static SortedSet<Neko> listNeko_O = new();
     public static SortedSet<Neko> listNeko_X = new();
@@ -49,6 +48,8 @@ public partial class Neko : IComparable
                 listNeko_X.Add(this);
                 break;
         }
+
+        HP_bar = unit.GetNode<TextureProgressBar>("HP");
     }
 
     ~Neko()
@@ -83,7 +84,8 @@ public partial class Neko : IComparable
     public virtual void DamageReceived(int damage)
     {
         HP -= damage;
-        //HP_bar.Value = HP;
+        HP_bar.Value = HP;
+        ResourceLoader.Load<PackedScene>("res://Scenes/ClawsAnimated.tscn");
         GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
         if (HP <= 0)
         {
@@ -94,7 +96,7 @@ public partial class Neko : IComparable
     public virtual void Death()
     {
         teams[team].Remove(this);
-        unit.QueueFree(); //óáèðàåì ñïðàéò
+        unit.QueueFree();//ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ ÑÐ¿Ñ€Ð°Ð¹Ñ‚
         GD.Print("Neko from ", this.x, ", ", this.y, " death");
     }
 
@@ -114,7 +116,7 @@ public class Swordsman : Neko
     {
         int HP_enemy = 100;
         Neko neko_attack = null;
-        foreach (Neko neko_enemy in teams[(team+1)%2])
+        foreach (Neko neko_enemy in teams[(team + 1) % 2])
         {
             int disX = Math.Abs(neko_enemy.x - this.x);
             int disY = Math.Abs(neko_enemy.y - this.y);
@@ -162,5 +164,5 @@ public class Archer : Neko
 
 public partial class Game : Node2D
 {
-    
+
 }
