@@ -7,9 +7,11 @@ public partial class Neko : IComparable { };
 
 public partial class neko1 : Area2D
 {
+	public Neko me;
 	static bool mouse_free = true;
 	private bool dragging = false;
 	private bool dragable = false;
+	private bool notdrag = false;
 
 	Tween tween;
 
@@ -22,7 +24,7 @@ public partial class neko1 : Area2D
     {
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 		{
-			if (dragging)
+			if (dragging && !notdrag)
 			{
 				Vector2 now = GetGlobalMousePosition();
 				this.Position += now - offset;
@@ -51,11 +53,12 @@ public partial class neko1 : Area2D
 					if (something_tile.occupied)
 					{
 					}
-					else
+					else if (!notdrag)
 					{
 						anchor_field = something_tile;
-						//this.x = anchor_field.x;
-						//this.y = anchor_field.y;
+						me.x = anchor_field.x;
+						me.y = anchor_field.y;
+						notdrag = true;
 					}
 				}
 				Node2D prevParent = (Node2D)this.GetParent();

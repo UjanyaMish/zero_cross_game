@@ -37,6 +37,7 @@ public partial class Neko : IComparable
         damage = damag;
         unit = (Node2D)sprites[spritenum].Instantiate();
         unit.Position = new Vector2(x * 128 + 16, y * 96);
+        ((neko1)unit).me = this;
         place.AddChild(unit);
 
         switch (team)
@@ -116,11 +117,14 @@ public class Swordsman : Neko
     {
         int HP_enemy = 100;
         Neko neko_attack = null;
+        GD.Print(this.x);
+        GD.Print(this.y);
+        GD.Print();
         foreach (Neko neko_enemy in teams[(team + 1) % 2])
         {
             int disX = Math.Abs(neko_enemy.x - this.x);
             int disY = Math.Abs(neko_enemy.y - this.y);
-            if (disX == 1 || disY == 1)
+            if (disX <= 1 && disY <= 1)
             {
                 if (neko_enemy.HP < HP_enemy)
                 {

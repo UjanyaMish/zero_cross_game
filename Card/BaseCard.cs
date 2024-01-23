@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+public partial class Tile : Node2D { };
+
 public partial class BaseCard : MarginContainer
 {
 	//Neko(int prior, int damag, int spritenum, int x, int y, Node2D place, int teamm)
@@ -10,8 +12,10 @@ public partial class BaseCard : MarginContainer
 	public int helthOfCat = 10;
 	public int rangeOfCat = 2;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public Tile anchor_field;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		//Sizing the textures
 	    Sprite2D border = GetNode<Sprite2D>("CardBorder");

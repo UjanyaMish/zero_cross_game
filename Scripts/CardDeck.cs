@@ -40,11 +40,22 @@ public partial class CardDeck : Node2D
                 newcardplace.Position = ((Node2D)cardplace.GetParent()).Position + new Vector2(75, 0);
                 cardplace.GetParent().GetParent().AddChild(newcardplace);
 
-                Neko newNeko = CreateCat(1, x, y);
-                tween.TweenProperty(newNeko.unit, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+                deckSize = cardList.Length;
+                BaseCard newCard = (BaseCard)baseCard.Instantiate();
+                newCard.typeOfCat = unit;
+
+                //Neko newNeko = CreateCat(1, x, y);
+                //tween.TweenProperty(newNeko.unit, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+                newCard.Position = GetGlobalMousePosition();
+                tween.TweenProperty(newCard, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
                 counter++;
 
-                ((neko1)newNeko.unit).anchor_field = cardplace;
+                newCard.Scale = cardSize / newCard.Size;
+                Node cards = GetParent().GetNode<Node>("Cards");
+                cards.AddChild(newCard);
+
+                //((neko1)newNeko.unit).anchor_field = cardplace;
+                newCard.anchor_field = cardplace;
                 lazy = false;
                 cardplace = newcardplace.GetNode<Tile>("EmptyPlace");
             }
@@ -58,7 +69,7 @@ public partial class CardDeck : Node2D
     //Creating a new card on left mouse click
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("leftclick") && mouse_on_top)
+        /*if (@event.IsActionPressed("leftclick") && mouse_on_top)
         {
             deckSize = cardList.Length;
             BaseCard newCard = (BaseCard)baseCard.Instantiate();
@@ -67,7 +78,7 @@ public partial class CardDeck : Node2D
             newCard.Scale = cardSize / newCard.Size;
             Node cards = GetParent().GetNode<Node>("Cards");
             cards.AddChild(newCard);
-        }
+        }*/
     }
 
     public void _on_mouse_entered()
