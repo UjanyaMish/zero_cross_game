@@ -35,38 +35,40 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 9.0
-offset_right = 154.0
-offset_bottom = 55.0
+offset_left = 65.0
+offset_top = 59.0
+offset_right = 213.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "на главное меню"
 script = ExtResource("3_sykc1")
 
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
-position = Vector2(324, 133)
+position = Vector2(524, 275)
 
 [node name="PlayerCards" type="Node2D" parent="."]
-position = Vector2(235, 537)
+position = Vector2(396, 933)
 
 [node name="TextureRect" type="TextureRect" parent="PlayerCards"]
-offset_right = 709.0
-offset_bottom = 436.0
+offset_right = 1149.0
+offset_bottom = 573.0
 texture = ExtResource("5_lxt6a")
 
 [node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(940, 109)
+position = Vector2(1560, 111)
 
 [node name="TextureRect" type="TextureRect" parent="Node2D2"]
-offset_right = 709.0
-offset_bottom = 436.0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 1166.0
+offset_bottom = 435.0
 rotation = 3.14159
 size_flags_stretch_ratio = 0.0
 texture = ExtResource("5_lxt6a")
 
 [node name="CardDeck" type="Area2D" parent="."]
-position = Vector2(43, 375)
+position = Vector2(88, 810)
 script = ExtResource("6_lvb14")
 
 [node name="TextureRect" type="TextureRect" parent="CardDeck"]
@@ -79,29 +81,31 @@ position = Vector2(73, 116)
 shape = SubResource("RectangleShape2D_ujkde")
 
 [node name="Node2D4" type="Node2D" parent="."]
-position = Vector2(1117, 262)
+position = Vector2(1816, 267)
 rotation = 3.14159
 
 [node name="TextureRect" type="TextureRect" parent="Node2D4"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -0.999878
+offset_top = -7.0
+offset_right = 144.0
+offset_bottom = 228.0
 texture = ExtResource("6_irvke")
 
 [node name="Cards" type="Node" parent="."]
 
 [node name="EmpPlace" type="StaticBody2D" parent="."]
-position = Vector2(237, 532)
+position = Vector2(397, 866)
 
 [node name="EmptyPlace" type="CollisionShape2D" parent="EmpPlace" groups=["dropplace"]]
-position = Vector2(25, 43)
+position = Vector2(25, 44)
 shape = SubResource("RectangleShape2D_8yyjc")
 script = ExtResource("6_5i3qt")
 
 [node name="ButtonAttack" type="Button" parent="."]
-offset_left = 1003.0
-offset_top = 576.0
-offset_right = 1116.0
-offset_bottom = 623.0
+offset_left = 1684.0
+offset_top = 985.0
+offset_right = 1812.0
+offset_bottom = 1032.0
 text = "конец хода"
 script = ExtResource("9_dniw3")
 

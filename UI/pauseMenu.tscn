@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://copkm0hr58nmd"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.cs" id="1_qem4o"]
-[ext_resource type="Texture2D" uid="uid://bto0gn1v86vaq" path="res://pictures/фон паузы.png" id="2_agt34"]
+[ext_resource type="Texture2D" uid="uid://uk5doulhf1to" path="res://pictures/фон паузы.png" id="2_agt34"]
 [ext_resource type="Theme" uid="uid://cqdg2ujh8ejvn" path="res://UI/game_menu_theme.tres" id="2_lh4yy"]
 [ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="4_otmat"]
 
@@ -23,6 +23,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -978.0
+offset_top = -553.0
+offset_right = 984.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 

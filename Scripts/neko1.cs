@@ -13,12 +13,13 @@ public partial class neko1 : Area2D
 	private bool dragable = false;
 	private bool notdrag = false;
 
+	AnimatedSprite2D anim_card;
 	Tween tween;
 
 	Node2D something_field;
 	public Tile anchor_field;
 
-    private Vector2 offset;
+    private Vector2 offset; 
 
     public override void _Process(double delta)
     {
@@ -59,6 +60,8 @@ public partial class neko1 : Area2D
 						me.x = anchor_field.x;
 						me.y = anchor_field.y;
 						notdrag = true;
+						anim_card.Play("ordinary_cat");
+						GetNode<TextureProgressBar>("HP").Visible = true;
 					}
 				}
 				Node2D prevParent = (Node2D)this.GetParent();
@@ -82,7 +85,7 @@ public partial class neko1 : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
+		anim_card = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
 	public void _on_mouse_entered()

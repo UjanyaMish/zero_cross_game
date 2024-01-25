@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/settings_menu.cs" id="1_1adkb"]
 [ext_resource type="Theme" uid="uid://cihdl3ui258ax" path="res://UI/settings_teme.tres" id="1_8hfnd"]
-[ext_resource type="Texture2D" uid="uid://cf0etv7nmstlx" path="res://pictures/фон настроек4.png" id="2_c75tp"]
+[ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_c75tp"]
 [ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="4_tiyje"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpvnx"]
@@ -23,6 +23,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 

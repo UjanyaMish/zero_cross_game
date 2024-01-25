@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_c5yxe"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="1_tlyvd"]
-[ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="2_skx3n"]
+[ext_resource type="Texture2D" uid="uid://don5qgcgywnb7" path="res://pictures/фон карты лучника.png" id="2_y86gk"]
 [ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="4_k04t8"]
 [ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="5_jch7d"]
 
@@ -10,10 +10,10 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_skx3n")
+"texture": ExtResource("2_y86gk")
 }],
 "loop": true,
-"name": &"cat card",
+"name": &"cat_card",
 "speed": 5.0
 }, {
 "frames": [{
@@ -21,7 +21,7 @@ animations = [{
 "texture": ExtResource("1_tlyvd")
 }],
 "loop": true,
-"name": &"ordinary cat",
+"name": &"ordinary_cat",
 "speed": 5.0
 }]
 
@@ -34,7 +34,7 @@ script = ExtResource("1_c5yxe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 48)
 sprite_frames = SubResource("SpriteFrames_2rt5o")
-animation = &"ordinary cat"
+animation = &"cat_card"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(48, 48)
@@ -42,6 +42,7 @@ scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_0owx8")
 
 [node name="HP" type="TextureProgressBar" parent="."]
+visible = false
 offset_left = 15.0
 offset_right = 79.0
 offset_bottom = 6.0

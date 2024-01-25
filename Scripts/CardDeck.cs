@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class CardDeck : Node2D
 {
@@ -12,6 +13,7 @@ public partial class CardDeck : Node2D
     int deckSize = 0;
 
     Tile cardplace;
+    List<int> catlist = new List<int> {1, 1, 1, 1, 2, 2, 2, 2};
 
     public int x = -2;
     public int y = -2;
@@ -29,33 +31,25 @@ public partial class CardDeck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top)
+        if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0)
         {
             if (lazy)
             {
+                Random rand = new Random();
                 Tween tween = GetTree().CreateTween();
 
                 Node2D newcardplace = (Node2D)cardplace.GetParent().Duplicate();
                 //newcardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace");
-                newcardplace.Position = ((Node2D)cardplace.GetParent()).Position + new Vector2(75, 0);
+                newcardplace.Position = ((Node2D)cardplace.GetParent()).Position + new Vector2(150, 0);
                 cardplace.GetParent().GetParent().AddChild(newcardplace);
 
-                deckSize = cardList.Length;
-                BaseCard newCard = (BaseCard)baseCard.Instantiate();
-                newCard.typeOfCat = unit;
-
-                //Neko newNeko = CreateCat(1, x, y);
-                //tween.TweenProperty(newNeko.unit, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-                newCard.Position = GetGlobalMousePosition();
-                tween.TweenProperty(newCard, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+                int numcat = catlist[rand.Next(0, catlist.Count)];
+                catlist.Remove(numcat);
+                Neko newNeko = CreateCat(1, numcat, x, y);
+                tween.TweenProperty(newNeko.unit, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
                 counter++;
 
-                newCard.Scale = cardSize / newCard.Size;
-                Node cards = GetParent().GetNode<Node>("Cards");
-                cards.AddChild(newCard);
-
-                //((neko1)newNeko.unit).anchor_field = cardplace;
-                newCard.anchor_field = cardplace;
+                ((neko1)newNeko.unit).anchor_field = cardplace;
                 lazy = false;
                 cardplace = newcardplace.GetNode<Tile>("EmptyPlace");
             }
@@ -69,7 +63,7 @@ public partial class CardDeck : Node2D
     //Creating a new card on left mouse click
     public override void _Input(InputEvent @event)
     {
-        /*if (@event.IsActionPressed("leftclick") && mouse_on_top)
+        if (@event.IsActionPressed("leftclick") && mouse_on_top)
         {
             deckSize = cardList.Length;
             BaseCard newCard = (BaseCard)baseCard.Instantiate();
@@ -78,7 +72,7 @@ public partial class CardDeck : Node2D
             newCard.Scale = cardSize / newCard.Size;
             Node cards = GetParent().GetNode<Node>("Cards");
             cards.AddChild(newCard);
-        }*/
+        }
     }
 
     public void _on_mouse_entered()
@@ -91,9 +85,17 @@ public partial class CardDeck : Node2D
         mouse_on_top = false;
     }
 
-    public Neko CreateCat(int team, int x, int y)
+    public Neko CreateCat(int team, int numcat, int x, int y)
     {
-        Archer nw = new(team, x, y, (Node2D)cardplace.GetParent());
-        return nw;
+        if (numcat == 1)
+        {
+            Swordsman nw = new(team, x, y, (Node2D)cardplace.GetParent());
+            return nw;
+        }
+        else
+        {
+            Archer nw = new(team, x, y, (Node2D)cardplace.GetParent());
+            return nw;
+        }
     }
 }

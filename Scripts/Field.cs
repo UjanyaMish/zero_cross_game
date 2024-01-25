@@ -15,7 +15,7 @@ public partial class Field : Node2D
 			for (int j = 0; j < 4; j++)
 			{
 				Tile til = (Tile)tile.Instantiate();
-				til.Position = new Vector2(i * 128, j * 96);
+				til.Position = new Vector2(i * 192, j * 144);
 				til.x = i;
 				til.y = j;
 				til.occupied = false;
