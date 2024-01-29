@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://l1iu61kukkb3"]
+[gd_scene load_steps=5 format=3 uid="uid://l1iu61kukkb3"]
 
 [ext_resource type="Script" path="res://Scripts/game_controll_process.cs" id="1_bhrly"]
 [ext_resource type="PackedScene" uid="uid://copkm0hr58nmd" path="res://UI/pauseMenu.tscn" id="2_5tc7y"]
 [ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="3_ldi0x"]
-[ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/settings_menu.tscn" id="3_w5ife"]
-[ext_resource type="Script" path="res://UI/settings_menu_pause.cs" id="4_gurbm"]
+[ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/Settings/settings_menu.tscn" id="3_w5ife"]
 
 [node name="GameControllProcess" type="Node"]
 process_mode = 3
@@ -15,9 +14,8 @@ script = ExtResource("1_bhrly")
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll") instance=ExtResource("2_5tc7y")]
 gameControll = NodePath("../..")
 
-[node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("settingCallGame") instance=ExtResource("3_w5ife")]
-script = ExtResource("4_gurbm")
-settingCallGame = NodePath("../PauseMenu")
+[node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("3_w5ife")]
+control = NodePath("../PauseMenu")
 
 [node name="Game" parent="." instance=ExtResource("3_ldi0x")]
 process_mode = 1
