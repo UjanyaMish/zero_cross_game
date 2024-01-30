@@ -42,6 +42,7 @@ offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "на главное меню"
+language = "ru"
 script = ExtResource("3_sykc1")
 
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
@@ -107,6 +108,7 @@ offset_top = 985.0
 offset_right = 1812.0
 offset_bottom = 1032.0
 text = "конец хода"
+language = "ru"
 script = ExtResource("9_dniw3")
 
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]

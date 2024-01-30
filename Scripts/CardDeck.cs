@@ -61,19 +61,19 @@ public partial class CardDeck : Node2D
     }
 
     //Creating a new card on left mouse click
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("leftclick") && mouse_on_top)
-        {
-            deckSize = cardList.Length;
-            BaseCard newCard = (BaseCard)baseCard.Instantiate();
-            newCard.typeOfCat = unit;
-            newCard.Position = GetGlobalMousePosition();
-            newCard.Scale = cardSize / newCard.Size;
-            Node cards = GetParent().GetNode<Node>("Cards");
-            cards.AddChild(newCard);
-        }
-    }
+    //public override void _Input(InputEvent @event)
+    //{
+    //    if (@event.IsActionPressed("leftclick") && mouse_on_top)
+    //    {
+    //        deckSize = cardList.Length;
+    //        BaseCard newCard = (BaseCard)baseCard.Instantiate();
+    //        newCard.typeOfCat = unit;
+    //        newCard.Position = GetGlobalMousePosition();
+    //        newCard.Scale = cardSize / newCard.Size;
+    //        Node cards = GetParent().GetNode<Node>("Cards");
+    //        cards.AddChild(newCard);
+    //    }
+    //}
 
     public void _on_mouse_entered()
     {

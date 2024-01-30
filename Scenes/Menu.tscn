@@ -72,6 +72,7 @@ text = "Zero_Cross_Game"
 label_settings = ExtResource("3_imfxx")
 horizontal_alignment = 1
 vertical_alignment = 1
+language = "en"
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -81,6 +82,7 @@ layout_mode = 2
 [node name="ButtonGame" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "играть"
+language = "ru"
 script = ExtResource("4_dq3c8")
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
@@ -91,6 +93,7 @@ layout_mode = 2
 [node name="ButtonSetting" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "настройки"
+language = "ru"
 script = ExtResource("6_v5yiw")
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
@@ -101,6 +104,7 @@ layout_mode = 2
 [node name="ButtonEsc" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "выход"
+language = "ru"
 script = ExtResource("6_7ywhk")
 
 [node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("7_jjg5u")]

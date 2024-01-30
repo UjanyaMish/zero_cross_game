@@ -21,6 +21,6 @@ public partial class settings_button : Button
 
     private void _on_pressed()
     {
-        SettingCalled = !SettingCalled;
+        SettingCalled = true;
     }
 }

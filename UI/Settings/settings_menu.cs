@@ -77,7 +77,7 @@ public partial class settings_menu : Control
 		}
 	}
 
-    public void _on_music_effects_value_changed(float vol)
+    public void _on_volume_music_value_changed(float vol)
     {
         if (Settings is SettingStorage settingStorage)
         {
@@ -99,5 +99,13 @@ public partial class settings_menu : Control
         {
             settingStorage.CurrentLanguage = id;
         }
+		if (id == 0)
+		{
+			TranslationServer.SetLocale("en");
+		}
+		else if (id == 1)
+		{
+			TranslationServer.SetLocale("ru");
+		}
     }
 }
