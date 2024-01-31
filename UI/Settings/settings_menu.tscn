@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://mxh6ssgpkvqm" path="res://UI/Settings/setting_storage.tres" id="2_a2l48"]
 [ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_c75tp"]
 [ext_resource type="Theme" uid="uid://cihdl3ui258ax" path="res://UI/Settings/settings_teme.tres" id="4_n2ona"]
-[ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://UI/Settings/шрифт настроек.tres" id="5_xagq2"]
+[ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="5_xagq2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpvnx"]
 font_size = 23
