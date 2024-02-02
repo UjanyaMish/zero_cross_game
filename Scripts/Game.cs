@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-public partial class Neko : IComparable
+
+public partial class Neko : IComparable //описание класса юнитов
 {
     public int HP = 10;
     public int x = 0;
@@ -13,9 +14,11 @@ public partial class Neko : IComparable
     public int priority = 0;
     public int created = 0;
     public int team;
+    public bool notattack = true;
 
     public Node2D unit;
     public TextureProgressBar HP_bar;
+    //AnimatedSprite2D damage_anim;
 
     public static SortedSet<Neko> listNeko_O = new();
     public static SortedSet<Neko> listNeko_X = new();
@@ -28,7 +31,7 @@ public partial class Neko : IComparable
                        ResourceLoader.Load<PackedScene>("res://Scenes/neko_)0.tscn"),
                        ResourceLoader.Load<PackedScene>("res://Scenes/neko_)x.tscn")};
 
-    public Neko(int prior, int damag, int spritenum, int x, int y, Node2D place, int teamm)
+    public Neko(int prior, int damag, int spritenum, int x, int y, Node2D place, int teamm) //описание класса юнитов
     {
         this.team = teamm;
         this.x = x;
@@ -40,7 +43,7 @@ public partial class Neko : IComparable
         ((neko1)unit).me = this;
         place.AddChild(unit);
 
-        switch (team)
+        /*switch (team)
         {
             case 0:
                 listNeko_O.Add(this);
@@ -48,7 +51,7 @@ public partial class Neko : IComparable
             case 1:
                 listNeko_X.Add(this);
                 break;
-        }
+        }*/
 
         HP_bar = unit.GetNode<TextureProgressBar>("HP");
     }
@@ -58,18 +61,18 @@ public partial class Neko : IComparable
 
     }
 
-    public virtual void Attack()
+    public virtual void Attack() //функция атаки
     {
 
     }
 
-    public virtual void ElevationOfRang()
+    public virtual void ElevationOfRang() //функция возведения в ранг
     {
         int tipe = this.priority;
 
         foreach (Neko neko in teams[team])
         {
-            if (neko.priority == tipe)
+            if (!neko.notattack && neko.priority == tipe)
             {
                 int disX = Math.Abs(neko.x - this.x);
                 int disY = Math.Abs(neko.y - this.y);
@@ -82,11 +85,11 @@ public partial class Neko : IComparable
         }
     }
 
-    public virtual void DamageReceived(int damage)
+    public virtual void DamageReceived(int damage) //функция получения урона
     {
         HP -= damage;
         HP_bar.Value = HP;
-        ResourceLoader.Load<PackedScene>("res://Scenes/ClawsAnimated.tscn");
+        //damage_anim.Play("claws");
         GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
         if (HP <= 0)
         {
@@ -94,21 +97,23 @@ public partial class Neko : IComparable
         }
     }
 
-    public virtual void Death()
+    public virtual void Death() //функция смерти кота
     {
-        teams[team].Remove(this);
         unit.QueueFree();//убираем спрайт
+        teams[team].Remove(this);
         GD.Print("Neko from ", this.x, ", ", this.y, " death");
+        ((neko1)(this.unit)).anchor_field.occupied = false;
+        Field.tiles.Add(((neko1)(this.unit)).anchor_field);
     }
 
-    public int CompareTo(object obj)
+    public int CompareTo(object obj) //сравнивает котов, используется в SprtedSet
     {
         if (obj is Neko neko) return priority.CompareTo(neko.priority);
         else return 0;
     }
 }
 
-public class Swordsman : Neko
+public class Swordsman : Neko //описание мечника
 {
     public Swordsman(int team, int x, int y, Node2D t) : base(1, 2, team, x, y, t, team)
     {
@@ -122,14 +127,17 @@ public class Swordsman : Neko
         GD.Print();
         foreach (Neko neko_enemy in teams[(team + 1) % 2])
         {
-            int disX = Math.Abs(neko_enemy.x - this.x);
-            int disY = Math.Abs(neko_enemy.y - this.y);
-            if (disX <= 1 && disY <= 1)
+            if (!neko_enemy.notattack)
             {
-                if (neko_enemy.HP < HP_enemy)
+                int disX = Math.Abs(neko_enemy.x - this.x);
+                int disY = Math.Abs(neko_enemy.y - this.y);
+                if (disX <= 1 && disY <= 1)
                 {
-                    HP_enemy = neko_enemy.HP;
-                    neko_attack = neko_enemy;
+                    if (neko_enemy.HP < HP_enemy)
+                    {
+                        HP_enemy = neko_enemy.HP;
+                        neko_attack = neko_enemy;
+                    }
                 }
             }
         }
@@ -137,7 +145,7 @@ public class Swordsman : Neko
     }
 }
 
-public class Archer : Neko
+public class Archer : Neko //описание лучника
 {
     public Archer(int team, int x, int y, Node2D t) : base(2, 1, 2 + team, x, y, t, team)
     {
@@ -150,16 +158,19 @@ public class Archer : Neko
         Neko neko_attack = null;
         foreach (Neko neko_enemy in teams[(team + 1) % 2])
         {
-            sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
-            if (neko_enemy.HP < HP_enemy)
+            if (!neko_enemy.notattack)
             {
-                HP_enemy = neko_enemy.HP;
-                neko_attack = neko_enemy;
-            }
-            else if (neko_enemy.HP == HP_enemy && sum < minsum)
-            {
-                minsum = sum;
-                neko_attack = neko_enemy;
+                sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
+                if (neko_enemy.HP < HP_enemy)
+                {
+                    HP_enemy = neko_enemy.HP;
+                    neko_attack = neko_enemy;
+                }
+                else if (neko_enemy.HP == HP_enemy && sum < minsum)
+                {
+                    minsum = sum;
+                    neko_attack = neko_enemy;
+                }
             }
         }
         if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank);

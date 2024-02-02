@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcmu5r5vwesf3"]
+[gd_scene load_steps=9 format=3 uid="uid://dcmu5r5vwesf3"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_c5yxe"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="1_tlyvd"]
 [ext_resource type="Texture2D" uid="uid://don5qgcgywnb7" path="res://pictures/фон карты лучника.png" id="2_y86gk"]
+[ext_resource type="Texture2D" uid="uid://dolq6cd1wsk3o" path="res://pictures/когти1.png" id="3_h1yco"]
 [ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="4_k04t8"]
 [ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="5_jch7d"]
 
@@ -14,6 +15,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"cat_card",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h1yco")
+}],
+"loop": true,
+"name": &"claws",
 "speed": 5.0
 }, {
 "frames": [{

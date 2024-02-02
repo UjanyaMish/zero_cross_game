@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3rbtlcsd4ejp"]
+
+[ext_resource type="Script" path="res://Scripts/Tile.cs" id="1_6y4vb"]
+[ext_resource type="Script" path="res://Scripts/mian_card_place.cs" id="1_iiins"]
+[ext_resource type="Texture2D" uid="uid://dknmyg4au67hi" path="res://pictures/фон поля карт.png" id="2_wmqwl"]
+[ext_resource type="Script" path="res://Scripts/CardDeck.cs" id="3_g81s4"]
+[ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="4_gr43i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujkde"]
+size = Vector2(143, 231)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yyjc"]
+size = Vector2(48, 83)
+
+[node name="MianCardPlace" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_iiins")
+
+[node name="CardDeck" type="Area2D" parent="."]
+position = Vector2(88, 810)
+script = ExtResource("3_g81s4")
+
+[node name="TextureRect" type="TextureRect" parent="CardDeck"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_gr43i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDeck"]
+position = Vector2(73, 116)
+shape = SubResource("RectangleShape2D_ujkde")
+
+[node name="PlayerCards" type="Node2D" parent="."]
+position = Vector2(396, 933)
+
+[node name="TextureRect" type="TextureRect" parent="PlayerCards"]
+offset_right = 1149.0
+offset_bottom = 573.0
+texture = ExtResource("2_wmqwl")
+
+[node name="EmpPlace" type="StaticBody2D" parent="."]
+position = Vector2(397, 866)
+
+[node name="EmptyPlace" type="CollisionShape2D" parent="EmpPlace" groups=["dropplace"]]
+position = Vector2(25, 44)
+shape = SubResource("RectangleShape2D_8yyjc")
+script = ExtResource("1_6y4vb")
+
+[connection signal="mouse_entered" from="CardDeck" to="CardDeck" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CardDeck" to="CardDeck" method="_on_mouse_exited"]

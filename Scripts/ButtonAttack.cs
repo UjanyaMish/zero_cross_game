@@ -13,7 +13,7 @@ public partial class ButtonAttack : Node
 	{
 	}
 
-	private void _on_pressed()
+	/*private void _on_pressed()
 	{
 		if (true) //здесь будет номер команды, которую выбрал игрок
 		{
@@ -28,5 +28,5 @@ public partial class ButtonAttack : Node
                 neko.Attack();
             }
         }
-	}
+	}*/
 }
