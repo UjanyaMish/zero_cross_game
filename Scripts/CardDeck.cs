@@ -2,6 +2,12 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+public partial class Tile : Node2D { };
+
+public partial class Field : Node2D { };
+
+public partial class Neko : IComparable { };
+
 public partial class CardDeck : Node2D
 {
     /*
@@ -22,9 +28,13 @@ public partial class CardDeck : Node2D
     public int y = -2;
     public int counter = 0;
     int team = 0;
+    int teamEnemy = 1;
 
     private bool mouse_on_top = false;
     private bool lazy = true;
+
+    Random rand = new Random();
+    Tween tween = GetTree().CreateTween();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -36,25 +46,60 @@ public partial class CardDeck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (isEnemy)
-        {
-
-        }
-        else
-        {
-            
-        }
+        
     }
 
 
     public void EnemyMove()
     {
+        GetCard(teamEnemy);
 
+        Tile anchortile;
+        Neko nekocard = cardlist[rand.Next(0, cardlist.Count)];
+
+        if (Field.tiles.Count == 16) //если никого нет на поле
+        {
+            anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
+        }
+        else
+        {
+            //если мечник
+            if (nekocard.damage == 2)
+            {
+                bool flag = false;
+                foreach (Tile tile in Field.tiles)
+                {
+                    foreach (Neko neko_enemy in teams[teamEnemy])
+                    {
+                        int disX = Math.Abs(neko_enemy.x - tile.x);
+                        int disY = Math.Abs(neko_enemy.y - tile.y);
+                        if (disX == 1 || disY == 1)
+                        {
+                            anchortile = tile;
+                            flag = true;
+                            break;
+                        }
+                    }
+                }
+                if (!flag) 
+                {
+                    anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
+                }
+            }
+            //если лучник
+            else
+            {
+
+            }
+        }
+        //Field.tiles.Remove(anchortile);
+        //tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+        Neko.teams[nekocard.team].Add(nekocard);
     }
 
     public void UsersMove()
     {
-        if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0) //при нажатии
+        if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0 && !isEnemy) //при нажатии
         {
             GetCard(team);
         }
@@ -68,9 +113,6 @@ public partial class CardDeck : Node2D
     {
         if (lazy)
         {
-            Random rand = new Random();
-            Tween tween = GetTree().CreateTween();
-
             Node2D newcardplace = (Node2D)cardplace.GetParent().Duplicate();
             //newcardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace");
             newcardplace.Position = ((Node2D)cardplace.GetParent()).Position + new Vector2(150, 0);

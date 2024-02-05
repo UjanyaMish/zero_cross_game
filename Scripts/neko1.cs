@@ -53,6 +53,7 @@ public partial class neko1 : Area2D
 					Tile something_tile = something_field.GetParent() as Tile;
 					if (something_tile.occupied) //клетка занята
 					{
+
 					}
 					else if (!notdrag) //клетка свободна, ставим кота и оккупируем якорь
 					{
