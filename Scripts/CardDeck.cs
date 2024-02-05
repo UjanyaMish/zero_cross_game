@@ -23,38 +23,55 @@ public partial class CardDeck : Node2D
     bool isEnemy;
     Tile cardplace;
     List<int> catlist = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+    List<Neko> cardlist = new List<Neko> { };
 
     public int x = -2;
     public int y = -2;
     public int counter = 0;
     int team = 0;
     int teamEnemy = 1;
+    bool enemymove = true;
+    bool usersmove = false;
 
     private bool mouse_on_top = false;
     private bool lazy = true;
 
     Random rand = new Random();
-    Tween tween = GetTree().CreateTween();
+    Tween tween;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        tween = GetTree().CreateTween();
+
         cardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace"); //взяли сцену
         isEnemy = this.GetParent().IsInGroup("Enemy");
+
+        EnemyMove();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        
+        if (enemymove)
+        {
+            EnemyMove();
+        }
+        if (usersmove)
+        {
+            UsersMove();
+        }
     }
 
 
-    public void EnemyMove()
+    public void EnemyMove() //ход компьютера
     {
-        GetCard(teamEnemy);
-
-        Tile anchortile;
+        for (int i = 0; i < 4; i++)
+        {
+            GetCard(teamEnemy);
+        }
+        
+        Tile anchortile = null;
         Neko nekocard = cardlist[rand.Next(0, cardlist.Count)];
 
         if (Field.tiles.Count == 16) //если никого нет на поле
@@ -69,7 +86,7 @@ public partial class CardDeck : Node2D
                 bool flag = false;
                 foreach (Tile tile in Field.tiles)
                 {
-                    foreach (Neko neko_enemy in teams[teamEnemy])
+                    foreach (Neko neko_enemy in Neko.teams[teamEnemy])
                     {
                         int disX = Math.Abs(neko_enemy.x - tile.x);
                         int disY = Math.Abs(neko_enemy.y - tile.y);
@@ -89,15 +106,34 @@ public partial class CardDeck : Node2D
             //если лучник
             else
             {
-
+                int sum;
+                int minsum = 0;
+                foreach (Tile tile in Field.tiles)
+                {
+                    foreach (Neko neko_enemy in Neko.teams[teamEnemy])
+                    {
+                        sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
+                        if (sum < minsum)
+                        {
+                            sum = minsum;
+                            anchortile = tile;
+                        }
+                    }
+                }
+                if (minsum == 0)
+                {
+                    anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
+                }
             }
         }
-        //Field.tiles.Remove(anchortile);
-        //tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-        Neko.teams[nekocard.team].Add(nekocard);
+        Field.tiles.Remove(anchortile);
+        tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+        Neko.teams[teamEnemy].Add(nekocard);
+        enemymove = false;
+        usersmove = true;
     }
 
-    public void UsersMove()
+    public void UsersMove() //ход игрока
     {
         if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0 && !isEnemy) //при нажатии
         {
@@ -107,6 +143,7 @@ public partial class CardDeck : Node2D
         {
             lazy = true;
         }
+        usersmove = false;
     }
 
     public void GetCard(int team) //добавляяет карту в рукав
@@ -127,6 +164,11 @@ public partial class CardDeck : Node2D
             ((neko1)newNeko.unit).anchor_field = cardplace; //привязываем якорь к карте
             lazy = false;
             cardplace = newcardplace.GetNode<Tile>("EmptyPlace");
+
+            if (team == teamEnemy)
+            {
+                cardlist.Add(newNeko);
+            }
         }
     }
 
@@ -181,5 +223,6 @@ public partial class CardDeck : Node2D
             neko.ElevationOfRang();
             neko.Attack();
         }
+        enemymove = true;
     }
 }
