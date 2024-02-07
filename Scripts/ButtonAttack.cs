@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+public partial class CardDeck : Node2D { };
+
 public partial class ButtonAttack : Node
 {
 	// Called when the node enters the scene tree for the first time.
@@ -13,7 +15,7 @@ public partial class ButtonAttack : Node
 	{
 	}
 
-	/*private void _on_pressed()
+	private void _on_pressed()
 	{
 		if (true) //здесь будет номер команды, которую выбрал игрок
 		{
@@ -27,6 +29,9 @@ public partial class ButtonAttack : Node
                 neko.ElevationOfRang();
                 neko.Attack();
             }
+            CardDeck.enemymove = true;
         }
-	}*/
+
+        this.GetParent().GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck");
+    }
 }

@@ -179,5 +179,8 @@ public class Archer : Neko //описание лучника
 
 public partial class Game : Node2D
 {
-
+    public override void _Ready()
+    {
+        this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
+    }
 }

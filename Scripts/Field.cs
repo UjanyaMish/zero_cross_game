@@ -12,12 +12,12 @@ public partial class Field : Node2D
 
     public override void _Ready()
     {
-        for (int i = 0; i < 4; i++) //создаем поле из клеток
+        for (int i = 0; i < 6; i++) //создаем поле из клеток
         {
             for (int j = 0; j < 4; j++)
             {
                 Tile til = (Tile)tile.Instantiate();
-                til.Position = new Vector2(i * 192, j * 144);
+                til.Position = new Vector2(i * 164, j * 164);
                 til.x = i;
                 til.y = j;
                 til.occupied = false;

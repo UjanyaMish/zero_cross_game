@@ -30,7 +30,7 @@ public partial class CardDeck : Node2D
     public int counter = 0;
     int team = 0;
     int teamEnemy = 1;
-    bool enemymove = true;
+    public static bool enemymove = true;
     bool usersmove = false;
 
     private bool mouse_on_top = false;
@@ -46,7 +46,10 @@ public partial class CardDeck : Node2D
 
         cardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace"); //взяли сцену
         isEnemy = this.GetParent().IsInGroup("Enemy");
+    }
 
+    public void MyReady()
+    {
         EnemyMove();
     }
 
@@ -211,7 +214,7 @@ public partial class CardDeck : Node2D
         }
     }
 
-    public void _on_button_attack_pressed()
+    /*public void _on_button_attack_pressed()
     {
         foreach (Neko neko in Neko.listNeko_O)
         {
@@ -224,5 +227,5 @@ public partial class CardDeck : Node2D
             neko.Attack();
         }
         enemymove = true;
-    }
+    }*/
 }

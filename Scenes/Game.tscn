@@ -36,7 +36,7 @@ text = "на главное меню"
 script = ExtResource("3_sykc1")
 
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
-position = Vector2(524, 275)
+position = Vector2(435, 226)
 
 [node name="ButtonAttack" type="Button" parent="."]
 offset_left = 1684.0
@@ -62,4 +62,4 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
-[connection signal="pressed" from="ButtonAttack" to="MianCardPlace" method="_on_button_attack_pressed"]
+[connection signal="pressed" from="ButtonAttack" to="ButtonAttack" method="_on_pressed"]
