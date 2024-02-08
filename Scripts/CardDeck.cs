@@ -71,13 +71,16 @@ public partial class CardDeck : Node2D
     {
         for (int i = 0; i < 4; i++)
         {
-            GetCard(teamEnemy);
+            if (catlist.Count > 0)
+            {
+                GetCard(teamEnemy);
+            }
         }
         
         Tile anchortile = null;
         Neko nekocard = cardlist[rand.Next(0, cardlist.Count)];
 
-        if (Field.tiles.Count == 16) //если никого нет на поле
+        if (Field.tiles.Count == 24) //если никого нет на поле
         {
             anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
         }
@@ -100,10 +103,13 @@ public partial class CardDeck : Node2D
                             break;
                         }
                     }
+                    if (flag) break;
                 }
                 if (!flag) 
                 {
-                    anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
+                    int ind = rand.Next(0, Field.tiles.Count);
+                    anchortile = Field.tiles[ind];
+                    GD.Print("swordsman ", anchortile, " ", ind);
                 }
             }
             //если лучник
@@ -115,7 +121,7 @@ public partial class CardDeck : Node2D
                 {
                     foreach (Neko neko_enemy in Neko.teams[teamEnemy])
                     {
-                        sum = Math.Abs(this.x - neko_enemy.x) + Math.Abs(this.y - neko_enemy.y);
+                        sum = Math.Abs(tile.x - neko_enemy.x) + Math.Abs(tile.y - neko_enemy.y);
                         if (sum < minsum)
                         {
                             sum = minsum;
@@ -125,7 +131,9 @@ public partial class CardDeck : Node2D
                 }
                 if (minsum == 0)
                 {
-                    anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
+                    int ind = rand.Next(0, Field.tiles.Count);
+                    anchortile = Field.tiles[ind];
+                    GD.Print("archer ", anchortile, " ", ind);
                 }
             }
         }
@@ -151,6 +159,7 @@ public partial class CardDeck : Node2D
 
     public void GetCard(int team) //добавляяет карту в рукав
     {
+        tween = GetTree().CreateTween();
         if (lazy)
         {
             Node2D newcardplace = (Node2D)cardplace.GetParent().Duplicate();

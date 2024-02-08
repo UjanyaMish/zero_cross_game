@@ -35,7 +35,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
-size = Vector2(96, 96)
+size = Vector2(128, 124.667)
 
 [node name="Neko_)0" type="Area2D" groups=["dropable"]]
 script = ExtResource("1_qwdau")
@@ -46,7 +46,7 @@ sprite_frames = SubResource("SpriteFrames_kp3ks")
 animation = &"cat_card"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(48, 48)
+position = Vector2(43, 47)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_0owx8")
 

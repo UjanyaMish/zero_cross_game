@@ -25,9 +25,9 @@ public partial class Field : Node2D
                 tiles.Add(til); //добавляем в список каждую клетку поля
             }
         }
-        Archer a = new Archer(0, 1, 3, this);
+        //Archer a = new Archer(0, 1, 3, this);
         //Archer b = new Archer(1, 2, 0, this);
-        Swordsman c = new Swordsman(0, 2, 1, this); //добавляем на поле юнитов (пока временно)
+        //Swordsman c = new Swordsman(0, 2, 1, this); //добавляем на поле юнитов (пока временно)
         //Swordsman d = new Swordsman(0, 2, 2, this);
     }
 
