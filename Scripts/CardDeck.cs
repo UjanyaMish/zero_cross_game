@@ -20,10 +20,16 @@ public partial class CardDeck : Node2D
     int deckSize = 0;
     */
 
+    AnimatedSprite2D anim_card;
     bool isEnemy;
     Tile cardplace;
+
     List<int> catlist = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
-    List<Neko> cardlist = new List<Neko> { };
+    List<int> catlistEnemy = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+   //List<int> listteam[] = { catlist, catlistEnemy };
+
+    public static List<Neko> cardlist = new List<Neko> { };
+    List<Neko> cardlistEnemy = new List<Neko> { };
 
     public int x = -2;
     public int y = -2;
@@ -37,13 +43,11 @@ public partial class CardDeck : Node2D
     private bool lazy = true;
 
     Random rand = new Random();
-    Tween tween;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        tween = GetTree().CreateTween();
-
+        //anim_card = GetNode<AnimatedSprite2D>("AnimatedSprite2D"); //берем сцену
         cardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace"); //взяли сцену
         isEnemy = this.GetParent().IsInGroup("Enemy");
     }
@@ -56,29 +60,42 @@ public partial class CardDeck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (enemymove)
+        if (enemymove && isEnemy && catlistEnemy.Count > 0)
         {
             EnemyMove();
         }
-        if (usersmove)
+        if (usersmove && catlist.Count > 0)
         {
             UsersMove();
         }
     }
 
+    public void UsersMove() //ход компьютера
+    {
+        int count = cardlist.Count;
+        if (count < 4)
+        {
+            for (int i = 0; i < 4 - count ; i++)
+            {
+                GetCard(team);
+            }
+        }
+        usersmove = false;
+    }
 
     public void EnemyMove() //ход компьютера
     {
-        for (int i = 0; i < 4; i++)
+        int count = cardlistEnemy.Count;
+        if (count < 4)
         {
-            if (catlist.Count > 0)
+            for (int i = 0; i < 4 - count; i++)
             {
                 GetCard(teamEnemy);
             }
         }
-        
+
         Tile anchortile = null;
-        Neko nekocard = cardlist[rand.Next(0, cardlist.Count)];
+        Neko nekocard = cardlistEnemy[rand.Next(0, cardlistEnemy.Count)];
 
         if (Field.tiles.Count == 24) //если никого нет на поле
         {
@@ -105,7 +122,7 @@ public partial class CardDeck : Node2D
                     }
                     if (flag) break;
                 }
-                if (!flag) 
+                if (!flag)
                 {
                     int ind = rand.Next(0, Field.tiles.Count);
                     anchortile = Field.tiles[ind];
@@ -137,50 +154,74 @@ public partial class CardDeck : Node2D
                 }
             }
         }
-        Field.tiles.Remove(anchortile);
+        nekocard.x = anchortile.x;
+        nekocard.y = anchortile.y;
+        Tween tween = GetTree().CreateTween();
+
+        Node2D prevParent = (Node2D)nekocard.unit.GetParent();
+        if (anchortile is not null) //добавляем кота к якорю
+        {
+            prevParent.RemoveChild(nekocard.unit); //удаление дочернего узла
+            anchortile.GetParent().AddChild(nekocard.unit); //добавление дочернего узла
+            nekocard.unit.Position += prevParent.Position - ((Node2D)anchortile.GetParent()).Position;
+        }
+
+        //anim_card.Play("ordinary_cat");
+        //GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
         tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
         Neko.teams[teamEnemy].Add(nekocard);
         enemymove = false;
         usersmove = true;
+        Field.tiles.Remove(anchortile);
+        cardlistEnemy.Remove(nekocard);
     }
 
-    public void UsersMove() //ход игрока
-    {
-        if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0 && !isEnemy) //при нажатии
-        {
-            GetCard(team);
-        }
-        else
-        {
-            lazy = true;
-        }
-        usersmove = false;
-    }
+    //public void UsersMove() //ход игрока
+    //{
+    //    if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0 && !isEnemy) //при нажатии
+    //    {
+    //        GetCard(team);
+    //    }
+    //    else
+    //    {
+    //        lazy = true;
+    //    }
+    //    usersmove = false;
+    //}
 
     public void GetCard(int team) //добавляяет карту в рукав
     {
-        tween = GetTree().CreateTween();
-        if (lazy)
+        Node2D newcardplace = (Node2D)cardplace.GetParent().Duplicate();
+        //newcardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace");
+        newcardplace.Position = ((Node2D)cardplace.GetParent()).Position + new Vector2(150, 0);
+        cardplace.GetParent().GetParent().AddChild(newcardplace); //этот абзац добавляет контейнер для карты в рукаве
+
+        int numcat = 0;
+        if (team == teamEnemy)
         {
-            Node2D newcardplace = (Node2D)cardplace.GetParent().Duplicate();
-            //newcardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace");
-            newcardplace.Position = ((Node2D)cardplace.GetParent()).Position + new Vector2(150, 0);
-            cardplace.GetParent().GetParent().AddChild(newcardplace); //этот абзац добавляет контейнер для карты в рукаве
-
-            int numcat = catlist[rand.Next(0, catlist.Count)];
+            numcat = catlistEnemy[rand.Next(0, catlistEnemy.Count)];
+            catlistEnemy.Remove(numcat);
+        }
+        else
+        {
+            numcat = catlist[rand.Next(0, catlist.Count)];
             catlist.Remove(numcat);
-            Neko newNeko = CreateCat(team, numcat, x, y);
-            tween.TweenProperty(newNeko.unit, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-            counter++; //здесь мы рандомно добавляем карту в рукав
+        }
+        //int numcat = listteam[team][rand.Next(0, catlist.Count)];
+        //listteam[team].Remove(numcat);
 
-            ((neko1)newNeko.unit).anchor_field = cardplace; //привязываем якорь к карте
-            lazy = false;
-            cardplace = newcardplace.GetNode<Tile>("EmptyPlace");
+        Neko newNeko = CreateCat(team, numcat, x, y);
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(newNeko.unit, "position", cardplace.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+        counter++; //здесь мы рандомно добавляем карту в рукав
 
-            if (team == teamEnemy)
-            {
-                cardlist.Add(newNeko);
-            }
+        ((neko1)newNeko.unit).anchor_field = cardplace; //привязываем якорь к карте
+        lazy = false;
+        cardplace = newcardplace.GetNode<Tile>("EmptyPlace");
+
+        if (team == teamEnemy)
+        {
+            cardlist.Add(newNeko);
         }
     }
 
@@ -189,13 +230,7 @@ public partial class CardDeck : Node2D
     {
         if (@event.IsActionPressed("leftclick") && mouse_on_top)
         {
-            deckSize = cardList.Length;
-            BaseCard newCard = (BaseCard)baseCard.Instantiate();
-            newCard.typeOfCat = unit;
-            newCard.Position = GetGlobalMousePosition();
-            newCard.Scale = cardSize / newCard.Size;
-            Node cards = GetParent().GetNode<Node>("Cards");
-            cards.AddChild(newCard);
+            GetCard(team);
         }
     }*/
 

@@ -4,6 +4,7 @@ using System;
 public partial class Tile : Node2D { };
 public partial class Field : Node2D { };
 public partial class Neko : IComparable { };
+public partial class CardDeck : Node2D { }
 
 public partial class neko1 : Area2D
 {
@@ -15,6 +16,7 @@ public partial class neko1 : Area2D
 
 	AnimatedSprite2D anim_card;
 	Tween tween;
+	int usersteam = 0;
 
 	Node2D something_field;
 	public Tile anchor_field;
@@ -23,7 +25,7 @@ public partial class neko1 : Area2D
 
     public override void _Process(double delta)
     {
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
+		if (Input.IsMouseButtonPressed(MouseButton.Left) && me.team == usersteam)
 		{
 			if (dragging && !notdrag) //уже происходит перетаскивание
 			{
@@ -85,7 +87,8 @@ public partial class neko1 : Area2D
 									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
 				Field.tiles.Remove(anchor_field);
-			}
+                CardDeck.cardlist.Remove(me);
+            }
 		}
     }
 	// Called when the node enters the scene tree for the first time.
