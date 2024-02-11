@@ -25,7 +25,7 @@ public partial class neko1 : Area2D
 
     public override void _Process(double delta)
     {
-		if (Input.IsMouseButtonPressed(MouseButton.Left) && me.team == usersteam)
+		if (Input.IsMouseButtonPressed(MouseButton.Left) && me.team == usersteam && CardDeck.usersmove == true)
 		{
 			if (dragging && !notdrag) //уже происходит перетаскивание
 			{
@@ -69,6 +69,7 @@ public partial class neko1 : Area2D
 						anim_card.Play("ordinary_cat");
 						GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
                         Neko.teams[me.team].Add(me);
+						CardDeck.flag = true;
                     }
 				}
 				Node2D prevParent = (Node2D)this.GetParent();
@@ -87,7 +88,7 @@ public partial class neko1 : Area2D
 									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
 				Field.tiles.Remove(anchor_field);
-                CardDeck.cardlist.Remove(me);
+                CardDeck.armlistUsers.Remove(me);
             }
 		}
     }

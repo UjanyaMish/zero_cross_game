@@ -24,12 +24,12 @@ public partial class CardDeck : Node2D
     bool isEnemy;
     Tile cardplace;
 
-    List<int> catlist = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
-    List<int> catlistEnemy = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
-   //List<int> listteam[] = { catlist, catlistEnemy };
+    List<int> cardlistUsers = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+    List<int> cardlistEnemy = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+   //List<int> listteam[] = { cardlistUsers, cardlistEnemy };
 
-    public static List<Neko> cardlist = new List<Neko> { };
-    List<Neko> cardlistEnemy = new List<Neko> { };
+    public static List<Neko> armlistUsers = new List<Neko> { };
+    List<Neko> armlistEnemy = new List<Neko> { };
 
     public int x = -2;
     public int y = -2;
@@ -37,7 +37,8 @@ public partial class CardDeck : Node2D
     int team = 0;
     int teamEnemy = 1;
     public static bool enemymove = true;
-    bool usersmove = false;
+    public static bool usersmove = false;
+    public static bool flag = false;
 
     private bool mouse_on_top = false;
     private bool lazy = true;
@@ -60,33 +61,37 @@ public partial class CardDeck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (enemymove && isEnemy && catlistEnemy.Count > 0)
+        if (enemymove)
         {
             EnemyMove();
         }
-        if (usersmove && catlist.Count > 0)
+        if (usersmove)
         {
             UsersMove();
         }
     }
 
-    public void UsersMove() //ход компьютера
+    public void UsersMove() //ход пользователя
     {
-        int count = cardlist.Count;
-        if (count < 4)
+        int count = armlistUsers.Count;
+        if (count < 4 && cardlistUsers.Count > 0)
         {
             for (int i = 0; i < 4 - count ; i++)
             {
                 GetCard(team);
             }
         }
-        usersmove = false;
+        if (flag == true)
+        {
+            usersmove = false;
+            flag = false;
+        }
     }
 
     public void EnemyMove() //ход компьютера
     {
-        int count = cardlistEnemy.Count;
-        if (count < 4)
+        int count = armlistEnemy.Count;
+        if (count < 4 && cardlistEnemy.Count > 0)
         {
             for (int i = 0; i < 4 - count; i++)
             {
@@ -94,91 +99,94 @@ public partial class CardDeck : Node2D
             }
         }
 
-        Tile anchortile = null;
-        Neko nekocard = cardlistEnemy[rand.Next(0, cardlistEnemy.Count)];
+        if (armlistEnemy.Count > 0)
+        {
+            Tile anchortile = null;
+            Neko nekocard = armlistEnemy[rand.Next(0, armlistEnemy.Count)];
 
-        if (Field.tiles.Count == 24) //если никого нет на поле
-        {
-            anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
-        }
-        else
-        {
-            //если мечник
-            if (nekocard.damage == 2)
+            if (Field.tiles.Count == 24) //если никого нет на поле
             {
-                bool flag = false;
-                foreach (Tile tile in Field.tiles)
-                {
-                    foreach (Neko neko_enemy in Neko.teams[teamEnemy])
-                    {
-                        int disX = Math.Abs(neko_enemy.x - tile.x);
-                        int disY = Math.Abs(neko_enemy.y - tile.y);
-                        if (disX == 1 || disY == 1)
-                        {
-                            anchortile = tile;
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag) break;
-                }
-                if (!flag)
-                {
-                    int ind = rand.Next(0, Field.tiles.Count);
-                    anchortile = Field.tiles[ind];
-                    GD.Print("swordsman ", anchortile, " ", ind);
-                }
+                anchortile = Field.tiles[rand.Next(0, Field.tiles.Count)];
             }
-            //если лучник
             else
             {
-                int sum;
-                int minsum = 0;
-                foreach (Tile tile in Field.tiles)
+                //если мечник
+                if (nekocard.damage == 2)
                 {
-                    foreach (Neko neko_enemy in Neko.teams[teamEnemy])
+                    bool flag = false;
+                    foreach (Tile tile in Field.tiles)
                     {
-                        sum = Math.Abs(tile.x - neko_enemy.x) + Math.Abs(tile.y - neko_enemy.y);
-                        if (sum < minsum)
+                        foreach (Neko neko_enemy in Neko.teams[teamEnemy])
                         {
-                            sum = minsum;
-                            anchortile = tile;
+                            int disX = Math.Abs(neko_enemy.x - tile.x);
+                            int disY = Math.Abs(neko_enemy.y - tile.y);
+                            if (disX == 1 || disY == 1)
+                            {
+                                anchortile = tile;
+                                flag = true;
+                                break;
+                            }
                         }
+                        if (flag) break;
+                    }
+                    if (!flag)
+                    {
+                        int ind = rand.Next(0, Field.tiles.Count);
+                        anchortile = Field.tiles[ind];
+                        GD.Print("swordsman ", anchortile, " ", ind);
                     }
                 }
-                if (minsum == 0)
+                //если лучник
+                else
                 {
-                    int ind = rand.Next(0, Field.tiles.Count);
-                    anchortile = Field.tiles[ind];
-                    GD.Print("archer ", anchortile, " ", ind);
+                    int sum;
+                    int minsum = 0;
+                    foreach (Tile tile in Field.tiles)
+                    {
+                        foreach (Neko neko_enemy in Neko.teams[teamEnemy])
+                        {
+                            sum = Math.Abs(tile.x - neko_enemy.x) + Math.Abs(tile.y - neko_enemy.y);
+                            if (sum < minsum)
+                            {
+                                sum = minsum;
+                                anchortile = tile;
+                            }
+                        }
+                    }
+                    if (minsum == 0)
+                    {
+                        int ind = rand.Next(0, Field.tiles.Count);
+                        anchortile = Field.tiles[ind];
+                        GD.Print("archer ", anchortile, " ", ind);
+                    }
                 }
             }
-        }
-        nekocard.x = anchortile.x;
-        nekocard.y = anchortile.y;
-        Tween tween = GetTree().CreateTween();
+            nekocard.x = anchortile.x;
+            nekocard.y = anchortile.y;
+            Tween tween = GetTree().CreateTween();
 
-        Node2D prevParent = (Node2D)nekocard.unit.GetParent();
-        if (anchortile is not null) //добавляем кота к якорю
-        {
-            prevParent.RemoveChild(nekocard.unit); //удаление дочернего узла
-            anchortile.GetParent().AddChild(nekocard.unit); //добавление дочернего узла
-            nekocard.unit.Position += prevParent.Position - ((Node2D)anchortile.GetParent()).Position;
-        }
+            Node2D prevParent = (Node2D)nekocard.unit.GetParent();
+            if (anchortile is not null) //добавляем кота к якорю
+            {
+                prevParent.RemoveChild(nekocard.unit); //удаление дочернего узла
+                anchortile.GetParent().AddChild(nekocard.unit); //добавление дочернего узла
+                nekocard.unit.Position += prevParent.Position - ((Node2D)anchortile.GetParent()).Position;
+            }
 
-        //anim_card.Play("ordinary_cat");
-        //GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
-        tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-        Neko.teams[teamEnemy].Add(nekocard);
-        enemymove = false;
-        usersmove = true;
-        Field.tiles.Remove(anchortile);
-        cardlistEnemy.Remove(nekocard);
+            //anim_card.Play("ordinary_cat");
+            //GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
+            tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+            Neko.teams[teamEnemy].Add(nekocard);
+            enemymove = false;
+            usersmove = true;
+            Field.tiles.Remove(anchortile);
+            armlistEnemy.Remove(nekocard);
+        }
     }
 
     //public void UsersMove() //ход игрока
     //{
-    //    if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && catlist.Count != 0 && !isEnemy) //при нажатии
+    //    if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && cardlistUsers.Count != 0 && !isEnemy) //при нажатии
     //    {
     //        GetCard(team);
     //    }
@@ -199,15 +207,16 @@ public partial class CardDeck : Node2D
         int numcat = 0;
         if (team == teamEnemy)
         {
-            numcat = catlistEnemy[rand.Next(0, catlistEnemy.Count)];
-            catlistEnemy.Remove(numcat);
+            numcat = cardlistEnemy[rand.Next(0, cardlistEnemy.Count)];
+            cardlistEnemy.Remove(numcat);
+
         }
         else
         {
-            numcat = catlist[rand.Next(0, catlist.Count)];
-            catlist.Remove(numcat);
+            numcat = cardlistUsers[rand.Next(0, cardlistUsers.Count)];
+            cardlistUsers.Remove(numcat);
         }
-        //int numcat = listteam[team][rand.Next(0, catlist.Count)];
+        //int numcat = listteam[team][rand.Next(0, cardlistUsers.Count)];
         //listteam[team].Remove(numcat);
 
         Neko newNeko = CreateCat(team, numcat, x, y);
@@ -221,7 +230,11 @@ public partial class CardDeck : Node2D
 
         if (team == teamEnemy)
         {
-            cardlist.Add(newNeko);
+            armlistEnemy.Add(newNeko);
+        }
+        else
+        {
+            armlistUsers.Add(newNeko);
         }
     }
 

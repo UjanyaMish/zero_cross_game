@@ -17,8 +17,8 @@ public partial class ButtonAttack : Node
 
 	private void _on_pressed()
 	{
-		if (true) //здесь будет номер команды, которую выбрал игрок
-		{
+        if (true)
+        {
             foreach (Neko neko in Neko.listNeko_O)
             {
                 neko.ElevationOfRang();
@@ -30,8 +30,7 @@ public partial class ButtonAttack : Node
                 neko.Attack();
             }
             CardDeck.enemymove = true;
+            this.GetParent().GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck");
         }
-
-        this.GetParent().GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck");
     }
 }
