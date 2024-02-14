@@ -21,16 +21,31 @@ public partial class ButtonAttack : Node
         {
             foreach (Neko neko in Neko.listNeko_O)
             {
+                if (neko is Archer) continue;
                 neko.ElevationOfRang();
                 neko.Attack();
             }
             foreach (Neko neko in Neko.listNeko_X)
             {
+                if (neko is Archer) continue;
+                neko.ElevationOfRang();
+                neko.Attack();
+            }
+            foreach (Neko neko in Neko.listNeko_O)
+            {
+                if (neko is Swordsman) continue;
+                neko.ElevationOfRang();
+                neko.Attack();
+            }
+            foreach (Neko neko in Neko.listNeko_X)
+            {
+                if (neko is Swordsman) continue;
                 neko.ElevationOfRang();
                 neko.Attack();
             }
             CardDeck.enemymove = true;
-            this.GetParent().GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck");
+            CardDeck.usersmove = false;
+            //this.GetParent().GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck");
         }
     }
 }

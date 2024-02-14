@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://l1iu61kukkb3"]
+[gd_scene load_steps=7 format=3 uid="uid://l1iu61kukkb3"]
 
 [ext_resource type="Script" path="res://Scripts/game_controll_process.cs" id="1_bhrly"]
 [ext_resource type="PackedScene" uid="uid://copkm0hr58nmd" path="res://UI/pauseMenu.tscn" id="2_5tc7y"]
 [ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="3_ldi0x"]
 [ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/settings_menu.tscn" id="3_w5ife"]
 [ext_resource type="Script" path="res://UI/settings_menu_pause.cs" id="4_gurbm"]
+[ext_resource type="PackedScene" uid="uid://bru3nf3v2vp2q" path="res://Scenes/VictoryScreen.tscn" id="6_nhybu"]
 
 [node name="GameControllProcess" type="Node"]
 process_mode = 3
@@ -22,3 +23,12 @@ settingCallGame = NodePath("../PauseMenu")
 [node name="Game" parent="." instance=ExtResource("3_ldi0x")]
 process_mode = 1
 position = Vector2(2, 0)
+
+[node name="VictoryScreen" parent="." instance=ExtResource("6_nhybu")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2

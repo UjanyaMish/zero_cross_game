@@ -14,7 +14,7 @@ public partial class neko1 : Area2D
 	private bool dragable = false;
 	private bool notdrag = false;
 
-	AnimatedSprite2D anim_card;
+	public AnimatedSprite2D anim_card;
 	Tween tween;
 	int usersteam = 0;
 
@@ -57,7 +57,7 @@ public partial class neko1 : Area2D
 					{
 
 					}
-					else if (!notdrag) //клетка свободна, ставим кота и оккупируем якорь
+					else //клетка свободна, ставим кота и оккупируем якорь
 					{
 						anchor_field = something_tile;
 						me.x = anchor_field.x;

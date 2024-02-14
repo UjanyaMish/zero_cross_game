@@ -20,7 +20,6 @@ public partial class CardDeck : Node2D
     int deckSize = 0;
     */
 
-    AnimatedSprite2D anim_card;
     bool isEnemy;
     Tile cardplace;
 
@@ -61,11 +60,11 @@ public partial class CardDeck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (enemymove)
+        if (enemymove && isEnemy)
         {
             EnemyMove();
         }
-        if (usersmove)
+        if (usersmove && !isEnemy)
         {
             UsersMove();
         }
@@ -81,7 +80,7 @@ public partial class CardDeck : Node2D
                 GetCard(team);
             }
         }
-        if (flag == true)
+        if (flag)
         {
             usersmove = false;
             flag = false;
@@ -116,11 +115,11 @@ public partial class CardDeck : Node2D
                     bool flag = false;
                     foreach (Tile tile in Field.tiles)
                     {
-                        foreach (Neko neko_enemy in Neko.teams[teamEnemy])
+                        foreach (Neko neko_enemy in Neko.teams[team])
                         {
                             int disX = Math.Abs(neko_enemy.x - tile.x);
                             int disY = Math.Abs(neko_enemy.y - tile.y);
-                            if (disX == 1 || disY == 1)
+                            if (disX <= 1 && disY <= 1)
                             {
                                 anchortile = tile;
                                 flag = true;
@@ -140,20 +139,26 @@ public partial class CardDeck : Node2D
                 else
                 {
                     int sum;
-                    int minsum = 0;
+                    int minsum = 1000;
+                    int maxsum = 0;
                     foreach (Tile tile in Field.tiles)
                     {
-                        foreach (Neko neko_enemy in Neko.teams[teamEnemy])
+                        minsum = 1000;
+                        foreach (Neko neko_enemy in Neko.teams[team])
                         {
                             sum = Math.Abs(tile.x - neko_enemy.x) + Math.Abs(tile.y - neko_enemy.y);
                             if (sum < minsum)
                             {
-                                sum = minsum;
-                                anchortile = tile;
+                                minsum = sum;
                             }
                         }
+                        if (minsum > maxsum)
+                        {
+                            maxsum = minsum;
+                            anchortile = tile;
+                        }
                     }
-                    if (minsum == 0)
+                    if (maxsum == 0)
                     {
                         int ind = rand.Next(0, Field.tiles.Count);
                         anchortile = Field.tiles[ind];
@@ -161,27 +166,30 @@ public partial class CardDeck : Node2D
                     }
                 }
             }
-            nekocard.x = anchortile.x;
-            nekocard.y = anchortile.y;
-            Tween tween = GetTree().CreateTween();
-
-            Node2D prevParent = (Node2D)nekocard.unit.GetParent();
             if (anchortile is not null) //добавляем кота к якорю
             {
+                nekocard.x = anchortile.x;
+                nekocard.y = anchortile.y;
+                Tween tween = GetTree().CreateTween();
+
+                Node2D prevParent = (Node2D)nekocard.unit.GetParent();
+            
                 prevParent.RemoveChild(nekocard.unit); //удаление дочернего узла
                 anchortile.GetParent().AddChild(nekocard.unit); //добавление дочернего узла
                 nekocard.unit.Position += prevParent.Position - ((Node2D)anchortile.GetParent()).Position;
-            }
 
-            //anim_card.Play("ordinary_cat");
-            //GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
-            tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-            Neko.teams[teamEnemy].Add(nekocard);
-            enemymove = false;
-            usersmove = true;
-            Field.tiles.Remove(anchortile);
-            armlistEnemy.Remove(nekocard);
+                nekocard.notattack = false;
+
+                tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+                Neko.listNeko_X.Add(nekocard);
+                Field.tiles.Remove(anchortile);
+                armlistEnemy.Remove(nekocard);
+                ((neko1)(nekocard.unit)).anim_card.Play("ordinary_cat");
+                ((neko1)(nekocard.unit)).GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
+            }
         }
+        enemymove = false;
+        usersmove = true;
     }
 
     //public void UsersMove() //ход игрока

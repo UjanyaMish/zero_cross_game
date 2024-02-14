@@ -20,9 +20,9 @@ public partial class Neko : IComparable //описание класса юнит
     public TextureProgressBar HP_bar;
     //AnimatedSprite2D damage_anim;
 
-    public static SortedSet<Neko> listNeko_O = new();
-    public static SortedSet<Neko> listNeko_X = new();
-    public static SortedSet<Neko>[] teams = { listNeko_O, listNeko_X };
+    public static List<Neko> listNeko_O = new();
+    public static List<Neko> listNeko_X = new();
+    public static List<Neko>[] teams = { listNeko_O, listNeko_X };
     //static int CreatedAll = 0;
 
     static PackedScene[] sprites =
@@ -89,17 +89,19 @@ public partial class Neko : IComparable //описание класса юнит
     {
         HP -= damage;
         HP_bar.Value = HP;
-        //damage_anim.Play("claws");
+        ((neko1)(this.unit)).anim_card.Play("claws");
         GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
         if (HP <= 0)
         {
             Death();
         }
+        //((neko1)(this.unit)).anim_card.Play("ordinary_cat");
     }
 
     public virtual void Death() //функция смерти кота
     {
         unit.QueueFree();//убираем спрайт
+        this.notattack = true;
         teams[team].Remove(this);
         GD.Print("Neko from ", this.x, ", ", this.y, " death");
         ((neko1)(this.unit)).anchor_field.occupied = false;
@@ -120,7 +122,7 @@ public class Swordsman : Neko //описание мечника
     }
     public override void Attack()
     {
-        int HP_enemy = 100;
+        int HP_enemy = 1000;
         Neko neko_attack = null;
         GD.Print(this.x);
         GD.Print(this.y);
@@ -131,7 +133,7 @@ public class Swordsman : Neko //описание мечника
             {
                 int disX = Math.Abs(neko_enemy.x - this.x);
                 int disY = Math.Abs(neko_enemy.y - this.y);
-                if (disX <= 1 && disY <= 1)
+                if ((disX <= 1) && (disY <= 1))
                 {
                     if (neko_enemy.HP < HP_enemy)
                     {
