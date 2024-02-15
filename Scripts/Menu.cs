@@ -11,6 +11,8 @@ public partial class Menu : Control
 		backgroung.Scale = new Vector2(1, 1);
 		backgroung.Scale *= menuSize / (backgroung.Texture.GetSize());
 		backgroung.Position = PivotOffset;
+
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

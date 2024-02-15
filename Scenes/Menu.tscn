@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl5r2ksujv0my"]
+[gd_scene load_steps=11 format=3 uid="uid://dl5r2ksujv0my"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_5a7jo"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_g8xg6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://UI/Settings/settings_button.cs" id="5_l78b0"]
 [ext_resource type="Script" path="res://Scripts/ButtonEsc.cs" id="6_7ywhk"]
 [ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/Settings/settings_menu.tscn" id="7_jjg5u"]
+[ext_resource type="PackedScene" uid="uid://ww7dp4ygccwl" path="res://Scenes/choice_team.tscn" id="9_786c7"]
 [ext_resource type="PackedScene" uid="uid://cptt2311ljch2" path="res://Scenes/audio_player_back.tscn" id="9_mbcyt"]
 
 [node name="Menu" type="Control"]
@@ -107,6 +108,8 @@ script = ExtResource("6_7ywhk")
 [node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("7_jjg5u")]
 visible = false
 control = NodePath("../VBoxContainer/ButtonSetting")
+
+[node name="choice_team" parent="CanvasLayer" instance=ExtResource("9_786c7")]
 
 [node name="audio_player_back" parent="." node_paths=PackedStringArray("node") instance=ExtResource("9_mbcyt")]
 node = NodePath("../CanvasLayer/SettingsMenu")

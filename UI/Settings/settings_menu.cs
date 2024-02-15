@@ -20,7 +20,7 @@ public partial class settings_menu : Control
     public override void _Ready()
 	{	
 
-		Hide();;
+		Hide();
         //Вызывает настройки когда сигнал приходит из меню паузы
         if (control is pause_menu pauseMenu)
 			pauseMenu.SettingsScreenRequsted += _on_settings_button_toggeled;
@@ -94,7 +94,8 @@ public partial class settings_menu : Control
 			var id_lang = (int)config.GetValue("language", "choice",0);
 			language.Select(id_lang);
 			var id_res = (int)config.GetValue("resolution", "choice",0);
-			resolution.Select(id_res);
+			_on_aspect_button_item_selected(id_res);
+            resolution.Select(id_res);
 			if (id_lang == 0)
 			{
 				TranslationServer.SetLocale("ru");

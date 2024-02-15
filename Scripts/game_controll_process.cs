@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 public partial class game_controll_process : Node
 {
@@ -20,7 +20,8 @@ public partial class game_controll_process : Node
 		}
 	}
 
-	public override void _Input(InputEvent @event)
+
+    public override void _Input(InputEvent @event)
 	{
 		//base._Input(@event);
 		if (@event.IsActionPressed("ui_cancel"))
