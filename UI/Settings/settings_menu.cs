@@ -215,6 +215,6 @@ public partial class settings_menu : Control
 		else if (id == 1)
 		{
 			TranslationServer.SetLocale("en");
-		}
+        }
 	}
 }

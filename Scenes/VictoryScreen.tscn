@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckx3hr0n72pi0"]
+
+[ext_resource type="Script" path="res://Scripts/VictoryScreen.cs" id="1_bis33"]
+[ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_6eau3"]
+[ext_resource type="Script" path="res://Scripts/QuitButton.cs" id="3_j1e1b"]
+
+[node name="VictoryScreen" type="Node2D"]
+script = ExtResource("1_bis33")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1920, 1088)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 436.0
+offset_right = 1152.0
+offset_bottom = 611.0
+texture = ExtResource("2_6eau3")
+expand_mode = 1
+
+[node name="RestartButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.411979
+anchor_top = 0.491728
+anchor_right = 0.482292
+anchor_bottom = 0.520221
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 18
+text = "Повторить
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.500521
+anchor_top = 0.491728
+anchor_right = 0.570313
+anchor_bottom = 0.520221
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 18
+text = "Выход"
+script = ExtResource("3_j1e1b")
+metadata/_edit_use_anchors_ = true
+
+[node name="WinOrLose" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 841.0
+offset_top = 464.0
+offset_right = 1046.0
+offset_bottom = 507.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "Вы победили!"
