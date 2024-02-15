@@ -16,7 +16,8 @@ script = ExtResource("1_bhrly")
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll") instance=ExtResource("2_5tc7y")]
 gameControll = NodePath("../..")
 
-[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("3_w5ife")]
+[node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("3_w5ife")]
+control = NodePath("../PauseMenu")
 
 [node name="Game" parent="." instance=ExtResource("3_ldi0x")]
 process_mode = 1
