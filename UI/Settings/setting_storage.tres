@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://mxh6ssgpkvqm"]
+
+[ext_resource type="Script" path="res://UI/Settings/SettingStorage.cs" id="1_ud77e"]
+
+[resource]
+script = ExtResource("1_ud77e")
+Volume = 100
+Muic = 100
+Efects = 100
+Language = PackedStringArray("English", "Русский")
+CurrentLanguage = 0
+Resolution = PackedStringArray("1920*1080", "1260*720")
+CurrentResolution = 0

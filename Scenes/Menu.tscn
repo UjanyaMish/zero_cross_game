@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl5r2ksujv0my"]
+[gd_scene load_steps=10 format=3 uid="uid://dl5r2ksujv0my"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_5a7jo"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_g8xg6"]
 [ext_resource type="Texture2D" uid="uid://r22ark5yxjwu" path="res://pictures/котяра.png" id="2_lp1cp"]
 [ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="3_imfxx"]
 [ext_resource type="Script" path="res://Scripts/ButtonGame.cs" id="4_dq3c8"]
-[ext_resource type="Script" path="res://UI/settings_button.cs" id="5_l78b0"]
+[ext_resource type="Script" path="res://UI/Settings/settings_button.cs" id="5_l78b0"]
 [ext_resource type="Script" path="res://Scripts/ButtonEsc.cs" id="6_7ywhk"]
-[ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/settings_menu.tscn" id="7_jjg5u"]
+[ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/Settings/settings_menu.tscn" id="7_jjg5u"]
+[ext_resource type="PackedScene" uid="uid://cptt2311ljch2" path="res://Scenes/audio_player_back.tscn" id="9_mbcyt"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -103,9 +104,12 @@ layout_mode = 2
 text = "выход"
 script = ExtResource("6_7ywhk")
 
-[node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("settingCallGame") instance=ExtResource("7_jjg5u")]
+[node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("7_jjg5u")]
 visible = false
-settingCallGame = NodePath("../VBoxContainer/ButtonSetting")
+control = NodePath("../VBoxContainer/ButtonSetting")
+
+[node name="audio_player_back" parent="." node_paths=PackedStringArray("node") instance=ExtResource("9_mbcyt")]
+node = NodePath("../CanvasLayer/SettingsMenu")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="CanvasLayer/VBoxContainer/ButtonGame" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSetting" to="CanvasLayer/VBoxContainer/ButtonSetting" method="_on_pressed"]

@@ -60,6 +60,6 @@ public partial class pause_menu : Control
 
 	private void _on_settings_button_pressed()
 	{
-		SettingCalled = !SettingCalled;
+		SettingCalled = true;
 	}
 }

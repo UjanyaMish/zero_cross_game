@@ -1,8 +1,7 @@
 using Godot;
-using System;
+using static Godot.GodotThread;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
+using System;
 
 public partial class Neko : IComparable //описание класса юнитов
 {
@@ -78,7 +77,7 @@ public partial class Neko : IComparable //описание класса юнит
                 int disY = Math.Abs(neko.y - this.y);
                 if (disX <= 1 && disY <= 1)
                 {
-                    this.rank += 1;
+                    this.rank += neko.rank;
                     GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
                 }
             }
@@ -190,16 +189,16 @@ public partial class Game : Node2D
 	{
         this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
 		//запуск фоновой музыки
-		backgroundMusicPlayer = new AudioStreamPlayer();
-		AddChild(backgroundMusicPlayer);
-		backgroundMusicPlayer.Stream = (AudioStream)ResourceLoader.Load("res://sounds/Here_Come_The_Raindrops.mp3");
-		backgroundMusicPlayer.Play();
+		//backgroundMusicPlayer = new AudioStreamPlayer();
+		//AddChild(backgroundMusicPlayer);
+		//backgroundMusicPlayer.Stream = (AudioStream)ResourceLoader.Load("res://sounds/Here_Come_The_Raindrops.mp3");
+		//backgroundMusicPlayer.Play();
 		
 		//конфиг файл
-		config = new ConfigFile();
-		config.Load("res://settings.cfg");
-		var voloume = (int)config.GetValue("backmusic", "voloume", 0);
-		backgroundMusicPlayer.VolumeDb = voloume;
-		GD.Print(voloume);				
+		//config = new ConfigFile();
+		//config.Load("res://settings.cfg");
+		//var voloume = (int)config.GetValue("backmusic", "voloume", 0);
+		//backgroundMusicPlayer.VolumeDb = voloume;
+		//GD.Print(voloume);				
 	}
 }
