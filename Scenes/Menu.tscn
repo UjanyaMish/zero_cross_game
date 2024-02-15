@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://UI/Settings/settings_button.cs" id="5_l78b0"]
 [ext_resource type="Script" path="res://Scripts/ButtonEsc.cs" id="6_7ywhk"]
 [ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/Settings/settings_menu.tscn" id="7_jjg5u"]
-[ext_resource type="PackedScene" path="res://Scenes/audio_player_back.tscn" id="9_mbcyt"]
+[ext_resource type="PackedScene" uid="uid://cptt2311ljch2" path="res://Scenes/audio_player_back.tscn" id="9_mbcyt"]
 
 [node name="Menu" type="Control"]
 process_mode = 3

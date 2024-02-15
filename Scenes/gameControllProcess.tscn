@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="3_ldi0x"]
 [ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/Settings/settings_menu.tscn" id="3_w5ife"]
 [ext_resource type="PackedScene" uid="uid://bru3nf3v2vp2q" path="res://Scenes/VictoryScreen.tscn" id="6_nhybu"]
-[ext_resource type="PackedScene" path="res://Scenes/audio_player_back.tscn" id="6_tm3h0"]
+[ext_resource type="PackedScene" uid="uid://cptt2311ljch2" path="res://Scenes/audio_player_back.tscn" id="6_tm3h0"]
 
 [node name="GameControllProcess" type="Node"]
 process_mode = 3
