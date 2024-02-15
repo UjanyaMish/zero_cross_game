@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
 [ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
-[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/Field.tscn" id="4_o7hnr"]
+[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/field.tscn" id="4_o7hnr"]
 [ext_resource type="Script" path="res://Scripts/ButtonAttack.cs" id="9_dniw3"]
 [ext_resource type="PackedScene" uid="uid://c3rbtlcsd4ejp" path="res://Scenes/mian_card_place.tscn" id="10_72max"]
 

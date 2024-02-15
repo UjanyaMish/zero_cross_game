@@ -18,7 +18,8 @@ public partial class Button_play : Button
 	private void _on_pressed()
 	{
 		//if(team.team)
-			GetTree().ChangeSceneToFile("res://Scenes/gameControllProcess.tscn");
+		GD.Print(choice_team.teamUser);
+		if (choice_team.teamUser != -1)GetTree().ChangeSceneToFile("res://Scenes/gameControllProcess.tscn");
 	}
 	
 }

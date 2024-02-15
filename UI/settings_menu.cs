@@ -39,8 +39,8 @@ public partial class settings_menu : Control
 			backgroundMusicPlayer.VolumeDb = voloume;
 			GD.Print(voloume);
 			//?????????????
-			var f = (volumeSlider.Value);
-			GD.Print(f);
+			//var f = (volumeSlider.Value);
+			//GD.Print(f);
 			//?????????????
 		}				
 	}

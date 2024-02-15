@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ww7dp4ygccwl"]
+[gd_scene load_steps=8 format=3 uid="uid://ww7dp4ygccwl"]
 
 [ext_resource type="Script" path="res://Scripts/choice_team.cs" id="1_ifi34"]
-[ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="1_vnsl2"]
 [ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_xo8ju"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="3_yb2qr"]
 [ext_resource type="Texture2D" uid="uid://dnp8utweaxsbn" path="res://pictures/кот простой луккруг.png" id="4_cit1n"]
@@ -12,60 +11,73 @@
 [node name="choice_team" type="Node2D"]
 script = ExtResource("1_ifi34")
 
-[node name="Game" parent="." instance=ExtResource("1_vnsl2")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_right = 1380.0
-offset_bottom = 848.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="back" type="TextureRect" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 344.0
-offset_top = 180.0
-offset_right = 822.0
-offset_bottom = 486.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -153.0
+offset_right = 239.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_xo8ju")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel"]
 custom_minimum_size = Vector2(200, 30)
-layout_mode = 0
-offset_left = 434.0
-offset_top = 212.0
-offset_right = 750.0
-offset_bottom = 254.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -239.0
+offset_top = 403.0
+offset_right = 239.0
+offset_bottom = 445.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Выбери свою сторону!
 "
+horizontal_alignment = 1
 
 [node name="Button_play" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 469.0
-offset_top = 412.0
-offset_right = 702.0
-offset_bottom = 460.0
+offset_left = 840.0
+offset_top = 607.0
+offset_right = 1073.0
+offset_bottom = 655.0
 theme_override_font_sizes/font_size = 27
 text = "ИГРАТЬ"
 script = ExtResource("4_rr5fp")
 
 [node name="cat_x" type="TextureRect" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 439.0
-offset_top = 271.0
-offset_right = 536.0
-offset_bottom = 368.0
+offset_left = 807.0
+offset_top = 460.0
+offset_right = 904.0
+offset_bottom = 557.0
 texture = ExtResource("3_yb2qr")
 script = ExtResource("4_j21wu")
 
 [node name="cat_o" type="TextureRect" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 628.0
-offset_top = 271.0
-offset_right = 725.0
-offset_bottom = 368.0
+offset_left = 1019.0
+offset_top = 462.0
+offset_right = 1116.0
+offset_bottom = 559.0
 texture = ExtResource("4_cit1n")
 script = ExtResource("7_w4ykj")
 

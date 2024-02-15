@@ -5,7 +5,7 @@ public partial class Tile : Node2D { };
 public partial class Field : Node2D { };
 public partial class Neko : IComparable { };
 public partial class CardDeck : Node2D { }
-
+public partial class choice_team : Node2D { };
 public partial class neko1 : Area2D
 {
 	public Neko me;
@@ -17,7 +17,7 @@ public partial class neko1 : Area2D
 
 	public AnimatedSprite2D anim_card;
 	Tween tween;
-	int usersteam = 0;
+	int usersteam = choice_team.teamUser;
 
 	Node2D something_field;
 	public Tile anchor_field;

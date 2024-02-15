@@ -76,7 +76,7 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 int disX = Math.Abs(neko.x - this.x);
                 int disY = Math.Abs(neko.y - this.y);
-                if (disX == 1 || disY == 1)
+                if (disX <= 1 && disY <= 1)
                 {
                     this.rank += 1;
                     GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
@@ -188,7 +188,7 @@ public partial class Game : Node2D
 	
 	public override void _Ready()	
 	{
-    this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
+        this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
 		//запуск фоновой музыки
 		backgroundMusicPlayer = new AudioStreamPlayer();
 		AddChild(backgroundMusicPlayer);
@@ -198,7 +198,7 @@ public partial class Game : Node2D
 		//конфиг файл
 		config = new ConfigFile();
 		config.Load("res://settings.cfg");
-		var voloume = (int)config.GetValue("backmusic", "voloume",0);
+		var voloume = (int)config.GetValue("backmusic", "voloume", 0);
 		backgroundMusicPlayer.VolumeDb = voloume;
 		GD.Print(voloume);				
 	}

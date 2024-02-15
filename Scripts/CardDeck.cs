@@ -8,6 +8,8 @@ public partial class Field : Node2D { };
 
 public partial class Neko : IComparable { };
 
+public partial class choice_team : Node2D { };
+
 public partial class CardDeck : Node2D
 {
     /*
@@ -33,8 +35,8 @@ public partial class CardDeck : Node2D
     public int x = -2;
     public int y = -2;
     public int counter = 0;
-    int team = 0;
-    int teamEnemy = 1;
+    int teamUser = choice_team.teamUser;
+    int teamEnemy = (choice_team.teamUser + 1) % 2;
     public static bool enemymove = true;
     public static bool usersmove = false;
     public static bool flag = false;
@@ -83,7 +85,7 @@ public partial class CardDeck : Node2D
         {
             for (int i = 0; i < 4 - count ; i++)
             {
-                GetCard(team);
+                GetCard(teamUser);
             }
         }
     }
@@ -116,7 +118,7 @@ public partial class CardDeck : Node2D
                     bool flag = false;
                     foreach (Tile tile in Field.tiles)
                     {
-                        foreach (Neko neko_enemy in Neko.teams[team])
+                        foreach (Neko neko_enemy in Neko.teams[teamUser])
                         {
                             int disX = Math.Abs(neko_enemy.x - tile.x);
                             int disY = Math.Abs(neko_enemy.y - tile.y);
@@ -145,7 +147,7 @@ public partial class CardDeck : Node2D
                     foreach (Tile tile in Field.tiles)
                     {
                         minsum = 1000;
-                        foreach (Neko neko_enemy in Neko.teams[team])
+                        foreach (Neko neko_enemy in Neko.teams[teamUser])
                         {
                             sum = Math.Abs(tile.x - neko_enemy.x) + Math.Abs(tile.y - neko_enemy.y);
                             if (sum < minsum)
@@ -197,7 +199,7 @@ public partial class CardDeck : Node2D
     //{
     //    if (Input.IsMouseButtonPressed(MouseButton.Left) && mouse_on_top && cardlistUsers.Count != 0 && !isEnemy) //при нажатии
     //    {
-    //        GetCard(team);
+    //        GetCard(teamUser);
     //    }
     //    else
     //    {
@@ -225,8 +227,8 @@ public partial class CardDeck : Node2D
             numcat = cardlistUsers[rand.Next(0, cardlistUsers.Count)];
             cardlistUsers.Remove(numcat);
         }
-        //int numcat = listteam[team][rand.Next(0, cardlistUsers.Count)];
-        //listteam[team].Remove(numcat);
+        //int numcat = listteam[teamUser][rand.Next(0, cardlistUsers.Count)];
+        //listteam[teamUser].Remove(numcat);
 
         Neko newNeko = CreateCat(team, numcat, x, y);
         Tween tween = GetTree().CreateTween();
@@ -252,7 +254,7 @@ public partial class CardDeck : Node2D
     {
         if (@event.IsActionPressed("leftclick") && mouse_on_top)
         {
-            GetCard(team);
+            GetCard(teamUser);
         }
     }*/
 
