@@ -1,21 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvblr7t3l2io6"]
+[gd_scene load_steps=9 format=3 uid="uid://bvblr7t3l2io6"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_qwdau"]
 [ext_resource type="Texture2D" uid="uid://dnp8utweaxsbn" path="res://pictures/кот простой луккруг.png" id="1_tvmja"]
+[ext_resource type="Texture2D" uid="uid://don5qgcgywnb7" path="res://pictures/фон карты лучника.png" id="2_dchvg"]
+[ext_resource type="Texture2D" uid="uid://dolq6cd1wsk3o" path="res://pictures/когти1.png" id="3_nihlr"]
+[ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="3_vd03s"]
+[ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="4_7lca6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kp3ks"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_dchvg")
+}],
+"loop": true,
+"name": &"cat_card",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nihlr")
+}],
+"loop": false,
+"name": &"claws",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_tvmja")
 }],
 "loop": true,
-"name": &"ordinary cat",
+"name": &"ordinary_cat",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
-size = Vector2(96, 96)
+size = Vector2(128, 124.667)
 
 [node name="Neko_)0" type="Area2D" groups=["dropable"]]
 script = ExtResource("1_qwdau")
@@ -23,13 +43,27 @@ script = ExtResource("1_qwdau")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 48)
 sprite_frames = SubResource("SpriteFrames_kp3ks")
-animation = &"ordinary cat"
+animation = &"cat_card"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(48, 48)
+position = Vector2(43, 47)
+scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_0owx8")
+
+[node name="HP" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 15.0
+offset_right = 79.0
+offset_bottom = 6.0
+size_flags_horizontal = 4
+max_value = 10.0
+value = 10.0
+nine_patch_stretch = true
+texture_over = ExtResource("3_vd03s")
+texture_progress = ExtResource("4_7lca6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

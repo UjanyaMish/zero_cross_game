@@ -3,32 +3,39 @@ using System;
 
 public partial class Tile : Node2D { };
 public partial class Field : Node2D { };
+public partial class Neko : IComparable { };
+public partial class CardDeck : Node2D { }
 
 public partial class neko1 : Area2D
 {
+	public Neko me;
 	static bool mouse_free = true;
 	private bool dragging = false;
 	private bool dragable = false;
+	private bool notdrag = false;
+	public bool finish_anim = false;
 
-	Tween myAnimation;
+	public AnimatedSprite2D anim_card;
+	Tween tween;
+	int usersteam = 0;
 
 	Node2D something_field;
-	Tile anchor_field;
+	public Tile anchor_field;
 
-	private Vector2 offset;
+    private Vector2 offset; 
 
     public override void _Process(double delta)
     {
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
+		if (Input.IsMouseButtonPressed(MouseButton.Left) && me.team == usersteam && CardDeck.usersmove == true)
 		{
-			if (dragging)
+			if (dragging && !notdrag) //уже происходит перетаскивание
 			{
 				Vector2 now = GetGlobalMousePosition();
 				this.Position += now - offset;
 				offset = now;
 			}
-			else if (dragable && mouse_free && (myAnimation is null || !myAnimation.IsRunning())) //Проверяем что кота можно тащить, мышь свободна и нет анимации на коте
-			{
+			else if (dragable && mouse_free && (tween is null || !tween.IsRunning())) //проверяем что кота можно тащить, мышь свободна и нет анимации на коте
+			{   //здесь мы начинаем тащить кота
 				mouse_free = false;
 				if (anchor_field is not null)
 				{
@@ -38,47 +45,59 @@ public partial class neko1 : Area2D
 				offset = GetGlobalMousePosition();
 			}
 		}
-		else
+		else //если не происходит нажатия на кнопку мыши
 		{
-			if (dragging)
+			if (dragging) //если до этого тащили кота, то сейчас его отпускаем
 			{
 				dragging = false;
 				mouse_free = true;
-				if (something_field is not null)
+				if (something_field is not null) //проверка, есть ли кот на клетке поля или нет
 				{
 					Tile something_tile = something_field.GetParent() as Tile;
-					if (something_tile.occupied)
+					if (something_tile.occupied) //клетка занята
 					{
+
 					}
-					else
+					else //клетка свободна, ставим кота и оккупируем якорь
 					{
 						anchor_field = something_tile;
+						me.x = anchor_field.x;
+						me.y = anchor_field.y;
+						GD.Print(me.x, me.y);
+						GD.Print();
+                        notdrag = true;
+						me.notattack = false;
+						anim_card.Play("ordinary_cat");
+						GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
+                        Neko.teams[me.team].Add(me);
+						CardDeck.flag = true;
+                        CardDeck.armlistUsers.Remove(me);
                     }
-                }
+				}
 				Node2D prevParent = (Node2D)this.GetParent();
-				if (anchor_field is not null)
+				if (anchor_field is not null) //добавляем кота к якорю
 				{
-					prevParent.RemoveChild(this);
-					anchor_field.GetParent().AddChild(this);
+					prevParent.RemoveChild(this); //удаление дочернего узла
+					anchor_field.GetParent().AddChild(this); //добавление дочернего узла
 					this.Position += prevParent.Position - ((Node2D)anchor_field.GetParent()).Position;
 				}
-                if (myAnimation is not null && myAnimation.IsRunning())
+				if (tween is not null && tween.IsRunning()) //прекращаем анимацию
 				{
-					myAnimation.Stop();
+					tween.Stop();
 				}
-				myAnimation = GetTree().CreateTween();
-				myAnimation.TweenProperty(this, "position", anchor_field.Position +
+				tween = GetTree().CreateTween();
+				tween.TweenProperty(this, "position", anchor_field.Position +
 									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
-				//((Field)(anchor_field.GetParent())).CreateCat(1, anchor_field.x, anchor_field.y);
-			}
+				Field.tiles.Remove(anchor_field);
+            }
 		}
     }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
-	}
+		anim_card = GetNode<AnimatedSprite2D>("AnimatedSprite2D"); //берем сцену
+    }
 
 	public void _on_mouse_entered()
 	{
@@ -103,6 +122,17 @@ public partial class neko1 : Area2D
 		if (other == something_field) //если была связь с котом, стираем связь
 		{
 			something_field = null;
+		}
+	}
+
+	public void _on_animated_sprite_2d_animation_finished()
+	{
+        this.anim_card.Play("ordinary_cat");
+        this.finish_anim = true;
+		GD.Print("Ended");
+		if (this.me.dead)
+		{
+			this.QueueFree();
 		}
 	}
 }

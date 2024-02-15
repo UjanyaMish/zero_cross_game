@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1f6o14s2r2u2"]
+
+[ext_resource type="Script" path="res://Scripts/Field.cs" id="1_dk8hx"]
+
+[node name="Field" type="Node2D"]
+position = Vector2(326, 142)
+script = ExtResource("1_dk8hx")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_right = 511.0
+offset_bottom = 382.0
