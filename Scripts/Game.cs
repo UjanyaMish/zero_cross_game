@@ -183,8 +183,23 @@ public class Archer : Neko //описание лучника
 
 public partial class Game : Node2D
 {
-    public override void _Ready()
-    {
-        this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
-    }
+	private AudioStreamPlayer backgroundMusicPlayer;
+	private ConfigFile config;
+	
+	public override void _Ready()	
+	{
+    this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
+		//запуск фоновой музыки
+		backgroundMusicPlayer = new AudioStreamPlayer();
+		AddChild(backgroundMusicPlayer);
+		backgroundMusicPlayer.Stream = (AudioStream)ResourceLoader.Load("res://sounds/Here_Come_The_Raindrops.mp3");
+		backgroundMusicPlayer.Play();
+		
+		//конфиг файл
+		config = new ConfigFile();
+		config.Load("res://settings.cfg");
+		var voloume = (int)config.GetValue("backmusic", "voloume",0);
+		backgroundMusicPlayer.VolumeDb = voloume;
+		GD.Print(voloume);				
+	}
 }

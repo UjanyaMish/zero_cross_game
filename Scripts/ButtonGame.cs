@@ -8,13 +8,13 @@ public partial class ButtonGame : Button
     {
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
-
-    private void _on_pressed()
-    {
-        GetTree().ChangeSceneToFile("res://Scenes/gameControllProcess.tscn");
-    }
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	
+	private void _on_pressed()
+	{
+	GetTree().ChangeSceneToFile("res://Scenes/choice_team.tscn");
+	}	
 }

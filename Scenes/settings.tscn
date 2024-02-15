@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8u8mcgnba7ob"]
 
-[ext_resource type="Texture2D" uid="uid://c7s422bhdqe63" path="res://pictures/за фоном с мазней.png" id="1_eg4o7"]
-[ext_resource type="Texture2D" uid="uid://ccvju6w3e126l" path="res://pictures/котяра.png" id="2_0mdsc"]
+[ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_eg4o7"]
+[ext_resource type="Texture2D" uid="uid://r22ark5yxjwu" path="res://pictures/котяра.png" id="2_0mdsc"]
 [ext_resource type="LabelSettings" uid="uid://i8dnk8u3p3pj" path="res://test.tres" id="2_dq816"]
 [ext_resource type="Script" path="res://Scripts/ButtonSetMenu.cs" id="4_oguyt"]
 
