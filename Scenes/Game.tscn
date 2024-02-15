@@ -1,19 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://boeb56n7mlp21"]
+[gd_scene load_steps=7 format=3 uid="uid://boeb56n7mlp21"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
 [ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
-[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/field.tscn" id="4_o7hnr"]
-[ext_resource type="Texture2D" uid="uid://dknmyg4au67hi" path="res://pictures/фон поля карт.png" id="5_lxt6a"]
-[ext_resource type="Texture2D" uid="uid://vx3okhxdvrgh" path="res://pictures/фон карт.png" id="6_irvke"]
-[ext_resource type="Script" path="res://Scripts/CardDeck.cs" id="6_lvb14"]
-[ext_resource type="Script" path="res://Scripts/EmptyPlace.cs" id="6_nkaxj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yyjc"]
-size = Vector2(48, 83)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujkde"]
-size = Vector2(140, 232)
+[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/Field.tscn" id="4_o7hnr"]
+[ext_resource type="Script" path="res://Scripts/ButtonAttack.cs" id="9_dniw3"]
+[ext_resource type="PackedScene" uid="uid://c3rbtlcsd4ejp" path="res://Scenes/mian_card_place.tscn" id="10_72max"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lh87t")
@@ -34,88 +26,40 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 9.0
-offset_right = 154.0
-offset_bottom = 55.0
+offset_left = 65.0
+offset_top = 59.0
+offset_right = 213.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "на главное меню"
 script = ExtResource("3_sykc1")
 
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
-position = Vector2(324, 133)
+position = Vector2(435, 226)
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(235, 537)
+[node name="ButtonAttack" type="Button" parent="."]
+offset_left = 1684.0
+offset_top = 985.0
+offset_right = 1812.0
+offset_bottom = 1032.0
+text = "конец хода"
+script = ExtResource("9_dniw3")
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
-offset_right = 709.0
-offset_bottom = 436.0
-texture = ExtResource("5_lxt6a")
+[node name="MianCardPlace" parent="." instance=ExtResource("10_72max")]
 
-[node name="Area2D" type="Area2D" parent="Node2D"]
-position = Vector2(2, -5)
-
-[node name="EmptyPlace" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(82, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-script = ExtResource("6_nkaxj")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(302, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(188, 65)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(412, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(514, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(619, 68)
-shape = SubResource("RectangleShape2D_8yyjc")
-
-[node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(940, 109)
-
-[node name="TextureRect" type="TextureRect" parent="Node2D2"]
-offset_right = 709.0
-offset_bottom = 436.0
+[node name="MianCardPlace2" parent="." groups=["Enemy"] instance=ExtResource("10_72max")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 3.14159
-size_flags_stretch_ratio = 0.0
-texture = ExtResource("5_lxt6a")
-
-[node name="CardDeck" type="Area2D" parent="."]
-position = Vector2(43, 375)
-script = ExtResource("6_lvb14")
-
-[node name="TextureRect" type="TextureRect" parent="CardDeck"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("6_irvke")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDeck"]
-position = Vector2(73, 116)
-shape = SubResource("RectangleShape2D_ujkde")
-
-[node name="Node2D4" type="Node2D" parent="."]
-position = Vector2(1117, 262)
-rotation = 3.14159
-
-[node name="TextureRect" type="TextureRect" parent="Node2D4"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("6_irvke")
-
-[node name="Cards" type="Node" parent="."]
+pivot_offset = Vector2(960, 540)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
-[connection signal="mouse_entered" from="CardDeck" to="CardDeck" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CardDeck" to="CardDeck" method="_on_mouse_exited"]
+[connection signal="pressed" from="ButtonAttack" to="ButtonAttack" method="_on_pressed"]

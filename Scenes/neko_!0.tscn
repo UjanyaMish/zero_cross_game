@@ -1,21 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://ojhb13o21xp6"]
+[gd_scene load_steps=16 format=3 uid="uid://ojhb13o21xp6"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_36pra"]
 [ext_resource type="Texture2D" uid="uid://decklipsl2e2v" path="res://pictures/кот простой мечкруг.png" id="1_p8et6"]
+[ext_resource type="Texture2D" uid="uid://cbyvilasguy3b" path="res://pictures/фон карты мечника.png" id="2_cuvk0"]
+[ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="3_f64eu"]
+[ext_resource type="Texture2D" uid="uid://dolq6cd1wsk3o" path="res://pictures/когти1.png" id="3_kypkx"]
+[ext_resource type="Texture2D" uid="uid://bm8vqqqp0yoip" path="res://pictures/когти3.png" id="3_syk3y"]
+[ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="4_ayp38"]
+[ext_resource type="Texture2D" uid="uid://dh1m33ohwssxg" path="res://pictures/когти4.png" id="4_t0v4x"]
+[ext_resource type="Texture2D" uid="uid://b2g0h20hsvfna" path="res://pictures/когти2.png" id="5_g8cha"]
+[ext_resource type="Texture2D" uid="uid://c7kexjw2mk3p5" path="res://pictures/когт10.png" id="6_ohp87"]
+[ext_resource type="Texture2D" uid="uid://baqhyyo44y8oy" path="res://pictures/когти13.png" id="8_4gngh"]
+[ext_resource type="Texture2D" uid="uid://bpyj4h47hkkde" path="res://pictures/когти12.png" id="9_vtsjy"]
+[ext_resource type="Texture2D" uid="uid://bp5o65wep2wtt" path="res://pictures/когти11.png" id="10_qh5fo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ajkx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_cuvk0")
+}],
+"loop": true,
+"name": &"cat_card",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_syk3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t0v4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g8cha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ohp87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kypkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4gngh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vtsjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qh5fo")
+}],
+"loop": false,
+"name": &"claws",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_p8et6")
 }],
 "loop": true,
-"name": &"ordinary cat",
+"name": &"ordinary_cat",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
-size = Vector2(96, 96)
+size = Vector2(126.333, 114.667)
 
 [node name="Neko_!0" type="Area2D" groups=["dropable"]]
 script = ExtResource("1_36pra")
@@ -23,13 +71,27 @@ script = ExtResource("1_36pra")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 48)
 sprite_frames = SubResource("SpriteFrames_8ajkx")
-animation = &"ordinary cat"
+animation = &"cat_card"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(48, 48)
+position = Vector2(46, 46)
+scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_0owx8")
+
+[node name="HP" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 15.0
+offset_right = 79.0
+offset_bottom = 6.0
+size_flags_horizontal = 4
+max_value = 10.0
+value = 10.0
+nine_patch_stretch = true
+texture_over = ExtResource("3_f64eu")
+texture_progress = ExtResource("4_ayp38")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
