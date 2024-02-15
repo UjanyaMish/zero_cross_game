@@ -1,0 +1,79 @@
+# LANGUAGE translation for zero_cross_game for the following files:
+# res://Scenes/Menu.tscn
+# res://Scenes/Game.tscn
+# res://UI/pauseMenu.tscn
+# res://UI/Settings/settings_menu.tscn
+#
+# FIRST AUTHOR < EMAIL @ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: zero_cross_game\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: Scenes/Menu.tscn
+msgid "Zero_Cross_Game"
+msgstr ""
+
+#: Scenes/Menu.tscn
+msgid "играть"
+msgstr ""
+
+#: Scenes/Menu.tscn
+msgid "настройки"
+msgstr ""
+
+#: Scenes/Menu.tscn
+msgid "выход"
+msgstr ""
+
+#: Scenes/Game.tscn
+msgid "на главное меню"
+msgstr ""
+
+#: Scenes/Game.tscn
+msgid "конец хода"
+msgstr ""
+
+#: UI/pauseMenu.tscn
+msgid "~PAUSE~"
+msgstr ""
+
+#: UI/pauseMenu.tscn
+msgid "RESUME"
+msgstr ""
+
+#: UI/pauseMenu.tscn
+msgid "SETTINGS"
+msgstr ""
+
+#: UI/pauseMenu.tscn
+msgid "RETURN TO MAIN"
+msgstr ""
+
+#: UI/Settings/settings_menu.tscn
+msgid "~Settings~"
+msgstr ""
+
+#: UI/Settings/settings_menu.tscn
+msgid "Volume Game"
+msgstr ""
+
+#: UI/Settings/settings_menu.tscn
+msgid "Volume Music"
+msgstr ""
+
+#: UI/Settings/settings_menu.tscn
+msgid "Aspect Ratio"
+msgstr ""
+
+#: UI/Settings/settings_menu.tscn
+msgid "Language"
+msgstr ""
+
+#: UI/Settings/settings_menu.tscn
+msgid "Back"
+msgstr ""

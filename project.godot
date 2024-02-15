@@ -39,6 +39,10 @@ leftclick={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Locales/en.po", "res://Locales/ru.po")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

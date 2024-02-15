@@ -1,0 +1,85 @@
+# LANGUAGE translation for zero_cross_game for the following files:
+# res://Scenes/Menu.tscn
+# res://Scenes/Game.tscn
+# res://UI/pauseMenu.tscn
+# res://UI/Settings/settings_menu.tscn
+#
+# FIRST AUTHOR < EMAIL @ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: zero_cross_game\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: Scenes/Menu.tscn
+msgid "Zero_Cross_Game"
+msgstr "Zero_Cross_Game"
+
+#: Scenes/Menu.tscn
+msgid "играть"
+msgstr "Играть"
+
+#: Scenes/Menu.tscn
+msgid "настройки"
+msgstr "Настройки"
+
+#: Scenes/Menu.tscn
+msgid "выход"
+msgstr "Выход"
+
+#: Scenes/Game.tscn
+msgid "на главное меню"
+msgstr "На главное меню"
+
+#: Scenes/Game.tscn
+msgid "конец хода"
+msgstr "Конец хода"
+
+#: UI/pauseMenu.tscn
+msgid "~PAUSE~"
+msgstr "~Пауза~"
+
+#: UI/pauseMenu.tscn
+msgid "RESUME"
+msgstr "Продолжить"
+
+#: UI/pauseMenu.tscn
+msgid "SETTINGS"
+msgstr "Настройки"
+
+#: UI/pauseMenu.tscn
+msgid "RETURN TO MAIN"
+msgstr "Вернутся в меню"
+
+#: UI/Settings/settings_menu.tscn
+msgid "~Settings~"
+msgstr "~Настройки~"
+
+#: UI/Settings/settings_menu.tscn
+msgid "Volume Game"
+msgstr "Громкость Игры"
+
+#: UI/Settings/settings_menu.tscn
+msgid "Volume Music"
+msgstr "Громкость Музыки"
+
+#: UI/Settings/settings_menu.tscn
+msgid "Aspect Ratio"
+msgstr "Формат Экрана"
+
+#: UI/Settings/settings_menu.tscn
+msgid "Language"
+msgstr "Язык"
+
+#: UI/Settings/settings_menu.tscn
+msgid "Back"
+msgstr "Назад"
