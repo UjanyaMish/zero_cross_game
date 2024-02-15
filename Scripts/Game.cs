@@ -87,25 +87,27 @@ public partial class Neko : IComparable //описание класса юнит
 
     public virtual void DamageReceived(int damage) //функция получения урона
     {
+        ((neko1)(this.unit)).anim_card.Play("claws");
         HP -= damage;
         HP_bar.Value = HP;
-        ((neko1)(this.unit)).anim_card.Play("claws");
         GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
         if (HP <= 0)
         {
             Death();
         }
-        //((neko1)(this.unit)).anim_card.Play("ordinary_cat");
     }
+
+    public bool dead = false;
 
     public virtual void Death() //функция смерти кота
     {
-        unit.QueueFree();//убираем спрайт
         this.notattack = true;
         teams[team].Remove(this);
         GD.Print("Neko from ", this.x, ", ", this.y, " death");
         ((neko1)(this.unit)).anchor_field.occupied = false;
         Field.tiles.Add(((neko1)(this.unit)).anchor_field);
+
+        dead = true;
     }
 
     public int CompareTo(object obj) //сравнивает котов, используется в SprtedSet

@@ -72,6 +72,12 @@ public partial class CardDeck : Node2D
 
     public void UsersMove() //ход пользователя
     {
+        if (flag)
+        {
+            usersmove = false;
+            flag = false;
+            return;
+        }
         int count = armlistUsers.Count;
         if (count < 4 && cardlistUsers.Count > 0)
         {
@@ -79,11 +85,6 @@ public partial class CardDeck : Node2D
             {
                 GetCard(team);
             }
-        }
-        if (flag)
-        {
-            usersmove = false;
-            flag = false;
         }
     }
 

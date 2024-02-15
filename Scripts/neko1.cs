@@ -13,6 +13,7 @@ public partial class neko1 : Area2D
 	private bool dragging = false;
 	private bool dragable = false;
 	private bool notdrag = false;
+	public bool finish_anim = false;
 
 	public AnimatedSprite2D anim_card;
 	Tween tween;
@@ -70,6 +71,7 @@ public partial class neko1 : Area2D
 						GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
                         Neko.teams[me.team].Add(me);
 						CardDeck.flag = true;
+                        CardDeck.armlistUsers.Remove(me);
                     }
 				}
 				Node2D prevParent = (Node2D)this.GetParent();
@@ -88,7 +90,6 @@ public partial class neko1 : Area2D
 									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
 				Field.tiles.Remove(anchor_field);
-                CardDeck.armlistUsers.Remove(me);
             }
 		}
     }
@@ -121,6 +122,17 @@ public partial class neko1 : Area2D
 		if (other == something_field) //если была связь с котом, стираем связь
 		{
 			something_field = null;
+		}
+	}
+
+	public void _on_animated_sprite_2d_animation_finished()
+	{
+        this.anim_card.Play("ordinary_cat");
+        this.finish_anim = true;
+		GD.Print("Ended");
+		if (this.me.dead)
+		{
+			this.QueueFree();
 		}
 	}
 }
