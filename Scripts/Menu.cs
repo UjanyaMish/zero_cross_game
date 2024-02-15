@@ -3,10 +3,10 @@ using System;
 
 public partial class Menu : Control
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
-		Sprite2D backgroung = GetNode<Sprite2D>("CanvasLayer/ЗаФоном");
+        Sprite2D backgroung = GetNode<Sprite2D>("CanvasLayer/ЗаФоном");
 		var menuSize = Size;
 		backgroung.Scale = new Vector2(1, 1);
 		backgroung.Scale *= menuSize / (backgroung.Texture.GetSize());

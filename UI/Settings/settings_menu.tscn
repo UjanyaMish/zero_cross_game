@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfeppygaege65"]
+[gd_scene load_steps=6 format=3 uid="uid://bfeppygaege65"]
 
 [ext_resource type="Script" path="res://UI/Settings/settings_menu.cs" id="1_10lw8"]
-[ext_resource type="Resource" uid="uid://mxh6ssgpkvqm" path="res://UI/Settings/setting_storage.tres" id="2_a2l48"]
 [ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_c75tp"]
 [ext_resource type="Theme" uid="uid://cihdl3ui258ax" path="res://UI/Settings/settings_teme.tres" id="4_n2ona"]
 [ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="5_xagq2"]
@@ -18,7 +17,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_10lw8")
-Settings = ExtResource("2_a2l48")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -83,7 +81,8 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
-value = 100.0
+min_value = -55.0
+max_value = 0.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
@@ -100,7 +99,8 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
-value = 100.0
+min_value = -55.0
+max_value = 0.0
 
 [node name="BoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
 layout_mode = 2

@@ -19,10 +19,10 @@ public partial class neko1 : Area2D
 	Node2D something_field;
 	public Tile anchor_field;
 
-    private Vector2 offset; 
+	private Vector2 offset; 
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 		{
 			if (dragging && !notdrag)
@@ -81,12 +81,12 @@ public partial class neko1 : Area2D
 				anchor_field.occupied = true;
 			}
 		}
-    }
+	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		anim_card = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-    }
+	}
 
 	public void _on_mouse_entered()
 	{
@@ -99,8 +99,8 @@ public partial class neko1 : Area2D
 	}
 
 	public void _on_body_entered(Node2D other) //кот зашел в клетку
-    {
-        if (other.IsInGroup("dropplace")) //проверка кота на группу
+	{
+		if (other.IsInGroup("dropplace")) //проверка кота на группу
 		{
 			something_field = other; //приравниваем ссылку на кота в клетку
 		}
