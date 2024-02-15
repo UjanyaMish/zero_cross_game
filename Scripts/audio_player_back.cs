@@ -21,7 +21,14 @@ public partial class audio_player_back : Node2D
         }
 
 
+		config = new ConfigFile();		
+        config.Load("res://settings.cfg");
+		var voloume = (int)config.GetValue("backmusic", "voloume",0);
+        var song = (int)config.GetValue("song", "whitch", 0);
+        if (song == 0) song_back = "res://sounds/back_music.mp3";
+        else song_back = "res://sounds/back_music_game.mp3";
 
+        GD.Print(song_back);
         backgroundMusicPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         if (node is settings_menu Music)
         {
@@ -29,12 +36,10 @@ public partial class audio_player_back : Node2D
             backgroundMusicPlayer.Stream = (AudioStream)ResourceLoader.Load(song_back);
             backgroundMusicPlayer.Play();
             backgroundMusicPlayer.Autoplay = true;
+            backgroundMusicPlayer.VolumeDb = voloume;
         }
 		//конфиг файл
-		config = new ConfigFile();
-		config.Load("res://settings.cfg");
-		var voloume = (int)config.GetValue("backmusic", "voloume",0);
-		backgroundMusicPlayer.VolumeDb = voloume;
+        
         
         //GD.Print("music voloume" + voloume);		
 

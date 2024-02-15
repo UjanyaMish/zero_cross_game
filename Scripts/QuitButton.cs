@@ -16,5 +16,9 @@ public partial class QuitButton : Button
 	private void _on_pressed()
 	{
 		GetTree().Quit();
-	}
+        ConfigFile config = new ConfigFile();
+        config.Load("res://settings.cfg");
+        config.SetValue("song", "whitch", 1);
+        config.Save("res://settings.cfg");
+    }
 }

@@ -66,7 +66,8 @@ public partial class settings_menu : Control
 		Error err = config.Load("res://settings.cfg");
 		if (err != Error.Ok)//если файла не существует
 		{
-			config.SetValue("backmusic", "voloume", (int)music.Value);
+            config.SetValue("song", "whitch", 1);
+            config.SetValue("backmusic", "voloume", (int)music.Value);
 			config.SetValue("effects", "voloume", (int)effect.Value);
 			config.SetValue("language", "choice", resolution.Selected);
 			config.SetValue("resolution", "choice", language.Selected);		
@@ -74,7 +75,19 @@ public partial class settings_menu : Control
 		}
 		else
 		{
-			var voloume_ef = (int)config.GetValue("effects", "voloume",0);
+            var song = (int)config.GetValue("song", "whitch", 0);
+			if (song == 1)
+			{
+				//EmitSignal(SignalName.ChangeSong, 1);
+                config.SetValue("song", "whitch", 0);
+            }
+			else
+			{
+				//EmitSignal(SignalName.ChangeSong, 0);
+                config.SetValue("song", "whitch", 1);
+            }
+            config.Save("res://settings.cfg");
+            var voloume_ef = (int)config.GetValue("effects", "voloume",0);
 			effect.Value = voloume_ef;
 			var voloume_back = (int)config.GetValue("backmusic", "voloume",0);
 			music.Value = voloume_back;
