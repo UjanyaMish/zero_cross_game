@@ -2,6 +2,8 @@ using Godot;
 using static Godot.GodotThread;
 using System.Collections.Generic;
 using System;
+using static Godot.HttpRequest;
+using System.Reflection.Emit;
 
 public partial class Neko : IComparable //описание класса юнитов
 {
@@ -67,21 +69,172 @@ public partial class Neko : IComparable //описание класса юнит
 
     public virtual void ElevationOfRang() //функция возведения в ранг
     {
-        int tipe = this.priority;
+        int countRank = CountNekoRank(this);
 
-        foreach (Neko neko in teams[team])
+        if (countRank <= 0)
         {
-            if (!neko.notattack && neko.priority == tipe)
+            this.rank = 1;
+        }
+        else
+        {
+            this.rank = countRank;
+            GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
+        }
+    }
+
+    public virtual int CountNekoRank(Neko thisNeko)
+    {
+        int coutcat = 0;
+        int coutcatX = 0;
+        int coutcatY = 0;
+        int coutcatZ = 0;
+        int tipe = thisNeko.priority;
+        bool flag = false;
+
+        //проверка по Х
+        for (int i = thisNeko.x - 1; i >= 0; i--)
+        {
+            if (flag)
             {
-                int disX = Math.Abs(neko.x - this.x);
-                int disY = Math.Abs(neko.y - this.y);
-                if (disX <= 1 && disY <= 1)
+                break;
+            }
+            foreach (Neko neko in teams[team])
+            {
+                if (neko.x == i && neko.y == thisNeko.y)
                 {
-                    this.rank += neko.rank;
-                    GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
+                    if (!neko.notattack && neko.priority == tipe)
+                    {
+                        coutcatX += 1;
+                    }
+                }
+                else
+                {
+                    flag = true;
+                    break;
                 }
             }
         }
+        for (int i = thisNeko.x + 1; i <= 5; i++)
+        {
+            if (flag)
+            {
+                break;
+            }
+            foreach (Neko neko in teams[team])
+            {
+                if (neko.x == i && neko.y == thisNeko.y)
+                {
+                    if (!neko.notattack && neko.priority == tipe)
+                    {
+                        coutcatX += 1;
+                    }
+                }
+                else
+                {
+                    flag = true;
+                    break;
+                }
+            }
+        }
+
+
+        //проверка по Y
+        for (int i = thisNeko.y - 1; i >= 0; i--)
+        {
+            if (flag)
+            {
+                break;
+            }
+            foreach (Neko neko in teams[team])
+            {
+                if (neko.y == i && neko.x == thisNeko.x)
+                {
+                    if (!neko.notattack && neko.priority == tipe)
+                    {
+                        coutcatY += 1;
+                    }
+                }
+                else
+                {
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        for (int i = thisNeko.y + 1; i <= 3; i++)
+        {
+            if (flag)
+            {
+                break;
+            }
+            foreach (Neko neko in teams[team])
+            {
+                if (neko.y == i && neko.x == thisNeko.x)
+                {
+                    if (!neko.notattack && neko.priority == tipe)
+                    {
+                        coutcatY += 1;
+                    }
+                }
+                else
+                {
+                    flag = true;
+                    break;
+                }
+            }
+        }
+
+        for (int i = thisNeko.x - 1; i >= 0; i--)
+        {
+            int j = thisNeko.y - 1;
+
+            if (flag)
+            {
+                break;
+            }
+            foreach (Neko neko in teams[team])
+            {
+                if (neko.x == i && neko.y == j)
+                {
+                    if (!neko.notattack && neko.priority == tipe)
+                    {
+                        coutcatZ += 1;
+                    }
+                }
+                else
+                {
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        for (int i = thisNeko.x + 1; i <= 5; i++)
+        {
+            int j = thisNeko.y + 1;
+
+            if (flag)
+            {
+                break;
+            }
+            foreach (Neko neko in teams[team])
+            {
+                if (neko.x == i && neko.y == j)
+                {
+                    if (!neko.notattack && neko.priority == tipe)
+                    {
+                        coutcatZ += 1;
+                    }
+                }
+                else
+                {
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        coutcat += (coutcatX - 1) + (coutcatY - 1) + (coutcatZ - 1);
+
+        return coutcat;
     }
 
     public virtual void DamageReceived(int damage) //функция получения урона
@@ -125,9 +278,6 @@ public class Swordsman : Neko //описание мечника
     {
         int HP_enemy = 1000;
         Neko neko_attack = null;
-        GD.Print(this.x);
-        GD.Print(this.y);
-        GD.Print();
         foreach (Neko neko_enemy in teams[(team + 1) % 2])
         {
             if (!neko_enemy.notattack)
@@ -182,7 +332,7 @@ public class Archer : Neko //описание лучника
 
 public partial class Game : Node2D
 {
-	private AudioStreamPlayer backgroundMusicPlayer;
+    private AudioStreamPlayer backgroundMusicPlayer;
 	private ConfigFile config;
 	
 	public override void _Ready()	
