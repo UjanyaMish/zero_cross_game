@@ -20,7 +20,7 @@ public partial class settings_menu : Control
     public override void _Ready()
 	{	
 
-		Hide();;
+		Hide();
         //Вызывает настройки когда сигнал приходит из меню паузы
         if (control is pause_menu pauseMenu)
 			pauseMenu.SettingsScreenRequsted += _on_settings_button_toggeled;
@@ -94,7 +94,7 @@ public partial class settings_menu : Control
 			var id_lang = (int)config.GetValue("language", "choice",0);
 			language.Select(id_lang);
 			var id_res = (int)config.GetValue("resolution", "choice",0);
-			resolution.Select(id_res);
+            resolution.Select(id_res);
 			if (id_lang == 0)
 			{
 				TranslationServer.SetLocale("ru");
@@ -109,7 +109,6 @@ public partial class settings_menu : Control
             // Получаем размеры окна просмотра (Viewport)
             Vector2 windowSize = viewport.GetVisibleRect().Size;
 			Vector2 screenSize= viewport.GetVisibleRect().Size;
-
 
             Window window = this.GetTree().Root;
             if (id_res == 1)
@@ -211,6 +210,8 @@ public partial class settings_menu : Control
             y = (int)(windowSize.Y / 2 - screenSize.Y / 2);
         }
         window.Set("position", new Vector2(x, y));
+        config.SetValue("resolution", "choice", id);
+        config.Save("res://settings.cfg");
     }
 
 	public void _on_language_select_item_selected(int id)

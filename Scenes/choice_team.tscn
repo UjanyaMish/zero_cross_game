@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ww7dp4ygccwl"]
+[gd_scene load_steps=9 format=3 uid="uid://ww7dp4ygccwl"]
 
 [ext_resource type="Script" path="res://Scripts/choice_team.cs" id="1_ifi34"]
+[ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="2_ea0bq"]
 [ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_xo8ju"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="3_yb2qr"]
 [ext_resource type="Texture2D" uid="uid://dnp8utweaxsbn" path="res://pictures/кот простой луккруг.png" id="4_cit1n"]
@@ -11,16 +12,23 @@
 [node name="choice_team" type="Node2D"]
 script = ExtResource("1_ifi34")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ЗаФоном" type="Sprite2D" parent="."]
+position = Vector2(1044, 735)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_ea0bq")
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="."]
+layout_direction = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="back" type="TextureRect" parent="CanvasLayer/Panel"]
+[node name="back" type="TextureRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +44,7 @@ grow_vertical = 2
 texture = ExtResource("2_xo8ju")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+[node name="Label" type="Label" parent="Panel"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 1
 anchors_preset = 5
@@ -53,7 +61,7 @@ text = "Выбери свою сторону!
 "
 horizontal_alignment = 1
 
-[node name="Button_play" type="Button" parent="CanvasLayer/Panel"]
+[node name="Button_play" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 840.0
 offset_top = 607.0
@@ -63,7 +71,7 @@ theme_override_font_sizes/font_size = 27
 text = "ИГРАТЬ"
 script = ExtResource("4_rr5fp")
 
-[node name="cat_x" type="TextureRect" parent="CanvasLayer/Panel"]
+[node name="cat_x" type="TextureRect" parent="Panel"]
 layout_mode = 0
 offset_left = 807.0
 offset_top = 460.0
@@ -72,7 +80,7 @@ offset_bottom = 557.0
 texture = ExtResource("3_yb2qr")
 script = ExtResource("4_j21wu")
 
-[node name="cat_o" type="TextureRect" parent="CanvasLayer/Panel"]
+[node name="cat_o" type="TextureRect" parent="Panel"]
 layout_mode = 0
 offset_left = 1019.0
 offset_top = 462.0
@@ -81,8 +89,8 @@ offset_bottom = 559.0
 texture = ExtResource("4_cit1n")
 script = ExtResource("7_w4ykj")
 
-[connection signal="pressed" from="CanvasLayer/Panel/Button_play" to="CanvasLayer/Panel/Button_play" method="_on_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Panel/cat_x" to="CanvasLayer/Panel/cat_x" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Panel/cat_x" to="CanvasLayer/Panel/cat_x" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Panel/cat_o" to="CanvasLayer/Panel/cat_o" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Panel/cat_o" to="CanvasLayer/Panel/cat_o" method="_on_mouse_exited"]
+[connection signal="pressed" from="Panel/Button_play" to="Panel/Button_play" method="_on_pressed"]
+[connection signal="mouse_entered" from="Panel/cat_x" to="Panel/cat_x" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/cat_x" to="Panel/cat_x" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/cat_o" to="Panel/cat_o" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/cat_o" to="Panel/cat_o" method="_on_mouse_exited"]

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class choice_team : Node2D {};
+public partial class choice_team : Node2D { };
 
 public partial class cat_o_choose : TextureRect
 {   

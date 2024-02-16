@@ -20,6 +20,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
+#: Scenes/choice_team.tscn
+msgid "Выбери свою сторону!\n"
+msgstr "Pick a side!\n"
+
+#: Scenes/choice_team.tscn
+msgid "ИГРАТЬ"
+msgstr "Play"
+
 #: Scenes/Menu.tscn
 msgid "Zero_Cross_Game"
 msgstr "Zero_Cross_Game"
@@ -35,6 +43,18 @@ msgstr "Settings"
 #: Scenes/Menu.tscn
 msgid "выход"
 msgstr "Exit"
+
+#: Scenes/VictoryScreen.tscn
+msgid "Повторить\n"
+msgstr "Repeat\n"
+
+#: Scenes/VictoryScreen.tscn
+msgid "Выход"
+msgstr "Exit"
+
+#: Scenes/VictoryScreen.tscn
+msgid "Вы победили!"
+msgstr "You won!"
 
 #: Scenes/Game.tscn
 msgid "на главное меню"

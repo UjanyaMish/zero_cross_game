@@ -25,12 +25,12 @@ public partial class CardDeck : Node2D
     bool isEnemy;
     Tile cardplace;
 
-    List<int> cardlistUsers = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
-    List<int> cardlistEnemy = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+    public static List<int> cardlistUsers = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+    public static List<int> cardlistEnemy = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
    //List<int> listteam[] = { cardlistUsers, cardlistEnemy };
 
     public static List<Neko> armlistUsers = new List<Neko> { };
-    List<Neko> armlistEnemy = new List<Neko> { };
+    public static List<Neko> armlistEnemy = new List<Neko> { };
 
     public int x = -2;
     public int y = -2;
@@ -184,7 +184,7 @@ public partial class CardDeck : Node2D
                 nekocard.notattack = false;
 
                 tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
-                Neko.listNeko_X.Add(nekocard);
+                Neko.teams[teamEnemy].Add(nekocard);
                 Field.tiles.Remove(anchortile);
                 armlistEnemy.Remove(nekocard);
                 ((neko1)(nekocard.unit)).anim_card.Play("ordinary_cat");

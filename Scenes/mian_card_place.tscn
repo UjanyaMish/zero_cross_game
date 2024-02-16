@@ -39,7 +39,7 @@ offset_bottom = 573.0
 texture = ExtResource("2_wmqwl")
 
 [node name="EmpPlace" type="StaticBody2D" parent="."]
-position = Vector2(397, 866)
+position = Vector2(396, 906)
 
 [node name="EmptyPlace" type="CollisionShape2D" parent="EmpPlace" groups=["dropplace"]]
 position = Vector2(25, 44)

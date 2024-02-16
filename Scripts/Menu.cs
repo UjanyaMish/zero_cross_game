@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 public partial class Menu : Control
@@ -16,5 +16,11 @@ public partial class Menu : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+
+	private void _on_button_game_pressed()
+	{
+		Node2D select = GetNode<Node2D>("CanvasLayer/choice_team");
+		select.Show();
 	}
 }
