@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://boeb56n7mlp21"]
+[gd_scene load_steps=6 format=3 uid="uid://boeb56n7mlp21"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
-[ext_resource type="Script" path="res://Scripts/ButtonGameMenu.cs" id="3_sykc1"]
-[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/Field.tscn" id="4_o7hnr"]
-[ext_resource type="PackedScene" uid="uid://bru3nf3v2vp2q" path="res://Scenes/VictoryScreen.tscn" id="7_asr4b"]
+[ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/field.tscn" id="4_o7hnr"]
 [ext_resource type="Script" path="res://Scripts/ButtonAttack.cs" id="9_dniw3"]
 [ext_resource type="PackedScene" uid="uid://c3rbtlcsd4ejp" path="res://Scenes/mian_card_place.tscn" id="10_72max"]
 
@@ -20,7 +18,7 @@ texture = ExtResource("1_cbhqs")
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="ButtonGameMenu" type="Button" parent="."]
+[node name="ButtonGameHelp" type="Button" parent="."]
 clip_contents = true
 anchors_preset = 7
 anchor_left = 0.5
@@ -33,11 +31,10 @@ offset_right = 213.0
 offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "на главное меню"
-script = ExtResource("3_sykc1")
+text = "HELP_BUTTON"
 
 [node name="Field" parent="." instance=ExtResource("4_o7hnr")]
-position = Vector2(435, 216)
+position = Vector2(435, 226)
 
 [node name="ButtonAttack" type="Button" parent="."]
 offset_left = 1684.0
@@ -62,11 +59,5 @@ pivot_offset = Vector2(960, 540)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="VictoryScreen" parent="CanvasLayer" instance=ExtResource("7_asr4b")]
-visible = false
-
-[connection signal="pressed" from="ButtonGameMenu" to="ButtonGameMenu" method="_on_pressed"]
-[connection signal="GameOver" from="ButtonAttack" to="CanvasLayer/VictoryScreen" method="_on_button_attack_game_over"]
+[connection signal="pressed" from="ButtonGameHelp" to="." method="_on_button_game_help_pressed"]
 [connection signal="pressed" from="ButtonAttack" to="ButtonAttack" method="_on_pressed"]
