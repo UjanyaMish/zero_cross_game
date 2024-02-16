@@ -189,6 +189,7 @@ public partial class CardDeck : Node2D
                 armlistEnemy.Remove(nekocard);
                 ((neko1)(nekocard.unit)).anim_card.Play("ordinary_cat");
                 ((neko1)(nekocard.unit)).GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
+                anchortile.occupied = true;
             }
         }
         enemymove = false;
