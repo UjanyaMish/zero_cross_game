@@ -1,8 +1,7 @@
 using Godot;
-using System;
+using static Godot.GodotThread;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
+using System;
 
 public partial class Neko : IComparable //описание класса юнитов
 {
@@ -78,7 +77,7 @@ public partial class Neko : IComparable //описание класса юнит
                 int disY = Math.Abs(neko.y - this.y);
                 if (disX <= 1 && disY <= 1)
                 {
-                    this.rank += 1;
+                    this.rank += neko.rank;
                     GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
                 }
             }
