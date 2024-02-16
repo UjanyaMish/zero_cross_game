@@ -110,10 +110,11 @@ visible = false
 control = NodePath("../VBoxContainer/ButtonSetting")
 
 [node name="choice_team" parent="CanvasLayer" instance=ExtResource("9_786c7")]
+visible = false
 
 [node name="audio_player_back" parent="." node_paths=PackedStringArray("node") instance=ExtResource("9_mbcyt")]
 node = NodePath("../CanvasLayer/SettingsMenu")
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="CanvasLayer/VBoxContainer/ButtonGame" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonGame" to="." method="_on_button_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSetting" to="CanvasLayer/VBoxContainer/ButtonSetting" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonEsc" to="CanvasLayer/VBoxContainer/ButtonEsc" method="_on_pressed"]

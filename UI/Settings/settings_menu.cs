@@ -94,7 +94,6 @@ public partial class settings_menu : Control
 			var id_lang = (int)config.GetValue("language", "choice",0);
 			language.Select(id_lang);
 			var id_res = (int)config.GetValue("resolution", "choice",0);
-			_on_aspect_button_item_selected(id_res);
             resolution.Select(id_res);
 			if (id_lang == 0)
 			{
@@ -110,7 +109,6 @@ public partial class settings_menu : Control
             // Получаем размеры окна просмотра (Viewport)
             Vector2 windowSize = viewport.GetVisibleRect().Size;
 			Vector2 screenSize= viewport.GetVisibleRect().Size;
-
 
             Window window = this.GetTree().Root;
             if (id_res == 1)
@@ -133,7 +131,7 @@ public partial class settings_menu : Control
                  y = (int)(windowSize.Y / 2 - screenSize.Y / 2);
             }
             window.Set("position", new Vector2(x, y));
-        }
+		}
 	}
 
 	public override void _Process(double delta)

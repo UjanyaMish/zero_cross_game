@@ -12,7 +12,15 @@
 script = ExtResource("1_ifi34")
 
 [node name="Panel" type="Panel" parent="."]
-anchors_preset = -1
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="back" type="TextureRect" parent="Panel"]
 layout_mode = 1
@@ -74,8 +82,6 @@ offset_right = 1116.0
 offset_bottom = 559.0
 texture = ExtResource("4_cit1n")
 script = ExtResource("7_w4ykj")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="pressed" from="Panel/Button_play" to="Panel/Button_play" method="_on_pressed"]
 [connection signal="mouse_entered" from="Panel/cat_x" to="Panel/cat_x" method="_on_mouse_entered"]

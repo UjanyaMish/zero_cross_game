@@ -13,9 +13,5 @@ public partial class ButtonGame : Button
 	{
 	}
 	
-	private void _on_pressed()
-	{
-    Control select = GetNode<Control>("CanvasLayer/choice_team");
-	select.Show();
-	}	
+
 }

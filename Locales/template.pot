@@ -1,5 +1,7 @@
 # LANGUAGE translation for zero_cross_game for the following files:
+# res://Scenes/choice_team.tscn
 # res://Scenes/Menu.tscn
+# res://Scenes/VictoryScreen.tscn
 # res://Scenes/Game.tscn
 # res://UI/pauseMenu.tscn
 # res://UI/Settings/settings_menu.tscn
@@ -13,6 +15,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: Scenes/choice_team.tscn
+msgid ""
+"Выбери свою сторону!\n"
+""
+msgstr ""
+
+#: Scenes/choice_team.tscn
+msgid "ИГРАТЬ"
+msgstr ""
 
 #: Scenes/Menu.tscn
 msgid "Zero_Cross_Game"
@@ -28,6 +40,20 @@ msgstr ""
 
 #: Scenes/Menu.tscn
 msgid "выход"
+msgstr ""
+
+#: Scenes/VictoryScreen.tscn
+msgid ""
+"Повторить\n"
+""
+msgstr ""
+
+#: Scenes/VictoryScreen.tscn
+msgid "Выход"
+msgstr ""
+
+#: Scenes/VictoryScreen.tscn
+msgid "Вы победили!"
 msgstr ""
 
 #: Scenes/Game.tscn
