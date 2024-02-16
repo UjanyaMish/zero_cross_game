@@ -184,7 +184,21 @@ public partial class Game : Node2D
 {
 	private AudioStreamPlayer backgroundMusicPlayer;
 	private ConfigFile config;
-	
+
+	[Signal]
+	public delegate void toggleGameHelpEventHandler(bool called);
+
+	public bool helpWindow = false;
+	public bool HelpWindow
+	{
+		get { return helpWindow; }
+		set
+		{
+			helpWindow = value;
+			EmitSignal(SignalName.toggleGameHelp, helpWindow);
+		}
+	}
+
 	public override void _Ready()	
 	{
         this.GetNode<mian_card_place>("MianCardPlace2").GetNode<CardDeck>("CardDeck").MyReady();
@@ -200,5 +214,10 @@ public partial class Game : Node2D
 		//var voloume = (int)config.GetValue("backmusic", "voloume", 0);
 		//backgroundMusicPlayer.VolumeDb = voloume;
 		//GD.Print(voloume);				
+	}
+
+	public void _on_button_game_help_pressed()
+	{
+		HelpWindow = true;
 	}
 }

@@ -210,7 +210,9 @@ public partial class settings_menu : Control
             y = (int)(windowSize.Y / 2 - screenSize.Y / 2);
         }
         window.Set("position", new Vector2(x, y));
-    }
+		config.SetValue("resolution", "choice", id); 
+		config.Save("res://settings.cfg");
+	}
 
 	public void _on_language_select_item_selected(int id)
 	{

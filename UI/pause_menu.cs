@@ -6,6 +6,9 @@ public partial class pause_menu : Control
 	[Export]
 	private game_controll_process gameControll;
 
+	[Export]
+	Node help;
+
 	public override void _Ready()
 	{
 		Hide();
@@ -27,6 +30,10 @@ public partial class pause_menu : Control
 		{
 			Hide();
 			SettingCalled = false;
+			if(help is Game game)
+			{
+				game.HelpWindow = false;
+			}
 		}
 	}
 

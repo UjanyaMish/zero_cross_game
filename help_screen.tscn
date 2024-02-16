@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6vhdbpgvw6bn"]
+
+[ext_resource type="Script" path="res://Scripts/HelpScreen.cs" id="1_1mgej"]
+[ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="1_dagtx"]
+[ext_resource type="Theme" uid="uid://c60y63g4ptbde" path="res://UI/HelpText.tres" id="2_om3ms"]
+
+[node name="HelpScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1mgej")
+
+[node name="Background" type="Panel" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="back" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(350, 250)
+texture = ExtResource("1_dagtx")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/back/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/back/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/back/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/back/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Как играть
+"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Background/back/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_om3ms")
+text = "Чтобы выстовить кота на поле надо перетащить его на клетку поля из своей руки, за ход можно выстовить только одного кота.
+После установки кота на поле надо нажать кнопку Конец хода.
+По умолчанию «кот-лучник» наносит 1 единицу урона и может атаковать «котов» во всех клетках поля, «кот -мечник» может атаковать только ближайших к нему «котов», но наносит при этом 2 единицы урона.
+Однако при достижении расположения «котов» на клетках по диагонали, горизонтали и вертикали их урон возрастает на 1 единицу. 
+Для выхода вглавное меню надо нажать Esc."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/back/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/back/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Background/back/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/back/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/back/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/back/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="Background/back/HBoxContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

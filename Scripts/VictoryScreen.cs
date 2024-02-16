@@ -32,6 +32,7 @@ public partial class VictoryScreen : Node2D
 	{
 
 	}
+
     public void _on_game_itog(bool win_or_lose)
     {
         result = win_or_lose;
