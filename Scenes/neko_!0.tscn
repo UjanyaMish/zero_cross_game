@@ -1,18 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://ojhb13o21xp6"]
+[gd_scene load_steps=18 format=3 uid="uid://ojhb13o21xp6"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_36pra"]
 [ext_resource type="Texture2D" uid="uid://decklipsl2e2v" path="res://pictures/кот простой мечкруг.png" id="1_p8et6"]
 [ext_resource type="Texture2D" uid="uid://cbyvilasguy3b" path="res://pictures/фон карты мечника.png" id="2_cuvk0"]
 [ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="3_f64eu"]
-[ext_resource type="Texture2D" uid="uid://dolq6cd1wsk3o" path="res://pictures/когти1.png" id="3_kypkx"]
-[ext_resource type="Texture2D" uid="uid://bm8vqqqp0yoip" path="res://pictures/когти3.png" id="3_syk3y"]
+[ext_resource type="Texture2D" uid="uid://bkt2skby143m8" path="res://pictures/когтио21.png" id="3_xo080"]
 [ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="4_ayp38"]
-[ext_resource type="Texture2D" uid="uid://dh1m33ohwssxg" path="res://pictures/когти4.png" id="4_t0v4x"]
-[ext_resource type="Texture2D" uid="uid://b2g0h20hsvfna" path="res://pictures/когти2.png" id="5_g8cha"]
-[ext_resource type="Texture2D" uid="uid://c7kexjw2mk3p5" path="res://pictures/когт10.png" id="6_ohp87"]
-[ext_resource type="Texture2D" uid="uid://baqhyyo44y8oy" path="res://pictures/когти13.png" id="8_4gngh"]
-[ext_resource type="Texture2D" uid="uid://bpyj4h47hkkde" path="res://pictures/когти12.png" id="9_vtsjy"]
-[ext_resource type="Texture2D" uid="uid://bp5o65wep2wtt" path="res://pictures/когти11.png" id="10_qh5fo"]
+[ext_resource type="Texture2D" uid="uid://o8ujug7eu8xe" path="res://pictures/когтио22.png" id="4_po1kg"]
+[ext_resource type="Texture2D" uid="uid://whjat6yxmu4b" path="res://pictures/когтио23.png" id="5_5ohmh"]
+[ext_resource type="Texture2D" uid="uid://d1l6chsv5manf" path="res://pictures/когтио24.png" id="6_f8pyg"]
+[ext_resource type="Texture2D" uid="uid://dly6urja1wrhc" path="res://pictures/когтио25.png" id="7_7aa02"]
+[ext_resource type="Texture2D" uid="uid://bxppwpyevi02f" path="res://pictures/когтио26.png" id="8_7um5b"]
+[ext_resource type="Texture2D" uid="uid://qc72gnlg51vo" path="res://pictures/когтио27.png" id="9_5h3gi"]
+[ext_resource type="Texture2D" uid="uid://qw47nkisncxm" path="res://pictures/когтио28.png" id="10_w6s2n"]
+[ext_resource type="Texture2D" uid="uid://c16q1kekfntqm" path="res://pictures/когтио29.png" id="11_a0462"]
+[ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="15_ef2f4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ajkx"]
 animations = [{
@@ -22,36 +24,39 @@ animations = [{
 }],
 "loop": true,
 "name": &"cat_card",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_syk3y")
+"texture": ExtResource("3_xo080")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_t0v4x")
+"texture": ExtResource("4_po1kg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_g8cha")
+"texture": ExtResource("5_5ohmh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ohp87")
+"texture": ExtResource("6_f8pyg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_kypkx")
+"texture": ExtResource("7_7aa02")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_4gngh")
+"texture": ExtResource("8_7um5b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_vtsjy")
+"texture": ExtResource("9_5h3gi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_qh5fo")
+"texture": ExtResource("10_w6s2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a0462")
 }],
 "loop": false,
 "name": &"claws",
-"speed": 30.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -89,6 +94,16 @@ value = 10.0
 nine_patch_stretch = true
 texture_over = ExtResource("3_f64eu")
 texture_progress = ExtResource("4_ayp38")
+
+[node name="Rank" type="Label" parent="."]
+visible = false
+offset_left = 7.0
+offset_top = 65.0
+offset_right = 32.0
+offset_bottom = 88.0
+text = "1"
+label_settings = ExtResource("15_ef2f4")
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

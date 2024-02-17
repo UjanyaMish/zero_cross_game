@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6vhdbpgvw6bn"]
+[gd_scene load_steps=4 format=3 uid="uid://k62hktt8r1wg"]
 
 [ext_resource type="Script" path="res://Scripts/HelpScreen.cs" id="1_1mgej"]
 [ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="1_dagtx"]
-[ext_resource type="Theme" uid="uid://c60y63g4ptbde" path="res://UI/HelpText.tres" id="2_om3ms"]
+[ext_resource type="Theme" uid="uid://b47tfb3hr3w2" path="res://UI/HelpText.tres" id="2_om3ms"]
 
 [node name="HelpScreen" type="Control"]
 layout_mode = 3

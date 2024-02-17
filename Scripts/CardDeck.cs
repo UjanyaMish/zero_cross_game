@@ -10,6 +10,8 @@ public partial class Neko : IComparable { };
 
 public partial class choice_team : Node2D { };
 
+public partial class VictoryScreen : Node2D { };
+
 public partial class CardDeck : Node2D
 {
     /*
@@ -52,6 +54,15 @@ public partial class CardDeck : Node2D
         //anim_card = GetNode<AnimatedSprite2D>("AnimatedSprite2D"); //берем сцену
         cardplace = GetParent().GetNode<Node>("EmpPlace").GetNode<Tile>("EmptyPlace"); //взяли сцену
         isEnemy = this.GetParent().IsInGroup("Enemy");
+        if (VictoryScreen.restart)
+        {
+            cardlistEnemy.Clear();
+            cardlistUsers.Clear();
+
+            cardlistUsers = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+            cardlistEnemy = new List<int> { 1, 1, 1, 1, 2, 2, 2, 2 };
+        }
+        VictoryScreen.restart = false;
     }
 
     public void MyReady()
@@ -144,8 +155,13 @@ public partial class CardDeck : Node2D
                     int sum;
                     int minsum = 1000;
                     int maxsum = 0;
+                    GD.Print("counter tile - ", Field.tiles.Count);
                     foreach (Tile tile in Field.tiles)
                     {
+                        if (tile.x == 0 && tile.y == 0 && tile.occupied == true)
+                        {
+                            continue;
+                        }
                         minsum = 1000;
                         foreach (Neko neko_enemy in Neko.teams[teamUser])
                         {
@@ -173,6 +189,7 @@ public partial class CardDeck : Node2D
             {
                 nekocard.x = anchortile.x;
                 nekocard.y = anchortile.y;
+                Field.tiles.Remove(anchortile);
                 Tween tween = GetTree().CreateTween();
 
                 Node2D prevParent = (Node2D)nekocard.unit.GetParent();
@@ -183,13 +200,15 @@ public partial class CardDeck : Node2D
 
                 nekocard.notattack = false;
 
-                tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out);
+                tween.TweenProperty(nekocard.unit, "position", anchortile.Position + new Vector2(32, 16), 0.2f).SetEase(Tween.EaseType.Out);
                 Neko.teams[teamEnemy].Add(nekocard);
-                Field.tiles.Remove(anchortile);
                 armlistEnemy.Remove(nekocard);
                 ((neko1)(nekocard.unit)).anim_card.Play("ordinary_cat");
                 ((neko1)(nekocard.unit)).GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
+                ((neko1)(nekocard.unit)).GetNode<Label>("Rank").Visible = true; //видимый ранг
+                ((neko1)(nekocard.unit)).anchor_field = anchortile;
                 anchortile.occupied = true;
+                GD.Print("kjsdvbvjkbjnsdffs - ", anchortile.x, anchortile.y);
             }
         }
         enemymove = false;

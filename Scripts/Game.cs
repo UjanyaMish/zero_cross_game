@@ -19,6 +19,7 @@ public partial class Neko : IComparable //описание класса юнит
 
     public Node2D unit;
     public TextureProgressBar HP_bar;
+    public Godot.Label label_rank;
     //AnimatedSprite2D damage_anim;
 
     public static List<Neko> listNeko_O = new();
@@ -44,17 +45,8 @@ public partial class Neko : IComparable //описание класса юнит
         ((neko1)unit).me = this;
         place.AddChild(unit);
 
-        /*switch (team)
-        {
-            case 0:
-                listNeko_O.Add(this);
-                break;
-            case 1:
-                listNeko_X.Add(this);
-                break;
-        }*/
-
         HP_bar = unit.GetNode<TextureProgressBar>("HP");
+        label_rank = unit.GetNode<Godot.Label>("Rank");
     }
 
     ~Neko()
@@ -69,6 +61,7 @@ public partial class Neko : IComparable //описание класса юнит
 
     public virtual void ElevationOfRang() //функция возведения в ранг
     {
+        GD.Print("fffffff");
         int countRank = CountNekoRank(this);
 
         if (countRank <= 0)
@@ -77,24 +70,32 @@ public partial class Neko : IComparable //описание класса юнит
         }
         else
         {
+            GD.Print("rrrraaaaa");
             this.rank = countRank;
+            label_rank.Text = countRank.ToString();
             GD.Print("Rang neko from ", this.x, ",", this.y, " up:", this.rank);
         }
     }
 
     public virtual int CountNekoRank(Neko thisNeko)
     {
+        GD.Print("aaaaaaaaaaa");
         int coutcat = 0;
         int coutcatX = 0;
         int coutcatY = 0;
         int coutcatZ = 0;
         int tipe = thisNeko.priority;
-        bool flag = false;
+        bool flagX = false;
+        bool flagY = false;
+        bool flagZ = false;
+        bool flagX1 = false;
+        bool flagY1 = false;
+        bool flagZ1 = false;
 
         //проверка по Х
         for (int i = thisNeko.x - 1; i >= 0; i--)
         {
-            if (flag)
+            if (flagX)
             {
                 break;
             }
@@ -102,21 +103,21 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 if (neko.x == i && neko.y == thisNeko.y)
                 {
-                    if (!neko.notattack && neko.priority == tipe)
+                    if (neko.priority == tipe)
                     {
                         coutcatX += 1;
                     }
                 }
                 else
                 {
-                    flag = true;
+                    flagX = true;
                     break;
                 }
             }
         }
         for (int i = thisNeko.x + 1; i <= 5; i++)
         {
-            if (flag)
+            if (flagX1)
             {
                 break;
             }
@@ -124,14 +125,14 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 if (neko.x == i && neko.y == thisNeko.y)
                 {
-                    if (!neko.notattack && neko.priority == tipe)
+                    if (neko.priority == tipe)
                     {
                         coutcatX += 1;
                     }
                 }
                 else
                 {
-                    flag = true;
+                    flagX1 = true;
                     break;
                 }
             }
@@ -141,7 +142,7 @@ public partial class Neko : IComparable //описание класса юнит
         //проверка по Y
         for (int i = thisNeko.y - 1; i >= 0; i--)
         {
-            if (flag)
+            if (flagY)
             {
                 break;
             }
@@ -149,21 +150,21 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 if (neko.y == i && neko.x == thisNeko.x)
                 {
-                    if (!neko.notattack && neko.priority == tipe)
+                    if (neko.priority == tipe)
                     {
                         coutcatY += 1;
                     }
                 }
                 else
                 {
-                    flag = true;
+                    flagY = true;
                     break;
                 }
             }
         }
         for (int i = thisNeko.y + 1; i <= 3; i++)
         {
-            if (flag)
+            if (flagY1)
             {
                 break;
             }
@@ -171,24 +172,25 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 if (neko.y == i && neko.x == thisNeko.x)
                 {
-                    if (!neko.notattack && neko.priority == tipe)
+                    if (neko.priority == tipe)
                     {
                         coutcatY += 1;
                     }
                 }
                 else
                 {
-                    flag = true;
+                    flagY1 = true;
                     break;
                 }
             }
         }
 
+        //проверка по диагонали
         for (int i = thisNeko.x - 1; i >= 0; i--)
         {
             int j = thisNeko.y - 1;
 
-            if (flag)
+            if (flagZ)
             {
                 break;
             }
@@ -196,14 +198,14 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 if (neko.x == i && neko.y == j)
                 {
-                    if (!neko.notattack && neko.priority == tipe)
+                    if (neko.priority == tipe)
                     {
                         coutcatZ += 1;
                     }
                 }
                 else
                 {
-                    flag = true;
+                    flagZ = true;
                     break;
                 }
             }
@@ -212,7 +214,7 @@ public partial class Neko : IComparable //описание класса юнит
         {
             int j = thisNeko.y + 1;
 
-            if (flag)
+            if (flagZ1)
             {
                 break;
             }
@@ -220,18 +222,19 @@ public partial class Neko : IComparable //описание класса юнит
             {
                 if (neko.x == i && neko.y == j)
                 {
-                    if (!neko.notattack && neko.priority == tipe)
+                    if (neko.priority == tipe)
                     {
                         coutcatZ += 1;
                     }
                 }
                 else
                 {
-                    flag = true;
+                    flagZ1 = true;
                     break;
                 }
             }
         }
+        GD.Print("dddd", coutcatX, coutcatY, coutcatZ);
         coutcat += (coutcatX - 1) + (coutcatY - 1) + (coutcatZ - 1);
 
         return coutcat;
@@ -346,6 +349,7 @@ public partial class Game : Node2D
 		{
 			helpWindow = value;
 			EmitSignal(SignalName.toggleGameHelp, helpWindow);
+            GD.Print("FCK SIGNAL EMITED");
 		}
 	}
 

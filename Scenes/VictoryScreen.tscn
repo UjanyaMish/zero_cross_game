@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bru3nf3v2vp2q"]
+[gd_scene load_steps=5 format=3 uid="uid://bru3nf3v2vp2q"]
 
 [ext_resource type="Script" path="res://Scripts/VictoryScreen.cs" id="1_bis33"]
 [ext_resource type="Texture2D" uid="uid://dayqqe775g4rn" path="res://pictures/фон настроек4.png" id="2_6eau3"]
+[ext_resource type="Script" path="res://Scripts/RestartButton.cs" id="3_f75xt"]
 [ext_resource type="Script" path="res://Scripts/QuitButton.cs" id="3_j1e1b"]
 
 [node name="VictoryScreen" type="Node2D"]
@@ -33,6 +34,7 @@ offset_bottom = 8.0
 theme_override_font_sizes/font_size = 18
 text = "Повторить
 "
+script = ExtResource("3_f75xt")
 metadata/_edit_use_anchors_ = true
 
 [node name="QuitButton" type="Button" parent="Panel"]
@@ -58,3 +60,6 @@ offset_bottom = 507.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "Вы победили!"
+
+[connection signal="pressed" from="Panel/RestartButton" to="Panel/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="Panel/QuitButton" to="Panel/QuitButton" method="_on_pressed"]

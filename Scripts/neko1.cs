@@ -69,6 +69,7 @@ public partial class neko1 : Area2D
 						me.notattack = false;
 						anim_card.Play("ordinary_cat");
 						GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
+                        GetNode<Label>("Rank").Visible = true; //видимый ранг
                         Neko.teams[me.team].Add(me);
 						CardDeck.flag = true;
                         CardDeck.armlistUsers.Remove(me);
@@ -87,7 +88,7 @@ public partial class neko1 : Area2D
 				}
 				tween = GetTree().CreateTween();
 				tween.TweenProperty(this, "position", anchor_field.Position +
-									new Vector2(16, 0), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
+									new Vector2(32, 16), 0.2f).SetEase(Tween.EaseType.Out); //анимация возвращения кота на клетку
 				anchor_field.occupied = true;
 				Field.tiles.Remove(anchor_field);
             }

@@ -1,11 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://8o0k717jrml1"]
+[gd_scene load_steps=18 format=3 uid="uid://8o0k717jrml1"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_8e2x2"]
 [ext_resource type="Texture2D" uid="uid://c0gl832y4o525" path="res://pictures/кот простой мечкрест.png" id="1_ebjcn"]
 [ext_resource type="Texture2D" uid="uid://cbyvilasguy3b" path="res://pictures/фон карты мечника.png" id="2_egb56"]
 [ext_resource type="Texture2D" uid="uid://2cp802ep4l0q" path="res://pictures/контур hp.png" id="3_0sg8o"]
-[ext_resource type="Texture2D" uid="uid://dolq6cd1wsk3o" path="res://pictures/когти1.png" id="3_jt32o"]
+[ext_resource type="Texture2D" uid="uid://djfdqmuxracrr" path="res://pictures/когтих11.png" id="3_wqvv4"]
 [ext_resource type="Texture2D" uid="uid://e6cvw7v6jxta" path="res://pictures/фон hp.png" id="4_3f2by"]
+[ext_resource type="Texture2D" uid="uid://dw2l2ndvikl4d" path="res://pictures/когтих12.png" id="4_tm4b0"]
+[ext_resource type="Texture2D" uid="uid://bexnow0bokg2o" path="res://pictures/когтих13.png" id="5_i3u38"]
+[ext_resource type="Texture2D" uid="uid://7s6urut6p7dq" path="res://pictures/когтих14.png" id="6_mjj86"]
+[ext_resource type="Texture2D" uid="uid://dly7hwku4fvo6" path="res://pictures/когтих15.png" id="7_kvsuo"]
+[ext_resource type="Texture2D" uid="uid://dwvtt2qcbg56k" path="res://pictures/когтих16.png" id="8_jkxgl"]
+[ext_resource type="Texture2D" uid="uid://cqghbr24x1igp" path="res://pictures/когтих17.png" id="9_7limj"]
+[ext_resource type="Texture2D" uid="uid://cu2txlr0bl5yy" path="res://pictures/когтих18.png" id="10_e505h"]
+[ext_resource type="Texture2D" uid="uid://d0nlwlwp06tgn" path="res://pictures/когтих19.png" id="11_4pe36"]
+[ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="15_52dv0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kukhk"]
 animations = [{
@@ -15,15 +24,39 @@ animations = [{
 }],
 "loop": true,
 "name": &"cat_card",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_jt32o")
+"texture": ExtResource("3_wqvv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tm4b0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i3u38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mjj86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kvsuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jkxgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7limj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_e505h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4pe36")
 }],
 "loop": false,
 "name": &"claws",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -61,6 +94,16 @@ value = 10.0
 nine_patch_stretch = true
 texture_over = ExtResource("3_0sg8o")
 texture_progress = ExtResource("4_3f2by")
+
+[node name="Rank" type="Label" parent="."]
+visible = false
+offset_left = 7.0
+offset_top = 65.0
+offset_right = 32.0
+offset_bottom = 88.0
+text = "1"
+label_settings = ExtResource("15_52dv0")
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

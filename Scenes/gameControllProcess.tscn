@@ -1,24 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://l1iu61kukkb3"]
+[gd_scene load_steps=7 format=3 uid="uid://l1iu61kukkb3"]
 
 [ext_resource type="Script" path="res://Scripts/game_controll_process.cs" id="1_bhrly"]
 [ext_resource type="PackedScene" uid="uid://copkm0hr58nmd" path="res://UI/pauseMenu.tscn" id="2_5tc7y"]
 [ext_resource type="PackedScene" uid="uid://boeb56n7mlp21" path="res://Scenes/Game.tscn" id="3_ldi0x"]
 [ext_resource type="PackedScene" uid="uid://bfeppygaege65" path="res://UI/Settings/settings_menu.tscn" id="3_w5ife"]
-[ext_resource type="PackedScene" uid="uid://c6vhdbpgvw6bn" path="res://help_screen.tscn" id="5_5bj8h"]
-[ext_resource type="PackedScene" uid="uid://ckx3hr0n72pi0" path="res://Scenes/VictoryScreen.tscn" id="6_nhybu"]
+[ext_resource type="PackedScene" uid="uid://k62hktt8r1wg" path="res://help_screen.tscn" id="5_5bj8h"]
 [ext_resource type="PackedScene" uid="uid://cptt2311ljch2" path="res://Scenes/audio_player_back.tscn" id="6_tm3h0"]
 
-[node name="GameControllProcess" type="Node" node_paths=PackedStringArray("help")]
+[node name="GameControllProcess" type="Node"]
 process_mode = 3
 script = ExtResource("1_bhrly")
-help = NodePath("Game")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll", "help") instance=ExtResource("2_5tc7y")]
+[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll") instance=ExtResource("2_5tc7y")]
 visible = false
 gameControll = NodePath("../..")
-help = NodePath("../../Game")
 
 [node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("3_w5ife")]
 visible = false
@@ -27,9 +24,6 @@ control = NodePath("../PauseMenu")
 [node name="HelpScreen" parent="CanvasLayer" node_paths=PackedStringArray("node") instance=ExtResource("5_5bj8h")]
 visible = false
 node = NodePath("../../Game")
-
-[node name="VictoryScreen" parent="CanvasLayer" instance=ExtResource("6_nhybu")]
-visible = false
 
 [node name="Game" parent="." instance=ExtResource("3_ldi0x")]
 process_mode = 1
