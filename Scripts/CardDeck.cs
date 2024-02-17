@@ -206,6 +206,7 @@ public partial class CardDeck : Node2D
                 ((neko1)(nekocard.unit)).anim_card.Play("ordinary_cat");
                 ((neko1)(nekocard.unit)).GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
                 ((neko1)(nekocard.unit)).GetNode<Label>("Rank").Visible = true; //видимый ранг
+                ((neko1)(nekocard.unit)).GetNode<Label>("Damage").Visible = true; //видимое числовое HP
                 ((neko1)(nekocard.unit)).anchor_field = anchortile;
                 anchortile.occupied = true;
                 GD.Print("kjsdvbvjkbjnsdffs - ", anchortile.x, anchortile.y);

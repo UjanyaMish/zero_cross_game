@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dcmu5r5vwesf3"]
+[gd_scene load_steps=26 format=3 uid="uid://dcmu5r5vwesf3"]
 
 [ext_resource type="Script" path="res://Scripts/neko1.cs" id="1_c5yxe"]
 [ext_resource type="Texture2D" uid="uid://bh077j2jws2ew" path="res://pictures/кот простой луккрест.png" id="1_tlyvd"]
@@ -14,7 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://51uhxjdqfxh3" path="res://pictures/когтих27.png" id="9_cbreh"]
 [ext_resource type="Texture2D" uid="uid://c3a8exr0ea8w4" path="res://pictures/когтих28.png" id="10_oc454"]
 [ext_resource type="Texture2D" uid="uid://bwl43ou6atnuy" path="res://pictures/когтих29.png" id="11_mh8og"]
+[ext_resource type="Texture2D" uid="uid://b11klli4rmjh6" path="res://pictures/рангх11.png" id="13_yh2we"]
+[ext_resource type="Texture2D" uid="uid://c427ppni3kt1i" path="res://pictures/рангх12.png" id="14_8lwyb"]
+[ext_resource type="Texture2D" uid="uid://eru63f5cpk8u" path="res://pictures/рангх13.png" id="15_kglne"]
 [ext_resource type="LabelSettings" uid="uid://d1ufelmfsqi6d" path="res://шрифт настроек.tres" id="15_yij6a"]
+[ext_resource type="Texture2D" uid="uid://i2sulbi23xay" path="res://pictures/рангх14.png" id="16_6ub63"]
+[ext_resource type="Texture2D" uid="uid://bryv1j1dl3o0t" path="res://pictures/рангх15.png" id="17_3j0ox"]
+[ext_resource type="Texture2D" uid="uid://dimqyekrggtm8" path="res://pictures/рангх16.png" id="18_46bs8"]
+[ext_resource type="Texture2D" uid="uid://c1d00ta7siebl" path="res://pictures/рангх17.png" id="19_3nh1j"]
+[ext_resource type="Texture2D" uid="uid://cuu4dynfvirj2" path="res://pictures/рангх18.png" id="20_8iqd3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2rt5o"]
 animations = [{
@@ -65,6 +73,35 @@ animations = [{
 "loop": true,
 "name": &"ordinary_cat",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_yh2we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8lwyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kglne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6ub63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3j0ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_46bs8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3nh1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8iqd3")
+}],
+"loop": true,
+"name": &"rang",
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owx8"]
@@ -102,6 +139,16 @@ offset_top = 65.0
 offset_right = 32.0
 offset_bottom = 88.0
 text = "1"
+label_settings = ExtResource("15_yij6a")
+horizontal_alignment = 1
+
+[node name="Damage" type="Label" parent="."]
+visible = false
+offset_left = 32.0
+offset_top = -23.0
+offset_right = 57.0
+offset_bottom = 6.0
+text = "10"
 label_settings = ExtResource("15_yij6a")
 horizontal_alignment = 1
 

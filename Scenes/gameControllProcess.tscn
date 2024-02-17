@@ -7,15 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://k62hktt8r1wg" path="res://help_screen.tscn" id="5_5bj8h"]
 [ext_resource type="PackedScene" uid="uid://cptt2311ljch2" path="res://Scenes/audio_player_back.tscn" id="6_tm3h0"]
 
-[node name="GameControllProcess" type="Node"]
+[node name="GameControllProcess" type="Node" node_paths=PackedStringArray("help")]
 process_mode = 3
 script = ExtResource("1_bhrly")
+help = NodePath("Game")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll") instance=ExtResource("2_5tc7y")]
+[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("gameControll", "help") instance=ExtResource("2_5tc7y")]
 visible = false
 gameControll = NodePath("../..")
+help = NodePath("../../Game")
 
 [node name="SettingsMenu" parent="CanvasLayer" node_paths=PackedStringArray("control") instance=ExtResource("3_w5ife")]
 visible = false

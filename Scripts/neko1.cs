@@ -70,6 +70,7 @@ public partial class neko1 : Area2D
 						anim_card.Play("ordinary_cat");
 						GetNode<TextureProgressBar>("HP").Visible = true; //видимое HP
                         GetNode<Label>("Rank").Visible = true; //видимый ранг
+                        GetNode<Label>("Damage").Visible = true; //видимое числовое HP
                         Neko.teams[me.team].Add(me);
 						CardDeck.flag = true;
                         CardDeck.armlistUsers.Remove(me);

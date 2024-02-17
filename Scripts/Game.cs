@@ -20,6 +20,7 @@ public partial class Neko : IComparable //описание класса юнит
     public Node2D unit;
     public TextureProgressBar HP_bar;
     public Godot.Label label_rank;
+    public Godot.Label label_damage;
     //AnimatedSprite2D damage_anim;
 
     public static List<Neko> listNeko_O = new();
@@ -47,6 +48,7 @@ public partial class Neko : IComparable //описание класса юнит
 
         HP_bar = unit.GetNode<TextureProgressBar>("HP");
         label_rank = unit.GetNode<Godot.Label>("Rank");
+        label_damage = unit.GetNode<Godot.Label>("Damage");
     }
 
     ~Neko()
@@ -70,6 +72,7 @@ public partial class Neko : IComparable //описание класса юнит
         }
         else
         {
+            ((neko1)(this.unit)).anim_card.Play("rank");
             GD.Print("rrrraaaaa");
             this.rank = countRank;
             label_rank.Text = countRank.ToString();
@@ -245,6 +248,7 @@ public partial class Neko : IComparable //описание класса юнит
         ((neko1)(this.unit)).anim_card.Play("claws");
         HP -= damage;
         HP_bar.Value = HP;
+        label_damage.Text = HP.ToString();
         GD.Print("Neko from ", this.x, ", ", this.y, " get damage ", damage);
         if (HP <= 0)
         {
@@ -297,7 +301,7 @@ public class Swordsman : Neko //описание мечника
                 }
             }
         }
-        if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank);
+        if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank - 1);
     }
 }
 
@@ -329,7 +333,7 @@ public class Archer : Neko //описание лучника
                 }
             }
         }
-        if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank);
+        if (neko_attack is not null) neko_attack.DamageReceived(this.damage + this.rank - 1);
     }
 }
 

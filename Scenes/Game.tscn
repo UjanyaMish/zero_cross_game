@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://boeb56n7mlp21"]
+[gd_scene load_steps=7 format=3 uid="uid://boeb56n7mlp21"]
 
 [ext_resource type="Texture2D" uid="uid://bv28l7cka6aij" path="res://pictures/за фоном с мазней.png" id="1_cbhqs"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_lh87t"]
 [ext_resource type="PackedScene" uid="uid://d1f6o14s2r2u2" path="res://Scenes/Field.tscn" id="4_o7hnr"]
-[ext_resource type="PackedScene" uid="uid://k62hktt8r1wg" path="res://help_screen.tscn" id="6_lihmw"]
 [ext_resource type="PackedScene" uid="uid://bru3nf3v2vp2q" path="res://Scenes/VictoryScreen.tscn" id="7_asr4b"]
 [ext_resource type="Script" path="res://Scripts/ButtonAttack.cs" id="9_dniw3"]
 [ext_resource type="PackedScene" uid="uid://c3rbtlcsd4ejp" path="res://Scenes/mian_card_place.tscn" id="10_72max"]
@@ -65,10 +64,6 @@ size_flags_vertical = 4
 
 [node name="VictoryScreen" parent="CanvasLayer" instance=ExtResource("7_asr4b")]
 visible = false
-
-[node name="HelpScreen" parent="." node_paths=PackedStringArray("node") instance=ExtResource("6_lihmw")]
-visible = false
-node = NodePath("..")
 
 [connection signal="pressed" from="ButtonGameHelp" to="." method="_on_button_game_help_pressed"]
 [connection signal="GameOver" from="ButtonAttack" to="CanvasLayer/VictoryScreen" method="_on_button_attack_game_over"]

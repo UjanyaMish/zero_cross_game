@@ -34,15 +34,16 @@ shape = SubResource("RectangleShape2D_ujkde")
 position = Vector2(396, 933)
 
 [node name="TextureRect" type="TextureRect" parent="PlayerCards"]
-offset_right = 1149.0
+offset_left = -30.0
+offset_right = 1199.0
 offset_bottom = 573.0
 texture = ExtResource("2_wmqwl")
 
 [node name="EmpPlace" type="StaticBody2D" parent="."]
-position = Vector2(396, 906)
+position = Vector2(364, 907)
 
 [node name="EmptyPlace" type="CollisionShape2D" parent="EmpPlace" groups=["dropplace"]]
-position = Vector2(25, 44)
+position = Vector2(25, 42)
 shape = SubResource("RectangleShape2D_8yyjc")
 script = ExtResource("1_6y4vb")
 
